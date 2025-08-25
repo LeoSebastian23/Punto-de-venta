@@ -1,0 +1,16 @@
+# Archivos y carpetas de VS
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Binarios
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
