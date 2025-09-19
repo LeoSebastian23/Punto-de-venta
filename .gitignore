@@ -14,3 +14,11 @@
 *.tmp
 *.temp
 *.log
+
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.db
+*.log
