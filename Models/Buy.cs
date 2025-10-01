@@ -1,42 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Punto_de_venta.Models
 {
-    internal class Buy
+    public class Buy
     {
-        private long Id { get; set; }
-        private int quantity { get; set; }
-        private decimal unitCost { get; set; }
-        private DateTime dateBuy { get; set; }
-        private int invoiceNumber { get; set; }
-        private Product product { get; set; }
-        private Supplier supplier { get; set; } 
+        public int Id { get; private set; }
+        public int Quantity { get; private set; }
+        public decimal UnitCost { get; private set; }
+        public DateTime DateBuy { get; private set; }
+        public int InvoiceNumber { get; private set; }
 
-        public Buy(int id, int quantity, decimal unitCost, DateTime dateBuy, int invoiceNumber, Product product, Supplier supplier)
+        // Relaciones
+        public int ProductId { get; private set; }
+        public Product Product { get; private set; }
+
+        public int SupplierId { get; private set; }
+        public Supplier Supplier { get; private set; }
+
+        // Constructor vacío (para EF)
+        private Buy() { }
+
+        // Constructor controlado
+        public Buy(int quantity, decimal unitCost, DateTime dateBuy, int invoiceNumber, int productId, int supplierId)
         {
-            Id = id;
-            this.quantity = quantity;
-            this.unitCost = unitCost;
-            this.dateBuy = dateBuy;
-            this.invoiceNumber = invoiceNumber;
-            this.product = product;
-            this.supplier = supplier;
-        }
+            if (quantity <= 0)
+                throw new ArgumentException("La cantidad debe ser mayor a 0");
 
-        public Buy(int quantity, decimal unitCost, DateTime dateBuy, int invoiceNumber, Product product, Supplier supplier)
-        {
-            this.quantity = quantity;
-            this.unitCost = unitCost;
-            this.dateBuy = dateBuy;
-            this.invoiceNumber = invoiceNumber;
-            this.product = product;
-            this.supplier = supplier;
-        }
+            if (unitCost <= 0)
+                throw new ArgumentException("El costo unitario debe ser mayor a 0");
 
-        public Buy() { }
+            if (invoiceNumber <= 0)
+                throw new ArgumentException("El número de factura debe ser válido");
+
+            Quantity = quantity;
+            UnitCost = unitCost;
+            DateBuy = dateBuy;
+            InvoiceNumber = invoiceNumber;
+            ProductId = productId;
+            SupplierId = supplierId;
+        }
     }
 }
+
