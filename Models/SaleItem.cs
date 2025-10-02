@@ -6,29 +6,37 @@ using System.Threading.Tasks;
 
 namespace Punto_de_venta.Models
 {
-    internal class SaleItem
+    public class SaleItem
     {
-        private long Id { get; set; }
-        private Product Product { get; set; }
-        private int amount { get; set; }
-        private decimal totalPrice { get; set; }
+        // 🔑 Clave primaria
+        public int Id { get; private set; }
 
-        public SaleItem(long id, Product product, int amount, decimal totalPrice)
+        // 📌 Relación con Product
+        public int ProductId { get; private set; }
+        public Product Product { get; private set; }
+
+        // 📊 Cantidad y precio de la venta
+        public int Quantity { get; private set; }
+        public decimal UnitPrice { get; private set; }
+
+        // 💰 Subtotal calculado
+        public decimal Subtotal => Quantity * UnitPrice;
+
+        // 📌 Relación con Sale
+        public int SaleId { get; private set; }
+        public Sale Sale { get; private set; }
+
+        // 🔨 Constructor protegido para EF
+        protected SaleItem() { }
+
+        // 🚀 Constructor público
+        public SaleItem(Product product, int quantity, decimal unitPrice)
         {
-            Id = id;
-            Product = product;
-            this.amount = amount;
-            this.totalPrice = totalPrice;
+            Product = product ?? throw new ArgumentNullException(nameof(product));
+            ProductId = product.Id;
+            Quantity = quantity;
+            UnitPrice = unitPrice;
         }
-
-        public SaleItem(Product product, int amount, decimal totalPrice)
-        {
-            this.Product = product;
-            this.amount = amount;
-            this.totalPrice = totalPrice;
-        }
-
-        public SaleItem() { }
-
     }
 }
+

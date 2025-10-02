@@ -9,45 +9,53 @@ class Program
     {
         // Configurar servicios y DbContext
         var serviceProvider = new ServiceCollection()
-            .AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Server=localhost;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
+            .AddDbContext<AppDbContext>()
             .BuildServiceProvider();
 
-        using var context = serviceProvider.GetRequiredService<AppDbContext>();
-
-        // Asegurar que la BD se crea (solo para pruebas iniciales)
-        context.Database.EnsureCreated();
-
-        // ----- INSERT -----
-        var supplier = new Supplier("Proveedor Test", "20-12345678-9", "223-5555555");
-        context.Suppliers.Add(supplier);
-        context.SaveChanges();
-
-        var product = new Product("Mouse Logitech", "M-123", 800, 1200, 50, supplier.Id);
-        context.Products.Add(product);
-        context.SaveChanges();
-
-        var buy = new Buy(10, 1150, DateTime.Now, 1001, product.Id, supplier.Id);
-        context.Buys.Add(buy);
-        context.SaveChanges();
-
-        // ----- SELECT -----
-        var suppliers = context.Suppliers
-                               .Include(s => s.Products)
-                               .ThenInclude(p => p.Buys)
-                               .ToList();
-
-        foreach (var s in suppliers)
+        using (var context = serviceProvider.GetRequiredService<AppDbContext>())
         {
-            Console.WriteLine($"Proveedor: {s.Name}, CUIT: {s.CUIT}");
-            foreach (var p in s.Products)
+            context.Database.Migrate();
+
+            // --- 1. Crear Usuario (cajero)
+            var user = new User("Leo", "1234");
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            // --- 2. Crear Proveedor
+            var supplier = new Supplier("Proveedor X", "20123456789", "1122334455");
+            context.Suppliers.Add(supplier);
+            context.SaveChanges();
+
+            // --- 3. Crear Productos
+            var product1 = new Product("Jabon ALA", "Liquido", 500, 1200, 50, supplier.Id);
+            var product2 = new Product("Lavandina", "Ayudin", 300, 800, 30, supplier.Id);
+            context.Products.AddRange(product1, product2);
+            context.SaveChanges();
+
+            // --- 4. Crear Venta con ítems
+            var sale = new Sale(user);
+            sale.AddItem(product1, 2, product1.SalePrice); 
+            sale.AddItem(product2, 1, product2.SalePrice); 
+
+            context.Sales.Add(sale);
+            context.SaveChanges();
+
+            // --- 5. Consultar y mostrar resultados
+            var sales = context.Sales
+                .Include(s => s.Items)
+                .ThenInclude(i => i.Product)
+                .Include(s => s.User)
+                .ToList();
+
+            foreach (var s in sales)
             {
-                Console.WriteLine($"  Producto: {p.Name}, Stock: {p.Stock}");
-                foreach (var b in p.Buys)
+                Console.WriteLine($"Venta #{s.Id} por {s.User.Name} el {s.Date} - Total: {s.TotalAmount}");
+                foreach (var item in s.Items)
                 {
-                    Console.WriteLine($"    Compra: {b.Quantity} unidades, Precio Unitario: {b.UnitCost}, Factura: {b.InvoiceNumber}");
+                    Console.WriteLine($"   {item.Quantity} x {item.Product.Name} -> Subtotal {item.Subtotal}");
                 }
             }
         }
     }
 }
+

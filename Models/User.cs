@@ -6,25 +6,19 @@ using System.Threading.Tasks;
 
 namespace Punto_de_venta.Models
 {
-    internal class User
+    public class User   // antes era internal
     {
-        private long Id { get; set; }
-        private string name { get; set; }
-        private string password { get; set; }
+        public int Id { get; private set; }  // antes era private
+        public string Name { get; private set; }
+        public string Password { get; private set; }
 
-        public User(long id, string name, string password)
-        {
-            this.Id = id;
-            this.name = name;
-            this.password = password;
-        }
+        protected User() { } // EF necesita constructor vacío
 
         public User(string name, string password)
         {
-            this.name = name;
-            this.password = password;
+            Name = name;
+            Password = password;
         }
-
-        public User() { }
     }
 }
+

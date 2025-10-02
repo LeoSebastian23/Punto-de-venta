@@ -11,21 +11,21 @@ namespace Punto_de_venta.Models
         // Atributos
         public string Name { get; private set; }
         public string Code { get; private set; }
-        public decimal PurchasePrice { get; private set; }
-        public decimal UnitCost { get; private set; }
+        public decimal PurchasePrice { get; private set; }  // costo de compra
+        public decimal SalePrice { get; private set; }      // precio de venta
         public int Stock { get; private set; }
 
         // Relaciones
         public int SupplierId { get; private set; }
         public Supplier Supplier { get; private set; }
-
         public ICollection<Buy> Buys { get; private set; } = new List<Buy>();
+        public ICollection<SaleItem> SaleItems { get; private set; } = new List<SaleItem>();
 
-        // Constructor vacío (para EF)
-        private Product() { }
+        // Constructor protegido (para EF)
+        protected Product() { }
 
-        // Constructor controlado
-        public Product(string name, string code, decimal purchasePrice, decimal unitCost, int stock, int supplierId)
+        // Constructor de dominio
+        public Product(string name, string code, decimal purchasePrice, decimal salePrice, int stock, int supplierId)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("El nombre del producto es obligatorio");
@@ -33,8 +33,8 @@ namespace Punto_de_venta.Models
             if (string.IsNullOrWhiteSpace(code))
                 throw new ArgumentException("El código del producto es obligatorio");
 
-            if (unitCost <= 0)
-                throw new ArgumentException("El precio unitario debe ser mayor a 0");
+            if (salePrice <= 0)
+                throw new ArgumentException("El precio de venta debe ser mayor a 0");
 
             if (stock < 0)
                 throw new ArgumentException("El stock no puede ser negativo");
@@ -42,7 +42,7 @@ namespace Punto_de_venta.Models
             Name = name;
             Code = code;
             PurchasePrice = purchasePrice;
-            UnitCost = unitCost;
+            SalePrice = salePrice;
             Stock = stock;
             SupplierId = supplierId;
         }
@@ -61,10 +61,10 @@ namespace Punto_de_venta.Models
             Stock -= amount;
         }
 
-        public void UpdatePrice(decimal newPrice)
+        public void UpdateSalePrice(decimal newSalePrice)
         {
-            if (newPrice <= 0) throw new ArgumentException("El precio debe ser mayor a 0");
-            UnitCost = newPrice;
+            if (newSalePrice <= 0) throw new ArgumentException("El precio de venta debe ser mayor a 0");
+            SalePrice = newSalePrice;
         }
     }
 }
