@@ -6,38 +6,43 @@ using System.Threading.Tasks;
 
 namespace Punto_de_venta.Models
 {
-    internal class Sale
+    public class Sale
     {
-        private long Id { get; set; }
-        private List<SaleItem> Items { get; set; }
-        private int number {  get; set; }
-        private DateTime dateSale { get; set; }
-        private int amount { get; set; }
-        private string client {  get; set; }
-        private User user { get; set; }
+        // Clave primaria
+        public int Id { get; private set; }
 
-        public Sale(int id, List<SaleItem> items, int number, DateTime dateSale, int amount, string client, User user)
+        // Datos básicos
+        public DateTime Date { get; private set; }
+        public decimal TotalAmount => Items.Sum(i => i.Subtotal);
+
+        // Relación con Items
+        private readonly List<SaleItem> _items = new();
+        public IReadOnlyCollection<SaleItem> Items => _items.AsReadOnly();
+
+        // Relación con User (cajero)
+        public int UserId { get; private set; }
+        public User User { get; private set; }
+
+        // Constructor protegido para EF
+        protected Sale() { }
+
+        // Constructor público
+        public Sale(User user)
         {
-            Id = id;
-            Items = items;
-            this.number = number;
-            this.dateSale = dateSale;
-            this.amount = amount;
-            this.client = client;
-            this.user = user;
+            User = user ?? throw new ArgumentNullException(nameof(user));
+            UserId = user.Id;
+            Date = DateTime.Now;
         }
 
-        public Sale(List<SaleItem> items, int number,  string client, User user)
+        // ➕ Método para agregar productos
+        public void AddItem(Product product, int quantity, decimal unitPrice)
         {
-            Items = items;
-            this.number = number;
-            this.dateSale = dateSale;
-            this.amount = amount;
-            this.client = client;
-            this.user = user;
+            if (quantity <= 0) throw new ArgumentException("La cantidad debe ser mayor a 0.");
+            if (unitPrice <= 0) throw new ArgumentException("El precio debe ser mayor a 0.");
+
+            var item = new SaleItem(product, quantity, unitPrice);
+            _items.Add(item);
         }
-
-        Sale() { }
-
     }
 }
+

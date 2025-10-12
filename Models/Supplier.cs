@@ -1,34 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Punto_de_venta.Models
 {
-    internal class Supplier
+    public class Supplier
     {
-        private long Id {  get; set; }
-        private string name { get; set; }
-        private long cuit {  get; set; }
-        private long phoneNumber { get; set; }
+        // Clave primaria
+        public int Id { get; private set; }
 
-        public Supplier(long Id, string name, long cuit, long phoneNumber)
+        // Atributos obligatorios
+        public string Name { get; private set; }
+        public string CUIT { get; private set; }
+        public string PhoneNumber { get; private set; }
+
+        // Relaciones (navegación)
+        public ICollection<Product> Products { get; private set; } = new List<Product>();
+        public ICollection<Buy> Buys { get; private set; } = new List<Buy>();
+
+        // Constructor vacío (requerido por EF)
+        private Supplier() { }
+
+        // Constructor controlado (creación válida desde el inicio)
+        public Supplier(string name, string cuit, string phoneNumber)
         {
-            this.Id = Id;
-            this.name = name;
-            this.cuit = cuit;
-            this.phoneNumber = phoneNumber;
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("El nombre del proveedor es obligatorio");
+
+            if (string.IsNullOrWhiteSpace(cuit))
+                throw new ArgumentException("El CUIT del proveedor es obligatorio");
+
+            Name = name;
+            CUIT = cuit;
+            PhoneNumber = phoneNumber;
         }
 
-        public Supplier(string name, long cuit, long phoneNumber)
+        // Métodos de dominio (opcional: lógica propia de la entidad)
+        public void UpdateContact(string phoneNumber)
         {
-            this.name = name;
-            this.cuit = cuit;
-            this.phoneNumber = phoneNumber;
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                throw new ArgumentException("El teléfono no puede estar vacío");
+
+            PhoneNumber = phoneNumber;
         }
-
-        public Supplier() { }
-
     }
 }
