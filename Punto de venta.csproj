@@ -26,6 +26,9 @@
 
   <ItemGroup>
     <Folder Include="Views\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Interfaces\" />
+
   </ItemGroup>
 
 </Project>
