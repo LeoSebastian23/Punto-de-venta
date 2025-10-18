@@ -1,44 +1,48 @@
-﻿using System;
+﻿
+using System;
+using System.Collections.Generic;
+
+using System;
+using System.Collections.Generic;
 
 namespace Punto_de_venta.Models
 {
     public class Buy
     {
+        // Clave primaria
         public int Id { get; private set; }
-        public int Quantity { get; private set; }
-        public decimal UnitCost { get; private set; }
-        public DateTime DateBuy { get; private set; }
-        public int InvoiceNumber { get; private set; }
 
         // Relaciones
-        public int ProductId { get; private set; }
-        public Product Product { get; private set; }
+        public int? SupplierId { get; private set; }  // Nullable = compra sin proveedor
+        public Supplier? Supplier { get; private set; }
 
-        public int SupplierId { get; private set; }
-        public Supplier Supplier { get; private set; }
+        // Atributos
+        public DateTime Date { get; private set; } = DateTime.Now;
+        public decimal TotalAmount { get; private set; }
+
+        // Relación con BuyItem
+        public ICollection<BuyItem> Items { get; private set; } = new List<BuyItem>();
 
         // Constructor vacío (para EF)
-        private Buy() { }
+        protected Buy() { }
 
-        // Constructor controlado
-        public Buy(int quantity, decimal unitCost, DateTime dateBuy, int invoiceNumber, int productId, int supplierId)
+        // Constructor de dominio
+        public Buy(int? supplierId = null)
         {
-            if (quantity <= 0)
-                throw new ArgumentException("La cantidad debe ser mayor a 0");
-
-            if (unitCost <= 0)
-                throw new ArgumentException("El costo unitario debe ser mayor a 0");
-
-            if (invoiceNumber <= 0)
-                throw new ArgumentException("El número de factura debe ser válido");
-
-            Quantity = quantity;
-            UnitCost = unitCost;
-            DateBuy = dateBuy;
-            InvoiceNumber = invoiceNumber;
-            ProductId = productId;
             SupplierId = supplierId;
+        }
+
+        // Agregar ítem de compra
+        public void AddItem(BuyItem item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            Items.Add(item);
+            TotalAmount += item.Subtotal;
         }
     }
 }
+
+
 

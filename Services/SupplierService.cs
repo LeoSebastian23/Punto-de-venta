@@ -45,7 +45,20 @@ namespace Punto_de_venta.Services
         //  Eliminar proveedor
         public void DeleteSupplier(int id)
         {
-            _repository.Delete(id);
+            try
+            {
+                _repository.Delete(id);
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Lógica para manejar errores de negocio
+                throw new InvalidOperationException(ex.Message);
+            }
+            catch (Exception)
+            {
+                // Cualquier otro error inesperado
+                throw new Exception("Error al eliminar el proveedor.");
+            }
         }
     }
 }
