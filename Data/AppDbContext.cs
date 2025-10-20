@@ -39,14 +39,21 @@ namespace Punto_de_venta.Data
                 .HasOne(p => p.Supplier)
                 .WithMany(s => s.Products)
                 .HasForeignKey(p => p.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict); // no borrar supplier en cascada
+                .OnDelete(DeleteBehavior.Restrict) // no borrar supplier en cascada
+                .IsRequired(false);
 
             // --- BUY ---
-            // Un Buy tiene un Product
             modelBuilder.Entity<Buy>()
-                .HasOne(b => b.Product)
-                .WithMany(p => p.Buys)
-                .HasForeignKey(b => b.ProductId)
+                .HasMany(b => b.Items)
+                .WithOne(i => i.Buy)
+                .HasForeignKey(i => i.BuyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // --- BUYITEM ---
+            modelBuilder.Entity<BuyItem>()
+                .HasOne(i => i.Product)
+                .WithMany(p => p.BuyItems) // si Product ya tiene ICollection<Buy>
+                .HasForeignKey(i => i.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Un Buy tiene un Supplier

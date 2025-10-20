@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Punto_de_venta.Data;
+using Punto_de_venta.Models;
+using Punto_de_venta.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using Punto_de_venta.Data;
-using Punto_de_venta.Models;
-using Punto_de_venta.Repositories.Interfaces;
 
 namespace Punto_de_venta.Repositories.Implementations
 {
@@ -42,12 +43,18 @@ namespace Punto_de_venta.Repositories.Implementations
 
         public void Delete(int id)
         {
-            var supplier = _context.Suppliers.Find(id);
+            var supplier = _context.Suppliers
+                .Include(s => s.Products)
+                .FirstOrDefault(s => s.Id == id);
+
             if (supplier == null)
                 throw new Exception("Proveedor no encontrado.");
 
+            if (supplier.Products.Any())
+                throw new InvalidOperationException("No se puede eliminar el proveedor porque tiene productos asociados.");
+
             _context.Suppliers.Remove(supplier);
-            _context.SaveChanges(); 
+            Save();
         }
 
         public void Save()

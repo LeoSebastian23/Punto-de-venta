@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Punto_de_venta.Data;
 
@@ -11,9 +12,11 @@ using Punto_de_venta.Data;
 namespace Punto_de_venta.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251018191120_MakeSupplierOptional")]
+    partial class MakeSupplierOptional
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,32 +33,8 @@ namespace Punto_de_venta.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("DateBuy")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("Buys");
-                });
-
-            modelBuilder.Entity("Punto_de_venta.Models.BuyItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BuyId")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -63,16 +42,19 @@ namespace Punto_de_venta.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("UnitPrice")
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitCost")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuyId");
-
                     b.HasIndex("ProductId");
 
-                    b.ToTable("BuyItem");
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("Buys");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
@@ -211,31 +193,20 @@ namespace Punto_de_venta.Migrations
 
             modelBuilder.Entity("Punto_de_venta.Models.Buy", b =>
                 {
+                    b.HasOne("Punto_de_venta.Models.Product", "Product")
+                        .WithMany("Buys")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Punto_de_venta.Models.Supplier", "Supplier")
                         .WithMany("Buys")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("Supplier");
-                });
-
-            modelBuilder.Entity("Punto_de_venta.Models.BuyItem", b =>
-                {
-                    b.HasOne("Punto_de_venta.Models.Buy", "Buy")
-                        .WithMany("Items")
-                        .HasForeignKey("BuyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Punto_de_venta.Models.Product", "Product")
-                        .WithMany("BuyItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Buy");
-
                     b.Navigation("Product");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
@@ -278,14 +249,9 @@ namespace Punto_de_venta.Migrations
                     b.Navigation("Sale");
                 });
 
-            modelBuilder.Entity("Punto_de_venta.Models.Buy", b =>
-                {
-                    b.Navigation("Items");
-                });
-
             modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
                 {
-                    b.Navigation("BuyItems");
+                    b.Navigation("Buys");
 
                     b.Navigation("SaleItems");
                 });

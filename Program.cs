@@ -12,21 +12,36 @@ class Program
 {
     static void Main(string[] args)
     {
+        //var services = new ServiceCollection()
+        //    .AddDbContext<AppDbContext>(options =>
+        //        options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
+        //    .AddScoped<ISupplierRepository, SupplierRepository>()
+        //    .AddScoped<SupplierService>()
+        //    .AddScoped<SupplierController>()
+        //    .AddScoped<SupplierView>() 
+        //    .BuildServiceProvider();
+
+        //Application.EnableVisualStyles();
+        //Application.SetCompatibleTextRenderingDefault(false);
+
+
+        //// ? Se obtiene la instancia del formulario desde el ServiceProvider
+        //var form = services.GetRequiredService<SupplierView>();
+        //Application.Run(form);
+
         var services = new ServiceCollection()
             .AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
-            .AddScoped<ISupplierRepository, SupplierRepository>()
-            .AddScoped<SupplierService>()
-            .AddScoped<SupplierController>()
-            .AddScoped<SupplierView>() 
+            .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<ProductService>()
+            .AddScoped<ProductController>()
+            .AddScoped<ProductView>()
             .BuildServiceProvider();
 
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
 
-
-        // ? Se obtiene la instancia del formulario desde el ServiceProvider
-        var form = services.GetRequiredService<SupplierView>();
+        var form = services.GetRequiredService<ProductView>();
         Application.Run(form);
     }
 }

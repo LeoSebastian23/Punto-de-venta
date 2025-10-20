@@ -74,9 +74,23 @@ namespace Punto_de_venta.Views
             }
 
             int id = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
-            _controller.DeleteSupplier(id);
-            MessageBox.Show("Proveedor eliminado.");
-            LoadSuppliers();
+
+            try
+            {
+                _controller.DeleteSupplier(id);
+                MessageBox.Show("Proveedor eliminado correctamente.");
+                LoadSuppliers();
+            }
+            catch (InvalidOperationException ex)
+            {
+                // ⚠️ Error de negocio: proveedor con productos asociados
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                // ❌ Error inesperado
+                MessageBox.Show("Ocurrió un error al eliminar el proveedor: " + ex.Message);
+            }
         }
 
         // Limpiar campos
@@ -98,7 +112,7 @@ namespace Punto_de_venta.Views
             LoadSuppliers();
         }
 
-        // ✅ Mostrar proveedor al seleccionar una fila
+        // Mostrar proveedor al seleccionar una fila
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
