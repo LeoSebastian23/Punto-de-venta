@@ -9,7 +9,7 @@ namespace Punto_de_venta.Models
 
         public string CUIT { get; private set; }
 
-        public string? PhoneNumber { get; private set; } // ← opcional (puede ser null)
+        public string? Phone/*Number*/ { get; private set; } // ← opcional (puede ser null)
 
         // Relaciones
         public ICollection<Product> Products { get; private set; } = new List<Product>();
@@ -29,7 +29,7 @@ namespace Punto_de_venta.Models
 
             Name = name;
             CUIT = cuit;
-            PhoneNumber = phoneNumber;
+            Phone/*Number*/ = phoneNumber;
         }
 
         // Método para actualizar datos del proveedor
@@ -39,7 +39,7 @@ namespace Punto_de_venta.Models
                 Name = name;
 
             if (!string.IsNullOrWhiteSpace(phone))
-                PhoneNumber = phone;
+                Phone/*Number*/ = phone;
         }
     }
 }

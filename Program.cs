@@ -7,6 +7,7 @@ using Punto_de_venta.Repositories.Implementations;
 using Punto_de_venta.Services;
 using Punto_de_venta.Controllers;
 using Punto_de_venta.Views;
+using punto_venta;
 
 class Program
 {
@@ -28,7 +29,7 @@ class Program
         //// ? Se obtiene la instancia del formulario desde el ServiceProvider
         //var form = services.GetRequiredService<SupplierView>();
         //Application.Run(form);
-
+        
         var services = new ServiceCollection()
             .AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
@@ -41,8 +42,10 @@ class Program
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
 
-        var form = services.GetRequiredService<ProductView>();
+        var form = services.GetRequiredService<SupplierView>();
         Application.Run(form);
+        
+
     }
 }
 
