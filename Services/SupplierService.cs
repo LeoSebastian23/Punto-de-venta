@@ -60,6 +60,15 @@ namespace Punto_de_venta.Services
                 throw new Exception("Error al eliminar el proveedor.");
             }
         }
+        // Buscar proveedor
+        public Supplier? GetSupplierById(int? id)
+        {
+            if (id == null)
+                return null;
+
+            return _repository.GetById(id.Value);
+        }
+
     }
 }
 

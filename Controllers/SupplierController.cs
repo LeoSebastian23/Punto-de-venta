@@ -19,26 +19,26 @@ namespace Punto_de_venta.Controllers
             _service = service;
         }
 
-        // ✅ Obtener todos los proveedores
+        // Obtener todos los proveedores
         public IEnumerable<Supplier> GetAllSuppliers()
         {
             return _service.GetAllSuppliers();
         }
 
-        // ✅ Crear proveedor (firma compatible con la vista)
+        // Crear proveedor (firma compatible con la vista)
         public void CreateSupplier(string name, string cuit, string phoneNumber)
         {
             var supplier = new Supplier(name, cuit, phoneNumber);
             _service.CreateSupplier(supplier);
         }
 
-        // ✅ Actualizar proveedor (firma compatible con la vista)
+        // Actualizar proveedor (firma compatible con la vista)
         public void UpdateSupplier(int id, string name, string phoneNumber)
         {
             _service.UpdateSupplier(id, name, phoneNumber);
         }
 
-        // ✅ Eliminar proveedor (firma compatible con la vista)
+        // Eliminar proveedor (firma compatible con la vista)
         public void DeleteSupplier(int id)
         {
             _service.DeleteSupplier(id);

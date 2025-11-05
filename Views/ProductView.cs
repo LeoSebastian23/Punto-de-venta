@@ -1,18 +1,8 @@
 ﻿using Punto_de_venta.Controllers;
+using Punto_de_venta.Models;
 using System;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace Punto_de_venta.Views
 {
@@ -27,35 +17,32 @@ namespace Punto_de_venta.Views
             LoadProducts();
         }
 
+        // 🔹 Cargar todos los productos
         private void LoadProducts()
         {
             var products = _controller.GetAllProducts().ToList();
+
             dataGridViewProducts.DataSource = products.Select(p => new
             {
                 p.Id,
                 p.Name,
                 p.Code,
-                p.PurchasePrice,
                 p.SalePrice,
                 p.Stock,
-                Supplier = p.Supplier?.Name ?? "—"
             }).ToList();
         }
 
-        private void btnAdd_Click2(object sender, EventArgs e)
+        // 🔹 Crear nuevo producto
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                string name = LbeltxtName.Text.Trim();
-                string code = LbeltxtCode.Text.Trim();
-                decimal purchasePrice = decimal.Parse(LbeltxtPurchasePrice.Text);
+                string name = txtName.Text.Trim();
+                string code = txtCode.Text.Trim();
                 decimal salePrice = decimal.Parse(txtSalePrice.Text);
                 int stock = int.Parse(txtStock.Text);
-                int? supplierId = string.IsNullOrWhiteSpace(txtSupplierId.Text)
-                    ? null
-                    : int.Parse(txtSupplierId.Text);
+                _controller.CreateProduct(name, code,salePrice, stock);
 
-                _controller.CreateProduct(name, code, purchasePrice, salePrice, stock, supplierId);
                 MessageBox.Show("✅ Producto agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadProducts();
                 ClearFields();
@@ -66,6 +53,7 @@ namespace Punto_de_venta.Views
             }
         }
 
+        // 🔹 Eliminar producto
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewProducts.SelectedRows.Count == 0)
@@ -88,21 +76,71 @@ namespace Punto_de_venta.Views
             }
         }
 
+        // 🔹 Actualizar producto seleccionado
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProducts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un producto para actualizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                int id = (int)dataGridViewProducts.SelectedRows[0].Cells["Id"].Value;
+                string name = txtName.Text.Trim();
+                string code = txtCode.Text.Trim();
+                decimal purchasePrice = decimal.Parse(txtPurchasePrice.Text);
+                decimal salePrice = decimal.Parse(txtSalePrice.Text);
+                int stock = int.Parse(txtStock.Text);
+                int? supplierId = string.IsNullOrWhiteSpace(txtSupplierId.Text)
+                    ? null
+                    : int.Parse(txtSupplierId.Text);
+
+                _controller.UpdateProduct(id, name, code, purchasePrice, salePrice, stock, supplierId);
+
+                MessageBox.Show("✏️ Producto actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadProducts();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"❌ Error al actualizar producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // 🔹 Recargar la grilla
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadProducts();
         }
 
+        // 🔹 Cargar los datos del producto al seleccionar una fila
+        private void dataGridViewProducts_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewProducts.SelectedRows.Count > 0)
+            {
+                var row = dataGridViewProducts.SelectedRows[0];
+                txtName.Text = row.Cells["Name"].Value.ToString();
+                txtCode.Text = row.Cells["Code"].Value.ToString();
+                txtPurchasePrice.Text = row.Cells["PurchasePrice"].Value.ToString();
+                txtSalePrice.Text = row.Cells["SalePrice"].Value.ToString();
+                txtStock.Text = row.Cells["Stock"].Value.ToString();
+                txtSupplierId.Text = row.Cells["Supplier"].Value.ToString() == "—" ? "" : row.Cells["Supplier"].Value.ToString();
+            }
+        }
+
+        // 🔹 Limpiar campos
         private void ClearFields()
         {
-            //LbeltxtName.Clear();
-            //LbeltxtCode.Clear();
-            //LbeltxtPurchasePrice.Clear();
+            txtName.Clear();
+            txtCode.Clear();
+            txtPurchasePrice.Clear();
             txtSalePrice.Clear();
             txtStock.Clear();
             txtSupplierId.Clear();
         }
-
     }
 }
+
 

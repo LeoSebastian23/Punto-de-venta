@@ -5,7 +5,7 @@ namespace Punto_de_venta.Repositories.Interfaces
     public interface IProductRepository
     {
         void Add(Product product);
-        Product? GetById(int id);
+        Product? GetById(int id, bool includeRelations = false);
         IEnumerable<Product> GetAll();
         void Update(Product product);
         void Delete(Product product);

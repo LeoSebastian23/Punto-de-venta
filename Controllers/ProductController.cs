@@ -18,9 +18,9 @@ namespace Punto_de_venta.Controllers
             _service = service;
         }
 
-        public void CreateProduct(string name, string code, decimal purchasePrice, decimal salePrice, int stock, int? supplierId = null)
+        public void CreateProduct(string name, string code, decimal salePrice, int stock)
         {
-            _service.CreateProduct(name, code, purchasePrice, salePrice, stock, supplierId);
+            _service.CreateProduct(name, code, salePrice, stock);
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -31,6 +31,11 @@ namespace Punto_de_venta.Controllers
         public void DeleteProduct(int id)
         {
             _service.DeleteProduct(id);
+        }
+
+        public void UpdateProduct(int id, string name, string code, decimal purchasePrice, decimal salePrice, int stock, int? supplierId)
+        {
+            _service.UpdateProduct(id, name, code, salePrice, stock);
         }
     }
 }

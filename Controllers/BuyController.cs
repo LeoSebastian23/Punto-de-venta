@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Punto_de_venta.Models;
+using Punto_de_venta.Models.IVAStrategy;
+using Punto_de_venta.Repositories.Interfaces;
 using Punto_de_venta.Services;
-using Punto_de_venta.Models;
+using static Punto_de_venta.Models.IVAStrategy.FacturaExenta;
 
 namespace Punto_de_venta.Controllers
 {
@@ -17,16 +14,28 @@ namespace Punto_de_venta.Controllers
         {
             _service = service;
         }
-        public void RegisterBuy(int? supplierId, int productId, int quantity, decimal unitPrice)
-        {
-            var buy = new Buy(supplierId);
-            var item = new BuyItem(productId, quantity, unitPrice);
-            buy.AddItem(item);
 
-            _service.RegisterBuy(buy);
+        public void RegisterBuy(Supplier supplier, string invoiceNumber, List<(Product product, int quantity, decimal unitCost)> items, string invoiceType, decimal? porcentajeGanancia = null)
+        {
+            var buy = Buy.Create(supplier, invoiceNumber);
+
+            foreach (var (product, quantity, unitCost) in items)
+            {
+                buy.AddItem(new BuyItem(product, quantity, unitCost));
+            }
+
+            ITaxStrategy taxStrategy = invoiceType switch
+            {
+                "A" => new FacturaA(),
+                "B" => new FacturaB(),
+                "E" => new FacturaExenta(),
+                _ => throw new ArgumentException("Tipo de factura inválido")
+            };
+
+            _service.RegisterBuy(buy, taxStrategy, porcentajeGanancia);
         }
 
-
-        public IEnumerable<Buy> GetAllBuys() => _service.GetAllBuys();
+        //public IEnumerable<Buy> GetAllBuys() => _service.GetAllBuys();
     }
 }
+

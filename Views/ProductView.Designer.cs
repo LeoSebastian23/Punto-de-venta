@@ -28,55 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnAdd_Click = new Button();
-            button2 = new Button();
-            refresh = new Button();
+            btnAdd = new Button();
+            btnDelete = new Button();
+            btnRefresh = new Button();
             dataGridViewProducts = new DataGridView();
-            label1 = new Label();
-            LbeltxtName = new Label();
+            labelTitle = new Label();
+            labelName = new Label();
             txtName = new TextBox();
             txtCode = new TextBox();
-            LbeltxtCode = new Label();
+            labelCode = new Label();
             txtPurchasePrice = new TextBox();
-            LbeltxtPurchasePrice = new Label();
+            labelPurchasePrice = new Label();
             txtSalePrice = new TextBox();
-            label5 = new Label();
+            labelSalePrice = new Label();
             txtStock = new TextBox();
-            label6 = new Label();
+            labelStock = new Label();
+            labelSupplier = new Label();
             txtSupplierId = new TextBox();
-            label7 = new Label();
-            openFileDialog1 = new OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
             SuspendLayout();
             // 
-            // btnAdd_Click
+            // btnAdd
             // 
-            btnAdd_Click.Location = new Point(12, 220);
-            btnAdd_Click.Name = "btnAdd_Click";
-            btnAdd_Click.Size = new Size(94, 29);
-            btnAdd_Click.TabIndex = 0;
-            btnAdd_Click.Text = "Agregar ";
-            btnAdd_Click.UseVisualStyleBackColor = true;
+            btnAdd.Location = new Point(12, 220);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(94, 29);
+            btnAdd.TabIndex = 0;
+            btnAdd.Text = "Agregar";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
-            // button2
+            // btnDelete
             // 
-            button2.Location = new Point(562, 220);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 1;
-            button2.Text = "Borrar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += btnDelete_Click;
+            btnDelete.Location = new Point(562, 220);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 1;
+            btnDelete.Text = "Eliminar";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
-            // refresh
+            // btnRefresh
             // 
-            refresh.Location = new Point(678, 220);
-            refresh.Name = "refresh";
-            refresh.Size = new Size(94, 29);
-            refresh.TabIndex = 2;
-            refresh.Text = "Actualizar lista";
-            refresh.UseVisualStyleBackColor = true;
-            refresh.Click += btnRefresh_Click;
+            btnRefresh.Location = new Point(678, 220);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(94, 29);
+            btnRefresh.TabIndex = 2;
+            btnRefresh.Text = "Actualizar lista";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // dataGridViewProducts
             // 
@@ -86,26 +86,27 @@
             dataGridViewProducts.RowHeadersWidth = 51;
             dataGridViewProducts.Size = new Size(760, 183);
             dataGridViewProducts.TabIndex = 3;
+            dataGridViewProducts.SelectionChanged += dataGridViewProducts_SelectionChanged;
             // 
-            // label1
+            // labelTitle
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F);
-            label1.Location = new Point(283, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(248, 37);
-            label1.TabIndex = 4;
-            label1.Text = "Menu de Productos";
-            label1.TextAlign = ContentAlignment.TopCenter;
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelTitle.Location = new Point(188, 9);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(421, 54);
+            labelTitle.TabIndex = 4;
+            labelTitle.Text = "\U0001f9fa Gestión Productos";
+            labelTitle.TextAlign = ContentAlignment.TopCenter;
             // 
-            // LbeltxtName
+            // labelName
             // 
-            LbeltxtName.AutoSize = true;
-            LbeltxtName.Location = new Point(12, 120);
-            LbeltxtName.Name = "LbeltxtName";
-            LbeltxtName.Size = new Size(64, 20);
-            LbeltxtName.TabIndex = 5;
-            LbeltxtName.Text = "Nombre";
+            labelName.AutoSize = true;
+            labelName.Location = new Point(12, 120);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(64, 20);
+            labelName.TabIndex = 5;
+            labelName.Text = "Nombre";
             // 
             // txtName
             // 
@@ -121,14 +122,14 @@
             txtCode.Size = new Size(125, 27);
             txtCode.TabIndex = 8;
             // 
-            // LbeltxtCode
+            // labelCode
             // 
-            LbeltxtCode.AutoSize = true;
-            LbeltxtCode.Location = new Point(12, 177);
-            LbeltxtCode.Name = "LbeltxtCode";
-            LbeltxtCode.Size = new Size(58, 20);
-            LbeltxtCode.TabIndex = 7;
-            LbeltxtCode.Text = "Codigo";
+            labelCode.AutoSize = true;
+            labelCode.Location = new Point(12, 177);
+            labelCode.Name = "labelCode";
+            labelCode.Size = new Size(58, 20);
+            labelCode.TabIndex = 7;
+            labelCode.Text = "Código";
             // 
             // txtPurchasePrice
             // 
@@ -137,15 +138,14 @@
             txtPurchasePrice.Size = new Size(125, 27);
             txtPurchasePrice.TabIndex = 10;
             // 
-            // LbeltxtPurchasePrice
+            // labelPurchasePrice
             // 
-            LbeltxtPurchasePrice.AutoSize = true;
-            LbeltxtPurchasePrice.ForeColor = SystemColors.ControlText;
-            LbeltxtPurchasePrice.Location = new Point(274, 123);
-            LbeltxtPurchasePrice.Name = "LbeltxtPurchasePrice";
-            LbeltxtPurchasePrice.Size = new Size(126, 20);
-            LbeltxtPurchasePrice.TabIndex = 9;
-            LbeltxtPurchasePrice.Text = "Precio de compra";
+            labelPurchasePrice.AutoSize = true;
+            labelPurchasePrice.Location = new Point(274, 123);
+            labelPurchasePrice.Name = "labelPurchasePrice";
+            labelPurchasePrice.Size = new Size(126, 20);
+            labelPurchasePrice.TabIndex = 9;
+            labelPurchasePrice.Text = "Precio de compra";
             // 
             // txtSalePrice
             // 
@@ -154,14 +154,14 @@
             txtSalePrice.Size = new Size(125, 27);
             txtSalePrice.TabIndex = 12;
             // 
-            // label5
+            // labelSalePrice
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(274, 177);
-            label5.Name = "label5";
-            label5.Size = new Size(111, 20);
-            label5.TabIndex = 11;
-            label5.Text = "Precio de venta";
+            labelSalePrice.AutoSize = true;
+            labelSalePrice.Location = new Point(274, 177);
+            labelSalePrice.Name = "labelSalePrice";
+            labelSalePrice.Size = new Size(111, 20);
+            labelSalePrice.TabIndex = 11;
+            labelSalePrice.Text = "Precio de venta";
             // 
             // txtStock
             // 
@@ -170,14 +170,23 @@
             txtStock.Size = new Size(125, 27);
             txtStock.TabIndex = 14;
             // 
-            // label6
+            // labelStock
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(586, 127);
-            label6.Name = "label6";
-            label6.Size = new Size(45, 20);
-            label6.TabIndex = 13;
-            label6.Text = "Stock";
+            labelStock.AutoSize = true;
+            labelStock.Location = new Point(586, 127);
+            labelStock.Name = "labelStock";
+            labelStock.Size = new Size(45, 20);
+            labelStock.TabIndex = 13;
+            labelStock.Text = "Stock";
+            // 
+            // labelSupplier
+            // 
+            labelSupplier.AutoSize = true;
+            labelSupplier.Location = new Point(562, 177);
+            labelSupplier.Name = "labelSupplier";
+            labelSupplier.Size = new Size(77, 20);
+            labelSupplier.TabIndex = 15;
+            labelSupplier.Text = "Proveedor";
             // 
             // txtSupplierId
             // 
@@ -186,43 +195,30 @@
             txtSupplierId.Size = new Size(125, 27);
             txtSupplierId.TabIndex = 16;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(562, 177);
-            label7.Name = "label7";
-            label7.Size = new Size(78, 20);
-            label7.TabIndex = 15;
-            label7.Text = "Proovedor";
-            // 
-            // openFileDialog1
-            // 
-            openFileDialog1.FileName = "openFileDialog1";
-            // 
             // ProductView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(txtSupplierId);
-            Controls.Add(label7);
+            Controls.Add(labelSupplier);
             Controls.Add(txtStock);
-            Controls.Add(label6);
+            Controls.Add(labelStock);
             Controls.Add(txtSalePrice);
-            Controls.Add(label5);
+            Controls.Add(labelSalePrice);
             Controls.Add(txtPurchasePrice);
-            Controls.Add(LbeltxtPurchasePrice);
+            Controls.Add(labelPurchasePrice);
             Controls.Add(txtCode);
-            Controls.Add(LbeltxtCode);
+            Controls.Add(labelCode);
             Controls.Add(txtName);
-            Controls.Add(LbeltxtName);
-            Controls.Add(label1);
+            Controls.Add(labelName);
+            Controls.Add(labelTitle);
             Controls.Add(dataGridViewProducts);
-            Controls.Add(refresh);
-            Controls.Add(button2);
-            Controls.Add(btnAdd_Click);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnDelete);
+            Controls.Add(btnAdd);
             Name = "ProductView";
-            Text = "ProductView";
+            Text = "Gestión de Productos";
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -230,23 +226,22 @@
 
         #endregion
 
-        private Button btnAdd_Click;
-        private Button button2;
-        private Button refresh;
+        private Button btnAdd;
+        private Button btnDelete;
+        private Button btnRefresh;
         private DataGridView dataGridViewProducts;
-        private Label label1;
-        private Label LbeltxtName;
+        private Label labelTitle;
+        private Label labelName;
         private TextBox txtName;
         private TextBox txtCode;
-        private Label LbeltxtCode;
+        private Label labelCode;
         private TextBox txtPurchasePrice;
-        private Label LbeltxtPurchasePrice;
+        private Label labelPurchasePrice;
         private TextBox txtSalePrice;
-        private Label label5;
+        private Label labelSalePrice;
         private TextBox txtStock;
-        private Label label6;
+        private Label labelStock;
+        private Label labelSupplier;
         private TextBox txtSupplierId;
-        private Label label7;
-        private OpenFileDialog openFileDialog1;
     }
 }

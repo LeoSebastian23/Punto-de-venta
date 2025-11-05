@@ -33,6 +33,11 @@ namespace Punto_de_venta.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("InvoiceNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
@@ -54,7 +59,7 @@ namespace Punto_de_venta.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BuyId")
+                    b.Property<int?>("BuyId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -91,9 +96,6 @@ namespace Punto_de_venta.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<decimal>("PurchasePrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("SalePrice")
                         .HasColumnType("decimal(18,2)");
@@ -221,31 +223,25 @@ namespace Punto_de_venta.Migrations
 
             modelBuilder.Entity("Punto_de_venta.Models.BuyItem", b =>
                 {
-                    b.HasOne("Punto_de_venta.Models.Buy", "Buy")
+                    b.HasOne("Punto_de_venta.Models.Buy", null)
                         .WithMany("Items")
                         .HasForeignKey("BuyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Punto_de_venta.Models.Product", "Product")
-                        .WithMany("BuyItems")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Buy");
 
                     b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
                 {
-                    b.HasOne("Punto_de_venta.Models.Supplier", "Supplier")
+                    b.HasOne("Punto_de_venta.Models.Supplier", null)
                         .WithMany("Products")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Supplier");
+                        .HasForeignKey("SupplierId");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Sale", b =>
@@ -262,7 +258,7 @@ namespace Punto_de_venta.Migrations
             modelBuilder.Entity("Punto_de_venta.Models.SaleItem", b =>
                 {
                     b.HasOne("Punto_de_venta.Models.Product", "Product")
-                        .WithMany("SaleItems")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -281,13 +277,6 @@ namespace Punto_de_venta.Migrations
             modelBuilder.Entity("Punto_de_venta.Models.Buy", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
-                {
-                    b.Navigation("BuyItems");
-
-                    b.Navigation("SaleItems");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Sale", b =>

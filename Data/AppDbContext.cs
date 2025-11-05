@@ -5,7 +5,9 @@ namespace Punto_de_venta.Data
 {
     public class AppDbContext : DbContext
     {
-        // DbSets = Tablas en la BD
+        // ==========================
+        // TABLAS PRINCIPALES
+        // ==========================
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Buy> Buys { get; set; }
@@ -13,13 +15,17 @@ namespace Punto_de_venta.Data
         public DbSet<SaleItem> SaleItems { get; set; }
         public DbSet<User> Users { get; set; }
 
-        // Constructor que usa DI
+        // ==========================
+        // CONSTRUCTORES
+        // ==========================
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        // ✅ Constructor adicional para migraciones
+        // Constructor adicional para migraciones
         public AppDbContext() { }
 
-        // ✅ OnConfiguring: se usa solo si no está configurado por DI
+        // ==========================
+        // CONFIGURACIÓN
+        // ==========================
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -27,73 +33,73 @@ namespace Punto_de_venta.Data
                 optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
-        // Configuración de relaciones y restricciones
+
+        // ==========================
+        // RELACIONES Y REGLAS
+        // ==========================
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // --- PRODUCT ---
-            // Un Product tiene un Supplier
-            // Un Supplier tiene muchos Products
-            modelBuilder.Entity<Product>()
-                .HasOne(p => p.Supplier)
-                .WithMany(s => s.Products)
-                .HasForeignKey(p => p.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict) // no borrar supplier en cascada
-                .IsRequired(false);
-
-            // --- BUY ---
+            // ==========================
+            // BUY → BUYITEM → PRODUCT
+            // ==========================
             modelBuilder.Entity<Buy>()
                 .HasMany(b => b.Items)
-                .WithOne(i => i.Buy)
-                .HasForeignKey(i => i.BuyId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithOne()
+                .HasForeignKey("BuyId")
+                .OnDelete(DeleteBehavior.Cascade); // al borrar una compra, se borran sus items
 
-            // --- BUYITEM ---
             modelBuilder.Entity<BuyItem>()
                 .HasOne(i => i.Product)
-                .WithMany(p => p.BuyItems) // si Product ya tiene ICollection<Buy>
-                .HasForeignKey(i => i.ProductId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany() // Product no conoce sus BuyItems
+                .HasForeignKey("ProductId")
+                .OnDelete(DeleteBehavior.Restrict); // no se puede borrar un producto con compras asociadas
 
-            // Un Buy tiene un Supplier
             modelBuilder.Entity<Buy>()
                 .HasOne(b => b.Supplier)
                 .WithMany(s => s.Buys)
-                .HasForeignKey(b => b.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey("SupplierId")
+                .OnDelete(DeleteBehavior.Restrict); // no se puede borrar un supplier con compras
 
-            // --- SALE ---
-            // Un Sale tiene muchos SaleItems
+            // Configurar campo InvoiceNumber (texto obligatorio)
+            modelBuilder.Entity<Buy>()
+                .Property(b => b.InvoiceNumber)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnType("nvarchar(50)");
+
+            // ==========================
+            // SALE → SALEITEM → PRODUCT
+            // ==========================
             modelBuilder.Entity<Sale>()
                 .HasMany(s => s.Items)
                 .WithOne(i => i.Sale)
                 .HasForeignKey(i => i.SaleId)
-                .OnDelete(DeleteBehavior.Cascade); // si borro la venta, se borran sus items
+                .OnDelete(DeleteBehavior.Cascade);
 
-            // Un Sale tiene un User
+            modelBuilder.Entity<SaleItem>()
+                .HasOne(i => i.Product)
+                .WithMany() // Product no conoce sus SaleItems
+                .HasForeignKey("ProductId")
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Sale>()
                 .HasOne(s => s.User)
                 .WithMany()
-                .HasForeignKey(s => s.UserId)
-                .OnDelete(DeleteBehavior.Restrict); // no borrar usuario si tiene ventas
+                .HasForeignKey("UserId")
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // --- SALEITEM ---
-            // Un SaleItem tiene un Product
-            modelBuilder.Entity<SaleItem>()
-                .HasOne(i => i.Product)
-                .WithMany(p => p.SaleItems)
-                .HasForeignKey(i => i.ProductId)
-                .OnDelete(DeleteBehavior.Restrict); // no borrar producto si tiene ventas
-
-            // --- USER ---
-            // Nombre de usuario único
+            // ==========================
+            // USER
+            // ==========================
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Name)
                 .IsUnique();
 
-            // --- PRODUCT extra ---
-            // Nombre requerido y máx 100 chars
+            // ==========================
+            // PRODUCT
+            // ==========================
             modelBuilder.Entity<Product>()
                 .Property(p => p.Name)
                 .IsRequired()
@@ -101,4 +107,6 @@ namespace Punto_de_venta.Data
         }
     }
 }
+
+
 

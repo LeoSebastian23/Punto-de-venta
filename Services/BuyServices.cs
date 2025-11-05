@@ -12,27 +12,38 @@ namespace Punto_de_venta.Services
     public class BuyService
     {
         private readonly IBuyRepository _buyRepository;
-        private readonly IProductRepository _productRepository;
+        private readonly StockService _stockService;
+        private readonly PricingService _pricingService;
 
-        public BuyService(IBuyRepository buyRepo, IProductRepository prodRepo)
+        public BuyService(IBuyRepository buyRepo, StockService stockService, PricingService pricingService)
         {
             _buyRepository = buyRepo;
-            _productRepository = prodRepo;
+            _stockService = stockService;
+            _pricingService = pricingService;
         }
 
-        public void RegisterBuy(Buy buy)
+        public void RegisterBuy(Buy buy, ITaxStrategy taxStrategy, decimal? porcentajeGanancia = null)
         {
+            if (buy == null)
+                throw new ArgumentNullException(nameof(buy));
+
             foreach (var item in buy.Items)
             {
-                var product = _productRepository.GetById(item.ProductId);
-                product.AddStock(item.Quantity);
+                // Actualiza el stock
+                _stockService.AddStock(item.Product, item.Quantity);
+
+                // Aplica ganancia si corresponde
+                if (porcentajeGanancia.HasValue)
+                    _pricingService.ApplyProfitMargin(item.Product, item.UnitPrice, porcentajeGanancia.Value);
             }
 
+            // Calcula total con impuestos
+            buy.CalculateTotal(taxStrategy);
+
+            // Persiste la compra
             _buyRepository.Add(buy);
             _buyRepository.Save();
         }
-
-        public IEnumerable<Buy> GetAllBuys() => _buyRepository.GetAll();
     }
 }
 

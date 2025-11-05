@@ -11,24 +11,14 @@ namespace Punto_de_venta.Models
         // Atributos
         public string Name { get; private set; }
         public string Code { get; private set; }
-        public decimal PurchasePrice { get; private set; }  // costo de compra
-        public decimal SalePrice { get; private set; }      // precio de venta
+        public decimal SalePrice { get; private set; } // Precio de venta
         public int Stock { get; private set; }
-
-
-
-        // Relaciones
-        public int? SupplierId { get; private set; }
-        public Supplier? Supplier { get; private set; }
-        public ICollection<BuyItem> BuyItems { get; private set; } = new List<BuyItem>();
-        public ICollection<SaleItem> SaleItems { get; private set; } = new List<SaleItem>();
-
+       
         // Constructor protegido (para EF)
         protected Product() { }
 
-
         // Constructor de dominio
-        public Product(string name, string code, decimal purchasePrice, decimal salePrice, int stock, int? supplierId = null)
+        public Product(string name, string code, decimal salePrice, int stock)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("El nombre del producto es obligatorio");
@@ -44,10 +34,8 @@ namespace Punto_de_venta.Models
 
             Name = name;
             Code = code;
-            PurchasePrice = purchasePrice;
             SalePrice = salePrice;
             Stock = stock;
-            SupplierId = supplierId;
         }
 
         // Métodos de dominio
