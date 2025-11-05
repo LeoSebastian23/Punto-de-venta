@@ -50,6 +50,13 @@ namespace Punto_de_venta.Models
             SupplierId = supplierId;
         }
 
+        public Product(string name, string code, int? supplierId)
+        {
+            Name = name;
+            Code = code;
+            SupplierId = supplierId;
+        }
+
         // Métodos de dominio
         public void AddStock(int amount)
         {

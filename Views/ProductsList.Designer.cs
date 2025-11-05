@@ -28,82 +28,88 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
-            Código = new DataGridViewTextBoxColumn();
-            Nombre = new DataGridViewTextBoxColumn();
-            PrecioCosto = new DataGridViewTextBoxColumn();
-            PrecioVenta = new DataGridViewTextBoxColumn();
-            Stock = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            label1 = new Label();
+            btnCrearProducto = new Button();
+            dgvListaProductos = new DataGridView();
+            txtBuscar = new TextBox();
+            lstSugerencias = new ListBox();
+            ((System.ComponentModel.ISupportInitialize)dgvListaProductos).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // label1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Código, Nombre, PrecioCosto, PrecioVenta, Stock });
-            dataGridView1.Location = new Point(39, 73);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(544, 300);
-            dataGridView1.TabIndex = 2;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(274, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(234, 37);
+            label1.TabIndex = 5;
+            label1.Text = "Lista de Productos";
             // 
-            // textBox1
+            // btnCrearProducto
             // 
-            textBox1.Location = new Point(483, 19);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(271, 23);
-            textBox1.TabIndex = 4;
-            textBox1.Text = "Buscar producto";
+            btnCrearProducto.BackColor = Color.LightSeaGreen;
+            btnCrearProducto.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCrearProducto.Location = new Point(107, 61);
+            btnCrearProducto.Name = "btnCrearProducto";
+            btnCrearProducto.Size = new Size(137, 37);
+            btnCrearProducto.TabIndex = 6;
+            btnCrearProducto.Text = "Crear producto";
+            btnCrearProducto.UseVisualStyleBackColor = false;
             // 
-            // Código
+            // dgvListaProductos
             // 
-            Código.HeaderText = "Código";
-            Código.Name = "Código";
-            Código.ReadOnly = true;
+            dgvListaProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListaProductos.Location = new Point(12, 117);
+            dgvListaProductos.Name = "dgvListaProductos";
+            dgvListaProductos.Size = new Size(776, 302);
+            dgvListaProductos.TabIndex = 7;
+            dgvListaProductos.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // Nombre
+            // txtBuscar
             // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            Nombre.ReadOnly = true;
+            txtBuscar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscar.ForeColor = SystemColors.MenuText;
+            txtBuscar.Location = new Point(483, 67);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(275, 27);
+            txtBuscar.TabIndex = 8;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
-            // PrecioCosto
+            // lstSugerencias
             // 
-            PrecioCosto.HeaderText = "Precio de costo";
-            PrecioCosto.Name = "PrecioCosto";
-            // 
-            // PrecioVenta
-            // 
-            PrecioVenta.HeaderText = "Precio de Venta";
-            PrecioVenta.Name = "PrecioVenta";
-            // 
-            // Stock
-            // 
-            Stock.HeaderText = "Stock";
-            Stock.Name = "Stock";
-            Stock.ReadOnly = true;
+            lstSugerencias.FormattingEnabled = true;
+            lstSugerencias.ItemHeight = 15;
+            lstSugerencias.Location = new Point(483, 100);
+            lstSugerencias.Name = "lstSugerencias";
+            lstSugerencias.Size = new Size(275, 34);
+            lstSugerencias.TabIndex = 9;
+            lstSugerencias.Visible = false;
+            lstSugerencias.Click += lstSugerencias_Click;
+            lstSugerencias.SelectedIndexChanged += lstSugerencias_SelectedIndexChanged;
             // 
             // ProductsList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox1);
-            Controls.Add(dataGridView1);
+            Controls.Add(lstSugerencias);
+            Controls.Add(txtBuscar);
+            Controls.Add(dgvListaProductos);
+            Controls.Add(btnCrearProducto);
+            Controls.Add(label1);
             Name = "ProductsList";
             Text = "ProductsList";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListaProductos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private DataGridView dataGridView1;
-        private TextBox textBox1;
-        private DataGridViewTextBoxColumn Código;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn PrecioCosto;
-        private DataGridViewTextBoxColumn PrecioVenta;
-        private DataGridViewTextBoxColumn Stock;
+        private Label label1;
+        private Button btnCrearProducto;
+        private DataGridView dgvListaProductos;
+        private TextBox txtBuscar;
+        private ListBox lstSugerencias;
     }
 }

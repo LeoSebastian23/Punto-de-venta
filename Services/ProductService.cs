@@ -29,6 +29,17 @@ namespace Punto_de_venta.Services
             _repository.Save();
         }
 
+        //prueba
+
+        public void SaveProduct(string name, string code, int? supplierId = null)
+        {
+            var product = new Product(name, code, supplierId);
+            _repository.Add(product);
+            _repository.Save();
+        }
+
+        //
+
         public void UpdateProduct(Product product)
         {
             _repository.Update(product);

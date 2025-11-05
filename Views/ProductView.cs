@@ -1,4 +1,5 @@
 ﻿using Punto_de_venta.Controllers;
+using Punto_de_venta.Models;
 using System;
 using System;
 using System.Collections.Generic;
@@ -18,16 +19,84 @@ namespace Punto_de_venta.Views
 {
     public partial class ProductView : Form
     {
-        private readonly ProductController _controller;
+        private readonly ProductController _productController;
+        private readonly SupplierController _supplierController;
 
-        public ProductView(ProductController controller)
+        public ProductView(ProductController productController, SupplierController supplierController)
         {
             InitializeComponent();
-            _controller = controller;
-            LoadProducts();
+            _productController = productController;
+            _supplierController = supplierController;
+            this.Load += ProductView_Load;
+
         }
 
-        private void LoadProducts()
+        private void ProductView_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var suppliers = _supplierController.GetAllSuppliers().ToList();
+
+                if (suppliers == null || suppliers.Count == 0)
+                {
+                    MessageBox.Show("No hay proveedores disponibles.");
+                    return;
+                }
+
+                comboSupplier.DataSource = suppliers;
+                comboSupplier.DisplayMember = "Name";
+                comboSupplier.ValueMember = "Id";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar proveedores: {ex.Message}");
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtCode.Text))
+                {
+                    MessageBox.Show("Por favor complete todos los campos.");
+                    return;
+                }
+
+                if (comboSupplier.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar un proveedor antes de guardar.");
+                    return;
+                }
+
+                string name = txtName.Text.Trim();
+                string code = txtCode.Text.Trim();
+                int supplierId = (int)comboSupplier.SelectedValue;
+
+                _productController.SaveProduct(name, code, supplierId);
+
+                MessageBox.Show("Producto guardado correctamente.");
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el producto: {ex.Message}");
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            txtName.Clear();
+            txtCode.Clear();
+            comboSupplier.SelectedIndex = 0;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        /*private void LoadProducts()
         {
             var products = _controller.GetAllProducts().ToList();
             dataGridViewProducts.DataSource = products.Select(p => new
@@ -101,8 +170,39 @@ namespace Punto_de_venta.Views
             txtSalePrice.Clear();
             txtStock.Clear();
             txtSupplierId.Clear();
+        }*/
+
+        /*
+        private void ProductForm_Load(object sender, EventArgs e)
+        {
+            var suppliers = _supplierController.GetAllSuppliers().ToList();
+            comboSupplier.DataSource = suppliers;
+            comboSupplier.DisplayMember = "Name";
+            comboSupplier.ValueMember = "Id";
         }
 
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtCode.Text))
+            {
+                MessageBox.Show("Por favor complete todos los campos");
+                return;
+            }
+
+            string name = txtName.Text.Trim();
+            string code = txtCode.Text.Trim();
+            int supplierId = (int)comboSupplier.SelectedValue;
+
+            var supplier = _supplierController.GetSupplierById(supplierId);
+
+            var product = new Product(name, code, supplierId);
+
+            _productController.SaveProduct(name, code, supplierId);
+
+            MessageBox.Show("Producto guardado correctamente");
+
+        
+        }*/
     }
 }
 

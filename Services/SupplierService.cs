@@ -31,6 +31,11 @@ namespace Punto_de_venta.Services
             return _repository.GetAll();
         }
 
+        public Supplier? GetSupplierById(int id)
+        {
+            return _repository.GetById(id);
+        }
+
         //  Actualizar proveedor existente
         public void UpdateSupplier(int id, string name, string phoneNumber)
         {

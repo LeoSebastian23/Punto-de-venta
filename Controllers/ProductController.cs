@@ -23,6 +23,11 @@ namespace Punto_de_venta.Controllers
             _service.CreateProduct(name, code, purchasePrice, salePrice, stock, supplierId);
         }
 
+        public void SaveProduct(string name, string code, int? supplierId = null)
+        {
+            _service.SaveProduct(name, code, supplierId);
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             return _service.GetAllProducts();

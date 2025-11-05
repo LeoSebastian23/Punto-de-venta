@@ -29,8 +29,8 @@ class Program
         //// ? Se obtiene la instancia del formulario desde el ServiceProvider
         //var form = services.GetRequiredService<SupplierView>();
         //Application.Run(form);
-        
-        var services = new ServiceCollection()
+
+        /*var services = new ServiceCollection()
             .AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
             .AddScoped<IProductRepository, ProductRepository>()
@@ -43,9 +43,36 @@ class Program
         Application.SetCompatibleTextRenderingDefault(false);
 
         var form = services.GetRequiredService<SupplierView>();
+        Application.Run(form);*/
+
+
+        var services = new ServiceCollection()
+            .AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
+            .AddScoped<ISupplierRepository, SupplierRepository>()
+            .AddScoped<SupplierService>()
+            .AddScoped<SupplierController>()
+            .AddScoped<SupplierView>()
+
+            .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<ProductService>()
+            .AddScoped<ProductController>()
+            .AddScoped<ProductView>()
+            //.AddScoped<ProductsList>()
+
+            .AddScoped<IBuyRepository, BuyRepository>()
+            .AddScoped<BuyService>()
+            .AddScoped<BuyController>()
+            .AddScoped<BuyView>()
+
+            .BuildServiceProvider();
+
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+        var form = services.GetRequiredService</*ProductsList/SupplierView*/BuyView/*ProductView*/>();
         Application.Run(form);
         
-
     }
 }
 

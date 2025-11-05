@@ -30,11 +30,12 @@ namespace Punto_de_venta.Views
         {
             try
             {
-                string nombre = txtNombre.Text;
-                string cuit = txtCUIT.Text;
-                string phoneNumber = txtNumeroTelefono.Text;
+                string /*nombre*/name = txtNombre.Text.Trim();
+                string cuit = txtCUIT.Text.Trim();
+                string phone/*Number*/ = txtNumeroTelefono.Text.Trim();
 
-                _controller.CreateSupplier(nombre, cuit, phoneNumber);
+                _controller.CreateSupplier(name, cuit, phone/*Number*/);
+                //_controller.CreateSupplier(nombre, cuit, phoneNumber);
                 MessageBox.Show("Proveedor agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ClearFields();
@@ -121,6 +122,37 @@ namespace Punto_de_venta.Views
                 txtNombre.Text = fila.Cells["Name"].Value.ToString();
                 txtCUIT.Text = fila.Cells["Cuit"].Value.ToString();
                 txtNumeroTelefono.Text = fila.Cells["phoneNumber"].Value.ToString();
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string /*nombre*/name = txtNombre.Text.Trim();
+                string cuit = txtCUIT.Text.Trim();
+                string phone/*Number*/ = txtNumeroTelefono.Text.Trim();
+
+                _controller.CreateSupplier(name, cuit, phone/*Number*/);
+                //_controller.CreateSupplier(nombre, cuit, phoneNumber);
+                MessageBox.Show("Proveedor agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClearFields();
+                LoadSuppliers();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

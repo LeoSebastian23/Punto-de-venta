@@ -25,10 +25,15 @@ namespace Punto_de_venta.Controllers
             return _service.GetAllSuppliers();
         }
 
-        // ✅ Crear proveedor (firma compatible con la vista)
-        public void CreateSupplier(string name, string cuit, string phoneNumber)
+        public Supplier GetSupplierById(int id)
         {
-            var supplier = new Supplier(name, cuit, phoneNumber);
+            return _service.GetSupplierById(id);
+        }
+
+        // ✅ Crear proveedor (firma compatible con la vista)
+        public void CreateSupplier(string name, string cuit, string phone/*Number*/)
+        {
+            var supplier = new Supplier(name, cuit, phone/*Number*/);
             _service.CreateSupplier(supplier);
         }
 

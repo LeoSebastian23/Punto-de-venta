@@ -9,8 +9,7 @@ namespace Punto_de_venta.Models
 
         public string CUIT { get; private set; }
 
-        public string? Phone/*Number*/ { get; private set; } // ← opcional (puede ser null)
-
+        public string? Phone/*Number*/ { get; private set;}
         // Relaciones
         public ICollection<Product> Products { get; private set; } = new List<Product>();
         public ICollection<Buy> Buys { get; private set; } = new List<Buy>();
@@ -19,7 +18,7 @@ namespace Punto_de_venta.Models
         protected Supplier() { }
 
         // Constructor principal
-        public Supplier(string name, string cuit, string? phoneNumber)
+        public Supplier(string name, string cuit, string? phone/*Number*/)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("El nombre del proveedor es obligatorio.");
@@ -29,7 +28,7 @@ namespace Punto_de_venta.Models
 
             Name = name;
             CUIT = cuit;
-            Phone/*Number*/ = phoneNumber;
+            Phone/*Number*/ = phone/*Number*/;
         }
 
         // Método para actualizar datos del proveedor
