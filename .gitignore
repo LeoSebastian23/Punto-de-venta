@@ -4,6 +4,7 @@
 *.suo
 *.userosscache
 *.sln.docstates
+/Views/
 
 # Binarios
 [Bb]in/
