@@ -28,50 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblUsuario = new Label();
             textBox1 = new TextBox();
-            lblContraseña = new Label();
             txtContraseña = new TextBox();
             btnAcceder = new Button();
             SuspendLayout();
             // 
-            // lblUsuario
-            // 
-            lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(47, 52);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(47, 15);
-            lblUsuario.TabIndex = 0;
-            lblUsuario.Text = "Usuario";
-            // 
             // textBox1
             // 
-            textBox1.Location = new Point(125, 49);
+            textBox1.ForeColor = SystemColors.WindowFrame;
+            textBox1.Location = new Point(33, 85);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(236, 23);
+            textBox1.Size = new Size(218, 23);
             textBox1.TabIndex = 1;
-            // 
-            // lblContraseña
-            // 
-            lblContraseña.AutoSize = true;
-            lblContraseña.Location = new Point(50, 102);
-            lblContraseña.Name = "lblContraseña";
-            lblContraseña.Size = new Size(67, 15);
-            lblContraseña.TabIndex = 2;
-            lblContraseña.Text = "Contraseña";
+            textBox1.Text = "Introducir usuario";
+            textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(145, 100);
+            txtContraseña.Location = new Point(42, 170);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(250, 23);
+            txtContraseña.Size = new Size(200, 23);
             txtContraseña.TabIndex = 3;
+            txtContraseña.UseSystemPasswordChar = true;
             // 
             // btnAcceder
             // 
-            btnAcceder.Location = new Point(175, 177);
+            btnAcceder.Location = new Point(74, 246);
             btnAcceder.Name = "btnAcceder";
-            btnAcceder.Size = new Size(133, 41);
+            btnAcceder.Size = new Size(133, 29);
             btnAcceder.TabIndex = 4;
             btnAcceder.Text = "Acceder";
             btnAcceder.UseVisualStyleBackColor = true;
@@ -80,12 +64,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(282, 373);
             Controls.Add(btnAcceder);
             Controls.Add(txtContraseña);
-            Controls.Add(lblContraseña);
             Controls.Add(textBox1);
-            Controls.Add(lblUsuario);
             Name = "User";
             Text = "User";
             ResumeLayout(false);
@@ -93,10 +75,7 @@
         }
 
         #endregion
-
-        private Label lblUsuario;
         private TextBox textBox1;
-        private Label lblContraseña;
         private TextBox txtContraseña;
         private Button btnAcceder;
     }
