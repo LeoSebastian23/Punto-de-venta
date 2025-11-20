@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 using System;
 using System.Windows.Forms;
@@ -22,7 +23,7 @@ namespace punto_venta
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -113,18 +114,47 @@ namespace punto_venta
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void lstResultados_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void Imprimir()
+        {
+            Font Font = new Font("Arial", 14);
+            int ancho = 150;
+            int y = 20;
+
+            e.Graphics.DrawString("-----Distribuidora Olivia-----", Font, Brushes.Black new RectangleF(0, y = +20, ancho, 20));
+            e.Graphics.DrawString("----Dirección del Local----", Font, Brushes.Black new RectangleF(0, y += 20, ancho, 20));
+            e.Graphics.DrawString("-----Productos-----", Font, Brushes.Black new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString("---Productos   Cant.   SubTotal---", Font, Brushes.Black new RectangleF(0, y += 20, ancho, 20));
+
+            //Este forech debe tener los mismos parámetros para recorrer el grid/la tabla//
+            forech()
+            {
+                //aca se pone el nombre del producto, la cantidad y el subtotal de eso//
+                e.Graphics.DrawString(""Producto" + " " + "Cantidad" + "Subtotal""
+
+
+
+                , Font, Brushes.Black new RectangleF(0, y += 20, ancho, 20));
+
+            }
+            e.Graphics.DrawString("Total: $ " + aca va el total, Font, Brushes.Black new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString("-----Gracias por su compra-----", Font, Brushes.Black new RectangleF(0, y += 30, ancho, 20));
+
+
+        }
+
     }
 
 
 
-    
+
 
 }
 
