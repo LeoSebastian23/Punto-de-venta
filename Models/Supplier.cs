@@ -1,45 +1,46 @@
 ﻿using System.Collections.Generic;
-
 namespace Punto_de_venta.Models
 {
     public class Supplier
     {
-        // Clave primaria
         public int Id { get; private set; }
 
-        // Atributos obligatorios
         public string Name { get; private set; }
-        public string CUIT { get; private set; }
-        public string PhoneNumber { get; private set; }
 
-        // Relaciones (navegación)
+        public string CUIT { get; private set; }
+
+        public string? PhoneNumber { get; private set; } // ← opcional (puede ser null)
+
+        // Relaciones
         public ICollection<Product> Products { get; private set; } = new List<Product>();
         public ICollection<Buy> Buys { get; private set; } = new List<Buy>();
 
-        // Constructor vacío (requerido por EF)
-        private Supplier() { }
+        // Constructor requerido por EF
+        protected Supplier() { }
 
-        // Constructor controlado (creación válida desde el inicio)
-        public Supplier(string name, string cuit, string phoneNumber)
+        // Constructor principal
+        public Supplier(string name, string cuit, string? phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("El nombre del proveedor es obligatorio");
+                throw new ArgumentException("El nombre del proveedor es obligatorio.");
 
             if (string.IsNullOrWhiteSpace(cuit))
-                throw new ArgumentException("El CUIT del proveedor es obligatorio");
+                throw new ArgumentException("El CUIT es obligatorio.");
 
             Name = name;
             CUIT = cuit;
             PhoneNumber = phoneNumber;
         }
 
-        // Métodos de dominio (opcional: lógica propia de la entidad)
-        public void UpdateContact(string phoneNumber)
+        // Método para actualizar datos del proveedor
+        public void UpdateInfo(string name, string? phone)
         {
-            if (string.IsNullOrWhiteSpace(phoneNumber))
-                throw new ArgumentException("El teléfono no puede estar vacío");
+            if (!string.IsNullOrWhiteSpace(name))
+                Name = name;
 
-            PhoneNumber = phoneNumber;
+            if (!string.IsNullOrWhiteSpace(phone))
+                PhoneNumber = phone;
         }
     }
 }
+

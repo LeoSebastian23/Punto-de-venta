@@ -1,71 +1,70 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Punto_de_venta.Controllers;
 using Punto_de_venta.Data;
 using Punto_de_venta.Models;
-using Punto_de_venta.Repositories.Interfaces;
 using Punto_de_venta.Repositories.Implementations;
+using Punto_de_venta.Repositories.Interfaces;
 using Punto_de_venta.Services;
-using Punto_de_venta.Controllers;
+using Punto_de_venta.Views;
 
-class Program
+
+namespace Punto_de_venta
 {
-    static void Main(string[] args)
+    internal static class Program
     {
-        // --- Configurar Dependencias (DI Container) ---
-        var serviceProvider = new ServiceCollection()
-            .AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
-            .AddScoped<IProductRepository, ProductRepository>()
-            .AddScoped<ISaleRepository, SaleRepository>()
-            .AddScoped<SaleService>()
-            .AddScoped<SaleController>()
-            .BuildServiceProvider();
-
-        using var scope = serviceProvider.CreateScope();
-        var controller = scope.ServiceProvider.GetRequiredService<SaleController>();
-        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-        // --- Datos base (ya deber�an existir en BD) ---
-        var user = context.Users.FirstOrDefault() ?? new User("Leo", "1234");
-        if (user.Id == 0)
+        [STAThread]
+        static void Main()
         {
-            context.Users.Add(user);
-            context.SaveChanges();
+            // 🧩 Configuración del contenedor de dependencias
+            var services = new ServiceCollection()
+                // --- Base de datos ---
+                .AddDbContext<AppDbContext>(options =>
+                    options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
+
+                // --- PRODUCTOS ---
+                .AddScoped<IProductRepository, ProductRepository>()
+                .AddScoped<ProductService>()
+                .AddScoped<ProductController>()
+                .AddScoped<ProductView>()
+
+                // --- PROVEEDORES ---
+                .AddScoped<ISupplierRepository, SupplierRepository>()
+                .AddScoped<SupplierService>()
+                .AddScoped<SupplierController>()
+                .AddScoped<SupplierView>()
+
+                // --- COMPRAS ---
+                .AddScoped<IBuyRepository, BuyRepository>()
+                .AddScoped<BuyService>()
+                .AddScoped<BuyController>()
+                .AddScoped<BuyView>()
+
+                // --- SERVICIOS AUXILIARES ---
+                .AddScoped<StockService>()
+                .AddScoped<PricingService>()
+                .AddScoped<ProductView>()
+
+
+                // --- VENTANAS DE SOPORTE ---
+                .AddScoped<LoadBuyItem>()
+                .AddScoped<MainMenuView>()
+
+                .BuildServiceProvider();
+
+            // 🧱 Inicialización de la aplicación
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // 🚀 Abrir menú principal
+            var form = services.GetRequiredService<MainMenuView>();
+            Application.Run(form);
         }
-
-        var supplier = context.Suppliers.FirstOrDefault() ?? new Supplier("LimpiezaPro", "20123456789", "1122334455");
-        if (supplier.Id == 0)
-        {
-            context.Suppliers.Add(supplier);
-            context.SaveChanges();
-        }
-
-        // --- Crear productos de limpieza ---
-        var product1 = context.Products.FirstOrDefault(p => p.Name == "Detergente Multiusos")
-            ?? new Product("Detergente Multiusos", "DET-001", 200, 450, 40, supplier.Id);
-
-        var product2 = context.Products.FirstOrDefault(p => p.Name == "Desinfectante Floral")
-            ?? new Product("Desinfectante Floral", "DES-002", 300, 700, 25, supplier.Id);
-
-        var product3 = context.Products.FirstOrDefault(p => p.Name == "Lavandina Concentrada")
-            ?? new Product("Lavandina Concentrada", "LAV-003", 150, 400, 60, supplier.Id);
-
-        if (product1.Id == 0 || product2.Id == 0 || product3.Id == 0)
-        {
-            context.Products.AddRange(product1, product2, product3);
-            context.SaveChanges();
-        }
-
-        // --- Crear una venta ---
-        var sale = new Sale(user);
-        sale.AddItem(product1, 2, product1.SalePrice); 
-        sale.AddItem(product3, 1, product3.SalePrice); 
-
-        // --- Registrar la venta ---
-        controller.CreateSale(sale);
-
-        // --- Mostrar todas las ventas ---
-        controller.ShowAllSales();
     }
 }
+
+
+
+
+
 

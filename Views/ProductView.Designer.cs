@@ -1,0 +1,216 @@
+﻿namespace Punto_de_venta.Views
+{
+    partial class ProductView
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        private void InitializeComponent()
+        {
+            lblName = new Label();
+            lblCode = new Label();
+            lblBaseCost = new Label();
+            lblSalePrice = new Label();
+            lblMargin = new Label();
+            lblStock = new Label();
+            txtName = new TextBox();
+            txtCode = new TextBox();
+            numBaseCost = new NumericUpDown();
+            numSalePrice = new NumericUpDown();
+            numMargin = new NumericUpDown();
+            numStock = new NumericUpDown();
+            btnAdd = new Button();
+            dgvProducts = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)numBaseCost).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numSalePrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numMargin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
+            SuspendLayout();
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Location = new Point(20, 20);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(67, 20);
+            lblName.TabIndex = 0;
+            lblName.Text = "Nombre:";
+            // 
+            // lblCode
+            // 
+            lblCode.AutoSize = true;
+            lblCode.Location = new Point(20, 60);
+            lblCode.Name = "lblCode";
+            lblCode.Size = new Size(61, 20);
+            lblCode.TabIndex = 1;
+            lblCode.Text = "Código:";
+            // 
+            // lblBaseCost
+            // 
+            lblBaseCost.AutoSize = true;
+            lblBaseCost.Location = new Point(20, 100);
+            lblBaseCost.Name = "lblBaseCost";
+            lblBaseCost.Size = new Size(85, 20);
+            lblBaseCost.TabIndex = 2;
+            lblBaseCost.Text = "Costo base:";
+            // 
+            // lblSalePrice
+            // 
+            lblSalePrice.AutoSize = true;
+            lblSalePrice.Location = new Point(20, 140);
+            lblSalePrice.Name = "lblSalePrice";
+            lblSalePrice.Size = new Size(114, 20);
+            lblSalePrice.TabIndex = 3;
+            lblSalePrice.Text = "Precio de venta:";
+            // 
+            // lblMargin
+            // 
+            lblMargin.AutoSize = true;
+            lblMargin.Location = new Point(20, 182);
+            lblMargin.Name = "lblMargin";
+            lblMargin.Size = new Size(89, 20);
+            lblMargin.TabIndex = 4;
+            lblMargin.Text = "Margen (%):";
+            // 
+            // lblStock
+            // 
+            lblStock.AutoSize = true;
+            lblStock.Location = new Point(20, 222);
+            lblStock.Name = "lblStock";
+            lblStock.Size = new Size(48, 20);
+            lblStock.TabIndex = 5;
+            lblStock.Text = "Stock:";
+            // 
+            // txtName
+            // 
+            txtName.Location = new Point(140, 20);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(262, 27);
+            txtName.TabIndex = 6;
+            // 
+            // txtCode
+            // 
+            txtCode.Location = new Point(140, 60);
+            txtCode.Name = "txtCode";
+            txtCode.Size = new Size(262, 27);
+            txtCode.TabIndex = 7;
+            // 
+            // numBaseCost
+            // 
+            numBaseCost.DecimalPlaces = 2;
+            numBaseCost.Location = new Point(140, 100);
+            numBaseCost.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            numBaseCost.Name = "numBaseCost";
+            numBaseCost.Size = new Size(120, 27);
+            numBaseCost.TabIndex = 8;
+            // 
+            // numSalePrice
+            // 
+            numSalePrice.DecimalPlaces = 2;
+            numSalePrice.Location = new Point(140, 140);
+            numSalePrice.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            numSalePrice.Name = "numSalePrice";
+            numSalePrice.Size = new Size(120, 27);
+            numSalePrice.TabIndex = 9;
+            // 
+            // numMargin
+            // 
+            numMargin.DecimalPlaces = 2;
+            numMargin.Location = new Point(140, 182);
+            numMargin.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numMargin.Name = "numMargin";
+            numMargin.Size = new Size(120, 27);
+            numMargin.TabIndex = 10;
+            // 
+            // numStock
+            // 
+            numStock.Location = new Point(140, 222);
+            numStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            numStock.Name = "numStock";
+            numStock.Size = new Size(120, 27);
+            numStock.TabIndex = 11;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(140, 263);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(96, 31);
+            btnAdd.TabIndex = 12;
+            btnAdd.Text = "Agregar producto";
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // dgvProducts
+            // 
+            dgvProducts.AllowUserToAddRows = false;
+            dgvProducts.AllowUserToDeleteRows = false;
+            dgvProducts.ColumnHeadersHeight = 29;
+            dgvProducts.Location = new Point(20, 310);
+            dgvProducts.Name = "dgvProducts";
+            dgvProducts.ReadOnly = true;
+            dgvProducts.RowHeadersWidth = 51;
+            dgvProducts.Size = new Size(500, 250);
+            dgvProducts.TabIndex = 13;
+            // 
+            // ProductView
+            // 
+            ClientSize = new Size(565, 580);
+            Controls.Add(lblName);
+            Controls.Add(lblCode);
+            Controls.Add(lblBaseCost);
+            Controls.Add(lblSalePrice);
+            Controls.Add(lblMargin);
+            Controls.Add(lblStock);
+            Controls.Add(txtName);
+            Controls.Add(txtCode);
+            Controls.Add(numBaseCost);
+            Controls.Add(numSalePrice);
+            Controls.Add(numMargin);
+            Controls.Add(numStock);
+            Controls.Add(btnAdd);
+            Controls.Add(dgvProducts);
+            Name = "ProductView";
+            Text = "Gestión de Productos";
+            Load += ProductView_Load;
+            ((System.ComponentModel.ISupportInitialize)numBaseCost).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numSalePrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMargin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numStock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblCode;
+        private System.Windows.Forms.Label lblBaseCost;
+        private System.Windows.Forms.Label lblSalePrice;
+        private System.Windows.Forms.Label lblMargin;
+        private System.Windows.Forms.Label lblStock;
+
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtCode;
+
+        private System.Windows.Forms.NumericUpDown numBaseCost;
+        private System.Windows.Forms.NumericUpDown numSalePrice;
+        private System.Windows.Forms.NumericUpDown numMargin;
+        private System.Windows.Forms.NumericUpDown numStock;
+
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridView dgvProducts;
+    }
+}
+
+

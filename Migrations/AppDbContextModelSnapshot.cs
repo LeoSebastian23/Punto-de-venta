@@ -30,10 +30,36 @@ namespace Punto_de_venta.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DateBuy")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("InvoiceNumber")
+                    b.Property<string>("InvoiceNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("Buys");
+                });
+
+            modelBuilder.Entity("Punto_de_venta.Models.BuyItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BuyId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -42,19 +68,16 @@ namespace Punto_de_venta.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("UnitCost")
+                    b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BuyId");
+
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("Buys");
+                    b.ToTable("BuyItem");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
@@ -74,16 +97,13 @@ namespace Punto_de_venta.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("PurchasePrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("SalePrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -160,7 +180,6 @@ namespace Punto_de_venta.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -194,32 +213,35 @@ namespace Punto_de_venta.Migrations
 
             modelBuilder.Entity("Punto_de_venta.Models.Buy", b =>
                 {
-                    b.HasOne("Punto_de_venta.Models.Product", "Product")
-                        .WithMany("Buys")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Punto_de_venta.Models.Supplier", "Supplier")
                         .WithMany("Buys")
                         .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Product");
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
+            modelBuilder.Entity("Punto_de_venta.Models.BuyItem", b =>
                 {
-                    b.HasOne("Punto_de_venta.Models.Supplier", "Supplier")
-                        .WithMany("Products")
-                        .HasForeignKey("SupplierId")
+                    b.HasOne("Punto_de_venta.Models.Buy", null)
+                        .WithMany("Items")
+                        .HasForeignKey("BuyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Punto_de_venta.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Supplier");
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
+                {
+                    b.HasOne("Punto_de_venta.Models.Supplier", null)
+                        .WithMany("Products")
+                        .HasForeignKey("SupplierId");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Sale", b =>
@@ -236,7 +258,7 @@ namespace Punto_de_venta.Migrations
             modelBuilder.Entity("Punto_de_venta.Models.SaleItem", b =>
                 {
                     b.HasOne("Punto_de_venta.Models.Product", "Product")
-                        .WithMany("SaleItems")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -252,11 +274,9 @@ namespace Punto_de_venta.Migrations
                     b.Navigation("Sale");
                 });
 
-            modelBuilder.Entity("Punto_de_venta.Models.Product", b =>
+            modelBuilder.Entity("Punto_de_venta.Models.Buy", b =>
                 {
-                    b.Navigation("Buys");
-
-                    b.Navigation("SaleItems");
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.Sale", b =>

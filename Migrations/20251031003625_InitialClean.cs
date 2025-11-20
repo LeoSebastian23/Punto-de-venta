@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Punto_de_venta.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialClean : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace Punto_de_venta.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CUIT = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,6 +41,28 @@ namespace Punto_de_venta.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Buys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SupplierId = table.Column<int>(type: "int", nullable: true),
+                    InvoiceNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Buys", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Buys_Suppliers_SupplierId",
+                        column: x => x.SupplierId,
+                        principalTable: "Suppliers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -48,10 +70,9 @@ namespace Punto_de_venta.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PurchasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Stock = table.Column<int>(type: "int", nullable: false),
-                    SupplierId = table.Column<int>(type: "int", nullable: false)
+                    SupplierId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,8 +81,7 @@ namespace Punto_de_venta.Migrations
                         name: "FK_Products_Suppliers_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "Suppliers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -85,31 +105,29 @@ namespace Punto_de_venta.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Buys",
+                name: "BuyItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    UnitCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DateBuy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    InvoiceNumber = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    SupplierId = table.Column<int>(type: "int", nullable: false)
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    BuyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Buys", x => x.Id);
+                    table.PrimaryKey("PK_BuyItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Buys_Products_ProductId",
+                        name: "FK_BuyItem_Buys_BuyId",
+                        column: x => x.BuyId,
+                        principalTable: "Buys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BuyItem_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Buys_Suppliers_SupplierId",
-                        column: x => x.SupplierId,
-                        principalTable: "Suppliers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -143,8 +161,13 @@ namespace Punto_de_venta.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Buys_ProductId",
-                table: "Buys",
+                name: "IX_BuyItem_BuyId",
+                table: "BuyItem",
+                column: "BuyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BuyItem_ProductId",
+                table: "BuyItem",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -183,10 +206,13 @@ namespace Punto_de_venta.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Buys");
+                name: "BuyItem");
 
             migrationBuilder.DropTable(
                 name: "SaleItems");
+
+            migrationBuilder.DropTable(
+                name: "Buys");
 
             migrationBuilder.DropTable(
                 name: "Products");

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Punto_de_venta.Models
 {
-    public class User   // antes era internal
+    public class User   
     {
-        public int Id { get; private set; }  // antes era private
+        public int Id { get; private set; }  
         public string Name { get; private set; }
         public string Password { get; private set; }
 
@@ -21,4 +21,6 @@ namespace Punto_de_venta.Models
         }
     }
 }
+
+
 
