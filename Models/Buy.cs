@@ -1,9 +1,5 @@
 ﻿
 using Punto_de_venta.Repositories.Interfaces;
-using System;
-using System;
-using System.Collections.Generic;
-using System.Collections.Generic;
 
 namespace Punto_de_venta.Models
 {

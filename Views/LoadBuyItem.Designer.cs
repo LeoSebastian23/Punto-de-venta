@@ -2,15 +2,8 @@
 {
     partial class LoadBuyItem
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,188 +15,174 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            txtNombre = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
-            textBox2 = new TextBox();
-            label4 = new Label();
-            textBox3 = new TextBox();
-            label5 = new Label();
-            textBox4 = new TextBox();
-            label6 = new Label();
-            textBox5 = new TextBox();
-            btnCancelar = new Button();
+            lblProduct = new Label();
+            txtProduct = new TextBox();
+            lblQuantity = new Label();
+            numQuantity = new NumericUpDown();
+            lblCost = new Label();
+            numCost = new NumericUpDown();
+            lblSalePrice = new Label();
+            numSalePrice = new NumericUpDown();
+            lblMargin = new Label();
+            numMargin = new NumericUpDown();
             btnConfirmar = new Button();
+            btnCancelar = new Button();
+            ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numSalePrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numMargin).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lblProduct
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(133, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(252, 45);
-            label1.TabIndex = 0;
-            label1.Text = "Cargar Producto";
+            lblProduct.AutoSize = true;
+            lblProduct.Location = new Point(20, 20);
+            lblProduct.Name = "lblProduct";
+            lblProduct.Size = new Size(72, 20);
+            lblProduct.TabIndex = 0;
+            lblProduct.Text = "Producto:";
             // 
-            // txtNombre
+            // txtProduct
             // 
-            txtNombre.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombre.Location = new Point(180, 77);
-            txtNombre.Name = "txtNombre";
-            txtNombre.ReadOnly = true;
-            txtNombre.Size = new Size(221, 29);
-            txtNombre.TabIndex = 1;
+            txtProduct.Location = new Point(150, 20);
+            txtProduct.Name = "txtProduct";
+            txtProduct.ReadOnly = true;
+            txtProduct.Size = new Size(200, 27);
+            txtProduct.TabIndex = 1;
             // 
-            // label2
+            // lblQuantity
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(90, 80);
-            label2.Name = "label2";
-            label2.Size = new Size(68, 21);
-            label2.TabIndex = 2;
-            label2.Text = "Nombre";
+            lblQuantity.AutoSize = true;
+            lblQuantity.Location = new Point(20, 60);
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Size = new Size(72, 20);
+            lblQuantity.TabIndex = 2;
+            lblQuantity.Text = "Cantidad:";
             // 
-            // label3
+            // numQuantity
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(86, 137);
-            label3.Name = "label3";
-            label3.Size = new Size(72, 21);
-            label3.TabIndex = 3;
-            label3.Text = "Cantidad";
+            numQuantity.Location = new Point(150, 53);
+            numQuantity.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numQuantity.Name = "numQuantity";
+            numQuantity.Size = new Size(120, 27);
+            numQuantity.TabIndex = 3;
+            numQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // textBox2
+            // lblCost
             // 
-            textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(180, 134);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(221, 29);
-            textBox2.TabIndex = 4;
+            lblCost.AutoSize = true;
+            lblCost.Location = new Point(20, 100);
+            lblCost.Name = "lblCost";
+            lblCost.Size = new Size(50, 20);
+            lblCost.TabIndex = 4;
+            lblCost.Text = "Costo:";
             // 
-            // label4
+            // numCost
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(47, 192);
-            label4.Name = "label4";
-            label4.Size = new Size(111, 21);
-            label4.TabIndex = 5;
-            label4.Text = "Precio unitario";
+            numCost.DecimalPlaces = 2;
+            numCost.Location = new Point(150, 93);
+            numCost.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            numCost.Name = "numCost";
+            numCost.Size = new Size(120, 27);
+            numCost.TabIndex = 5;
             // 
-            // textBox3
+            // lblSalePrice
             // 
-            textBox3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(180, 189);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(221, 29);
-            textBox3.TabIndex = 6;
+            lblSalePrice.AutoSize = true;
+            lblSalePrice.Location = new Point(20, 140);
+            lblSalePrice.Name = "lblSalePrice";
+            lblSalePrice.Size = new Size(114, 20);
+            lblSalePrice.TabIndex = 6;
+            lblSalePrice.Text = "Precio de venta:";
             // 
-            // label5
+            // numSalePrice
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(42, 244);
-            label5.Name = "label5";
-            label5.Size = new Size(116, 21);
-            label5.TabIndex = 7;
-            label5.Text = "Precio de venta";
+            numSalePrice.DecimalPlaces = 2;
+            numSalePrice.Location = new Point(150, 138);
+            numSalePrice.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            numSalePrice.Name = "numSalePrice";
+            numSalePrice.Size = new Size(120, 27);
+            numSalePrice.TabIndex = 7;
             // 
-            // textBox4
+            // lblMargin
             // 
-            textBox4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(180, 241);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(221, 29);
-            textBox4.TabIndex = 8;
+            lblMargin.AutoSize = true;
+            lblMargin.Location = new Point(20, 180);
+            lblMargin.Name = "lblMargin";
+            lblMargin.Size = new Size(86, 20);
+            lblMargin.TabIndex = 8;
+            lblMargin.Text = "Margen (%)";
             // 
-            // label6
+            // numMargin
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(7, 301);
-            label6.Name = "label6";
-            label6.Size = new Size(151, 21);
-            label6.TabIndex = 9;
-            label6.Text = "Margen de ganancia";
-            // 
-            // textBox5
-            // 
-            textBox5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(180, 298);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(221, 29);
-            textBox5.TabIndex = 10;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.BackColor = Color.FromArgb(192, 0, 0);
-            btnCancelar.Location = new Point(104, 355);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(116, 34);
-            btnCancelar.TabIndex = 11;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
+            numMargin.DecimalPlaces = 2;
+            numMargin.Location = new Point(150, 178);
+            numMargin.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numMargin.Name = "numMargin";
+            numMargin.Size = new Size(120, 27);
+            numMargin.TabIndex = 9;
             // 
             // btnConfirmar
             // 
-            btnConfirmar.BackColor = Color.FromArgb(0, 192, 0);
-            btnConfirmar.Location = new Point(269, 355);
+            btnConfirmar.Location = new Point(60, 230);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(116, 33);
-            btnConfirmar.TabIndex = 12;
+            btnConfirmar.Size = new Size(100, 30);
+            btnConfirmar.TabIndex = 10;
             btnConfirmar.Text = "Confirmar";
-            btnConfirmar.UseVisualStyleBackColor = false;
             btnConfirmar.Click += btnConfirmar_Click;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(180, 230);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(100, 30);
+            btnCancelar.TabIndex = 11;
+            btnCancelar.Text = "Cancelar";
             // 
             // LoadBuyItem
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(520, 400);
+            ClientSize = new Size(389, 290);
+            Controls.Add(lblProduct);
+            Controls.Add(txtProduct);
+            Controls.Add(lblQuantity);
+            Controls.Add(numQuantity);
+            Controls.Add(lblCost);
+            Controls.Add(numCost);
+            Controls.Add(lblSalePrice);
+            Controls.Add(numSalePrice);
+            Controls.Add(lblMargin);
+            Controls.Add(numMargin);
             Controls.Add(btnConfirmar);
             Controls.Add(btnCancelar);
-            Controls.Add(textBox5);
-            Controls.Add(label6);
-            Controls.Add(textBox4);
-            Controls.Add(label5);
-            Controls.Add(textBox3);
-            Controls.Add(label4);
-            Controls.Add(textBox2);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(txtNombre);
-            Controls.Add(label1);
             Name = "LoadBuyItem";
-            Text = "LoadBuyItem";
+            Text = "Cargar Ítem";
             Load += LoadBuyItem_Load;
+            ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numCost).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numSalePrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMargin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private TextBox txtNombre;
-        private Label label2;
-        private Label label3;
-        private TextBox textBox2;
-        private Label label4;
-        private TextBox textBox3;
-        private Label label5;
-        private TextBox textBox4;
-        private Label label6;
-        private TextBox textBox5;
-        private Button btnCancelar;
-        private Button btnConfirmar;
+        private System.Windows.Forms.Label lblProduct;
+        private System.Windows.Forms.TextBox txtProduct;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.NumericUpDown numQuantity;
+        private System.Windows.Forms.Label lblCost;
+        private System.Windows.Forms.NumericUpDown numCost;
+        private System.Windows.Forms.Label lblSalePrice;
+        private System.Windows.Forms.NumericUpDown numSalePrice;
+        private System.Windows.Forms.Label lblMargin;
+        private System.Windows.Forms.NumericUpDown numMargin;
+        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
+

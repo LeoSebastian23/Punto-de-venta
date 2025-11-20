@@ -2,228 +2,195 @@
 {
     partial class BuyView
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        private System.Windows.Forms.Label lblSupplier;
+        private System.Windows.Forms.ComboBox cmbSupplier;
+        private System.Windows.Forms.Label lblInvoice;
+        private System.Windows.Forms.TextBox txtInvoice;
+        private System.Windows.Forms.Label lblInvoiceType;
+        private System.Windows.Forms.ComboBox cmbInvoiceType;
+
+        private System.Windows.Forms.DataGridView dgvProducts;
+        private System.Windows.Forms.DataGridView dgvItems;
+
+        private System.Windows.Forms.Button btnAddItem;
+        private System.Windows.Forms.Button btnRegistrar;
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            dgvCompra = new DataGridView();
-            label2 = new Label();
-            label3 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            txtBuscar = new TextBox();
-            lstSugerencias = new ListBox();
-            label4 = new Label();
-            label5 = new Label();
-            textBox2 = new TextBox();
-            label6 = new Label();
-            comboSupplier = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)dgvCompra).BeginInit();
+            lblSupplier = new Label();
+            cmbSupplier = new ComboBox();
+            lblInvoice = new Label();
+            txtInvoice = new TextBox();
+            lblInvoiceType = new Label();
+            cmbInvoiceType = new ComboBox();
+            dgvProducts = new DataGridView();
+            dgvItems = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            btnAddItem = new Button();
+            btnRegistrar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lblSupplier
             // 
-            label1.AccessibleRole = AccessibleRole.Cursor;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(231, 7);
-            label1.Name = "label1";
-            label1.Size = new Size(310, 45);
-            label1.TabIndex = 0;
-            label1.Text = "Gestión de Compras";
+            lblSupplier.Location = new Point(20, 20);
+            lblSupplier.Name = "lblSupplier";
+            lblSupplier.Size = new Size(100, 23);
+            lblSupplier.TabIndex = 0;
+            lblSupplier.Text = "Proveedor:";
             // 
-            // dgvCompra
+            // cmbSupplier
             // 
-            dgvCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCompra.Location = new Point(22, 136);
-            dgvCompra.Margin = new Padding(3, 2, 3, 2);
-            dgvCompra.Name = "dgvCompra";
-            dgvCompra.Size = new Size(756, 172);
-            dgvCompra.TabIndex = 1;
+            cmbSupplier.Location = new Point(120, 20);
+            cmbSupplier.Name = "cmbSupplier";
+            cmbSupplier.Size = new Size(250, 28);
+            cmbSupplier.TabIndex = 1;
             // 
-            // label2
+            // lblInvoice
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16F);
-            label2.Location = new Point(601, 328);
-            label2.Name = "label2";
-            label2.Size = new Size(74, 30);
-            label2.TabIndex = 3;
-            label2.Text = "TOTAL";
+            lblInvoice.Location = new Point(20, 65);
+            lblInvoice.Name = "lblInvoice";
+            lblInvoice.Size = new Size(94, 23);
+            lblInvoice.TabIndex = 2;
+            lblInvoice.Text = "Nro Factura:";
             // 
-            // label3
+            // txtInvoice
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(694, 335);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 15);
-            label3.TabIndex = 4;
-            label3.Text = "------------";
+            txtInvoice.Location = new Point(120, 60);
+            txtInvoice.Name = "txtInvoice";
+            txtInvoice.Size = new Size(150, 27);
+            txtInvoice.TabIndex = 3;
             // 
-            // button1
+            // lblInvoiceType
             // 
-            button1.BackColor = Color.FromArgb(0, 192, 0);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(268, 327);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(86, 31);
-            button1.TabIndex = 5;
-            button1.Text = "Confirmar";
-            button1.UseVisualStyleBackColor = false;
+            lblInvoiceType.Location = new Point(300, 60);
+            lblInvoiceType.Name = "lblInvoiceType";
+            lblInvoiceType.Size = new Size(44, 23);
+            lblInvoiceType.TabIndex = 4;
+            lblInvoiceType.Text = "Tipo:";
             // 
-            // button2
+            // cmbInvoiceType
             // 
-            button2.BackColor = Color.FromArgb(192, 0, 0);
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.ForeColor = Color.Black;
-            button2.Location = new Point(83, 326);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(96, 32);
-            button2.TabIndex = 6;
-            button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = false;
+            cmbInvoiceType.Items.AddRange(new object[] { "A", "B", "E" });
+            cmbInvoiceType.Location = new Point(350, 60);
+            cmbInvoiceType.Name = "cmbInvoiceType";
+            cmbInvoiceType.Size = new Size(70, 28);
+            cmbInvoiceType.TabIndex = 5;
             // 
-            // txtBuscar
+            // dgvProducts
             // 
-            txtBuscar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBuscar.ForeColor = SystemColors.WindowFrame;
-            txtBuscar.Location = new Point(481, 56);
-            txtBuscar.Margin = new Padding(3, 2, 3, 2);
-            txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(297, 29);
-            txtBuscar.TabIndex = 8;
-            txtBuscar.Text = "Buscar producto";
-            txtBuscar.TextChanged += txtBuscar_TextChanged;
+            dgvProducts.ColumnHeadersHeight = 29;
+            dgvProducts.Location = new Point(20, 110);
+            dgvProducts.Name = "dgvProducts";
+            dgvProducts.ReadOnly = true;
+            dgvProducts.RowHeadersWidth = 51;
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducts.Size = new Size(498, 264);
+            dgvProducts.TabIndex = 6;
+            dgvProducts.CellDoubleClick += dgvProducts_CellDoubleClick;
             // 
-            // lstSugerencias
+            // dgvItems
             // 
-            lstSugerencias.FormattingEnabled = true;
-            lstSugerencias.ItemHeight = 15;
-            lstSugerencias.Location = new Point(481, 81);
-            lstSugerencias.Margin = new Padding(3, 2, 3, 2);
-            lstSugerencias.Name = "lstSugerencias";
-            lstSugerencias.Size = new Size(297, 49);
-            lstSugerencias.TabIndex = 9;
-            lstSugerencias.Click += lstSugerencias_Click;
-            lstSugerencias.SelectedIndexChanged += lstSugerencias_SelectedIndexChanged;
+            dgvItems.ColumnHeadersHeight = 29;
+            dgvItems.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
+            dgvItems.Location = new Point(540, 110);
+            dgvItems.Name = "dgvItems";
+            dgvItems.RowHeadersWidth = 51;
+            dgvItems.Size = new Size(679, 264);
+            dgvItems.TabIndex = 8;
             // 
-            // label4
+            // dataGridViewTextBoxColumn1
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(55, 58);
-            label4.Name = "label4";
-            label4.Size = new Size(82, 21);
-            label4.TabIndex = 10;
-            label4.Text = "Proveedor";
+            dataGridViewTextBoxColumn1.HeaderText = "Producto";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
             // 
-            // label5
+            // dataGridViewTextBoxColumn2
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(31, 88);
-            label5.Name = "label5";
-            label5.Size = new Size(110, 21);
-            label5.TabIndex = 12;
-            label5.Text = "Nro de factura";
+            dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
             // 
-            // textBox2
+            // dataGridViewTextBoxColumn3
             // 
-            textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(142, 86);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(158, 29);
-            textBox2.TabIndex = 13;
+            dataGridViewTextBoxColumn3.HeaderText = "Costo";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
             // 
-            // label6
+            // dataGridViewTextBoxColumn4
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(83, 111);
-            label6.Name = "label6";
-            label6.Size = new Size(50, 21);
-            label6.TabIndex = 14;
-            label6.Text = "Fecha";
+            dataGridViewTextBoxColumn4.HeaderText = "Margen";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Width = 125;
             // 
-            // comboSupplier
+            // dataGridViewTextBoxColumn5
             // 
-            comboSupplier.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboSupplier.FormattingEnabled = true;
-            comboSupplier.Location = new Point(142, 56);
-            comboSupplier.Margin = new Padding(3, 2, 3, 2);
-            comboSupplier.Name = "comboSupplier";
-            comboSupplier.Size = new Size(158, 29);
-            comboSupplier.TabIndex = 15;
-            comboSupplier.SelectedIndexChanged += comboSupplier_SelectedIndexChanged;
+            dataGridViewTextBoxColumn5.HeaderText = "Subtotal";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // btnAddItem
+            // 
+            btnAddItem.Location = new Point(20, 380);
+            btnAddItem.Name = "btnAddItem";
+            btnAddItem.Size = new Size(150, 35);
+            btnAddItem.TabIndex = 7;
+            btnAddItem.Text = "➕ Agregar Ítem";
+            btnAddItem.Click += btnAddItem_Click;
+            // 
+            // btnRegistrar
+            // 
+            btnRegistrar.Location = new Point(1069, 380);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(150, 40);
+            btnRegistrar.TabIndex = 9;
+            btnRegistrar.Text = "Registrar Compra";
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // BuyView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(830, 384);
-            Controls.Add(comboSupplier);
-            Controls.Add(label6);
-            Controls.Add(textBox2);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(lstSugerencias);
-            Controls.Add(txtBuscar);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(dgvCompra);
-            Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
+            ClientSize = new Size(1339, 536);
+            Controls.Add(lblSupplier);
+            Controls.Add(cmbSupplier);
+            Controls.Add(lblInvoice);
+            Controls.Add(txtInvoice);
+            Controls.Add(lblInvoiceType);
+            Controls.Add(cmbInvoiceType);
+            Controls.Add(dgvProducts);
+            Controls.Add(btnAddItem);
+            Controls.Add(dgvItems);
+            Controls.Add(btnRegistrar);
             Name = "BuyView";
-            Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)dgvCompra).EndInit();
+            Text = "Registrar Compra";
+            Load += BuyView_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvItems).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
-
-        #endregion
-
-        private Label label1;
-
-        private DataGridView dgvCompra;
-        private Label label2;
-        private Label label3;
-        private Button button1;
-        private Button button2;
-        private TextBox txtBuscar;
-        private ListBox lstSugerencias;
-        private Label label4;
-        private Label label5;
-        private TextBox textBox2;
-        private Label label6;
-        private ComboBox comboSupplier;
-
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
+

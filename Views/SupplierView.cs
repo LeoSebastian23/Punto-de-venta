@@ -3,6 +3,7 @@ using Punto_de_venta.Models;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Punto_de_venta.Views
 {
@@ -10,150 +11,54 @@ namespace Punto_de_venta.Views
     {
         private readonly SupplierController _controller;
 
-        //  El controlador se inyecta por constructor (gracias al ServiceProvider en Program.cs)
         public SupplierView(SupplierController controller)
         {
             InitializeComponent();
             _controller = controller;
+        }
+
+        private void SupplierView_Load(object sender, EventArgs e)
+        {
             LoadSuppliers();
         }
 
-        // Cargar lista de proveedores al iniciar o refrescar
         private void LoadSuppliers()
         {
-            var suppliers = _controller.GetAllSuppliers();
-            dataGridView1.DataSource = suppliers.ToList();
+            var suppliers = _controller.GetAllSuppliers().ToList();
+            dgvSuppliers.DataSource = suppliers;
+            dgvSuppliers.Columns["Id"].Visible = false;
+            dgvSuppliers.Columns["Products"].Visible = false;
+            dgvSuppliers.Columns["Buys"].Visible = false;
         }
 
-        // Guardar nuevo proveedor
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                string /*nombre*/name = txtNombre.Text.Trim();
-                string cuit = txtCUIT.Text.Trim();
-                string phone/*Number*/ = txtNumeroTelefono.Text.Trim();
-
-                _controller.CreateSupplier(name, cuit, phone/*Number*/);
-                //_controller.CreateSupplier(nombre, cuit, phoneNumber);
-                MessageBox.Show("Proveedor agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                _controller.CreateSupplier(txtName.Text, txtCUIT.Text, txtPhone.Text);
+                MessageBox.Show("Proveedor agregado correctamente ✅");
                 ClearFields();
                 LoadSuppliers();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
 
-        // Actualizar proveedor seleccionado
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Seleccione un proveedor para actualizar.");
-                return;
-            }
-
-            int id = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
-            string phoneNumber = txtNumeroTelefono.Text;
-            string nombre = txtNombre.Text;
-
-            _controller.UpdateSupplier(id, nombre, phoneNumber);
-            MessageBox.Show("Proveedor actualizado.");
+            if (dgvSuppliers.SelectedRows.Count == 0) return;
+            var supplier = (Supplier)dgvSuppliers.SelectedRows[0].DataBoundItem;
+            _controller.DeleteSupplier(supplier.Id);
             LoadSuppliers();
-        }
-
-        // Eliminar proveedor
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Seleccione un proveedor para eliminar.");
-                return;
-            }
-
-            int id = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
-
-            try
-            {
-                _controller.DeleteSupplier(id);
-                MessageBox.Show("Proveedor eliminado correctamente.");
-                LoadSuppliers();
-            }
-            catch (InvalidOperationException ex)
-            {
-                // ⚠️ Error de negocio: proveedor con productos asociados
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                // ❌ Error inesperado
-                MessageBox.Show("Ocurrió un error al eliminar el proveedor: " + ex.Message);
-            }
-        }
-
-        // Limpiar campos
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            ClearFields();
         }
 
         private void ClearFields()
         {
-            txtNombre.Text = "";
-            txtCUIT.Text = "";
-            txtNumeroTelefono.Text = "";
-        }
-
-        // Refrescar lista manualmente
-        private void btnRefrescar_Click(object sender, EventArgs e)
-        {
-            LoadSuppliers();
-        }
-
-        // Mostrar proveedor al seleccionar una fila
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var fila = dataGridView1.Rows[e.RowIndex];
-                txtNombre.Text = fila.Cells["Name"].Value.ToString();
-                txtCUIT.Text = fila.Cells["Cuit"].Value.ToString();
-                txtNumeroTelefono.Text = fila.Cells["phoneNumber"].Value.ToString();
-            }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            ClearFields();
-        }
-
-        private void btnGuardar_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                string /*nombre*/name = txtNombre.Text.Trim();
-                string cuit = txtCUIT.Text.Trim();
-                string phone/*Number*/ = txtNumeroTelefono.Text.Trim();
-
-                _controller.CreateSupplier(name, cuit, phone/*Number*/);
-                //_controller.CreateSupplier(nombre, cuit, phoneNumber);
-                MessageBox.Show("Proveedor agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                ClearFields();
-                LoadSuppliers();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            txtName.Clear();
+            txtCUIT.Clear();
+            txtPhone.Clear();
         }
     }
 }

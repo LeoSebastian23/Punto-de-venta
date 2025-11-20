@@ -2,15 +2,8 @@
 {
     partial class ProductView
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,148 +15,202 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            LbeltxtName = new Label();
+            lblName = new Label();
+            lblCode = new Label();
+            lblBaseCost = new Label();
+            lblSalePrice = new Label();
+            lblMargin = new Label();
+            lblStock = new Label();
             txtName = new TextBox();
             txtCode = new TextBox();
-            LbeltxtCode = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            openFileDialog1 = new OpenFileDialog();
-            btnCancelar = new Button();
-            btnGuardar = new Button();
+            numBaseCost = new NumericUpDown();
+            numSalePrice = new NumericUpDown();
+            numMargin = new NumericUpDown();
+            numStock = new NumericUpDown();
+            btnAdd = new Button();
+            dgvProducts = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)numBaseCost).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numSalePrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numMargin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lblName
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(248, 7);
-            label1.Name = "label1";
-            label1.Size = new Size(173, 32);
-            label1.TabIndex = 4;
-            label1.Text = "Crear Producto";
-            label1.TextAlign = ContentAlignment.TopCenter;
+            lblName.AutoSize = true;
+            lblName.Location = new Point(20, 20);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(67, 20);
+            lblName.TabIndex = 0;
+            lblName.Text = "Nombre:";
             // 
-            // LbeltxtName
+            // lblCode
             // 
-            LbeltxtName.AutoSize = true;
-            LbeltxtName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LbeltxtName.Location = new Point(153, 98);
-            LbeltxtName.Name = "LbeltxtName";
-            LbeltxtName.Size = new Size(68, 21);
-            LbeltxtName.TabIndex = 5;
-            LbeltxtName.Text = "Nombre";
+            lblCode.AutoSize = true;
+            lblCode.Location = new Point(20, 60);
+            lblCode.Name = "lblCode";
+            lblCode.Size = new Size(61, 20);
+            lblCode.TabIndex = 1;
+            lblCode.Text = "Código:";
+            // 
+            // lblBaseCost
+            // 
+            lblBaseCost.AutoSize = true;
+            lblBaseCost.Location = new Point(20, 100);
+            lblBaseCost.Name = "lblBaseCost";
+            lblBaseCost.Size = new Size(85, 20);
+            lblBaseCost.TabIndex = 2;
+            lblBaseCost.Text = "Costo base:";
+            // 
+            // lblSalePrice
+            // 
+            lblSalePrice.AutoSize = true;
+            lblSalePrice.Location = new Point(20, 140);
+            lblSalePrice.Name = "lblSalePrice";
+            lblSalePrice.Size = new Size(114, 20);
+            lblSalePrice.TabIndex = 3;
+            lblSalePrice.Text = "Precio de venta:";
+            // 
+            // lblMargin
+            // 
+            lblMargin.AutoSize = true;
+            lblMargin.Location = new Point(20, 182);
+            lblMargin.Name = "lblMargin";
+            lblMargin.Size = new Size(89, 20);
+            lblMargin.TabIndex = 4;
+            lblMargin.Text = "Margen (%):";
+            // 
+            // lblStock
+            // 
+            lblStock.AutoSize = true;
+            lblStock.Location = new Point(20, 222);
+            lblStock.Name = "lblStock";
+            lblStock.Size = new Size(48, 20);
+            lblStock.TabIndex = 5;
+            lblStock.Text = "Stock:";
             // 
             // txtName
             // 
-            txtName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtName.Location = new Point(248, 95);
-            txtName.Margin = new Padding(3, 2, 3, 2);
+            txtName.Location = new Point(140, 20);
             txtName.Name = "txtName";
-            txtName.Size = new Size(265, 29);
+            txtName.Size = new Size(262, 27);
             txtName.TabIndex = 6;
             // 
             // txtCode
             // 
-            txtCode.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCode.Location = new Point(248, 149);
-            txtCode.Margin = new Padding(3, 2, 3, 2);
+            txtCode.Location = new Point(140, 60);
             txtCode.Name = "txtCode";
-            txtCode.Size = new Size(265, 29);
-            txtCode.TabIndex = 8;
+            txtCode.Size = new Size(262, 27);
+            txtCode.TabIndex = 7;
             // 
-            // LbeltxtCode
+            // numBaseCost
             // 
-            LbeltxtCode.AutoSize = true;
-            LbeltxtCode.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LbeltxtCode.Location = new Point(159, 149);
-            LbeltxtCode.Name = "LbeltxtCode";
-            LbeltxtCode.Size = new Size(60, 21);
-            LbeltxtCode.TabIndex = 7;
-            LbeltxtCode.Text = "Código";
+            numBaseCost.DecimalPlaces = 2;
+            numBaseCost.Location = new Point(140, 100);
+            numBaseCost.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            numBaseCost.Name = "numBaseCost";
+            numBaseCost.Size = new Size(120, 27);
+            numBaseCost.TabIndex = 8;
             // 
-            // label6
+            // numSalePrice
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(513, 95);
-            label6.Name = "label6";
-            label6.Size = new Size(0, 15);
-            label6.TabIndex = 13;
+            numSalePrice.DecimalPlaces = 2;
+            numSalePrice.Location = new Point(140, 140);
+            numSalePrice.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            numSalePrice.Name = "numSalePrice";
+            numSalePrice.Size = new Size(120, 27);
+            numSalePrice.TabIndex = 9;
             // 
-            // label7
+            // numMargin
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(161, 152);
-            label7.Name = "label7";
-            label7.Size = new Size(60, 21);
-            label7.TabIndex = 15;
-            label7.Text = "Código";
+            numMargin.DecimalPlaces = 2;
+            numMargin.Location = new Point(140, 182);
+            numMargin.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numMargin.Name = "numMargin";
+            numMargin.Size = new Size(120, 27);
+            numMargin.TabIndex = 10;
             // 
-            // openFileDialog1
+            // numStock
             // 
-            openFileDialog1.FileName = "openFileDialog1";
+            numStock.Location = new Point(140, 222);
+            numStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            numStock.Name = "numStock";
+            numStock.Size = new Size(120, 27);
+            numStock.TabIndex = 11;
             // 
-            // btnCancelar
+            // btnAdd
             // 
-            btnCancelar.BackColor = Color.FromArgb(192, 0, 0);
-            btnCancelar.Location = new Point(180, 226);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(119, 36);
-            btnCancelar.TabIndex = 17;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
+            btnAdd.Location = new Point(140, 263);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(96, 31);
+            btnAdd.TabIndex = 12;
+            btnAdd.Text = "Agregar producto";
+            btnAdd.Click += btnAdd_Click;
             // 
-            // btnGuardar
+            // dgvProducts
             // 
-            btnGuardar.BackColor = Color.Green;
-            btnGuardar.Location = new Point(343, 226);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(119, 36);
-            btnGuardar.TabIndex = 18;
-            btnGuardar.Text = "Guardar";
-            btnGuardar.UseVisualStyleBackColor = false;
-            btnGuardar.Click += btnGuardar_Click;
+            dgvProducts.AllowUserToAddRows = false;
+            dgvProducts.AllowUserToDeleteRows = false;
+            dgvProducts.ColumnHeadersHeight = 29;
+            dgvProducts.Location = new Point(20, 310);
+            dgvProducts.Name = "dgvProducts";
+            dgvProducts.ReadOnly = true;
+            dgvProducts.RowHeadersWidth = 51;
+            dgvProducts.Size = new Size(500, 250);
+            dgvProducts.TabIndex = 13;
             // 
             // ProductView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 286);
-            Controls.Add(btnGuardar);
-            Controls.Add(btnCancelar);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(txtCode);
+            ClientSize = new Size(565, 580);
+            Controls.Add(lblName);
+            Controls.Add(lblCode);
+            Controls.Add(lblBaseCost);
+            Controls.Add(lblSalePrice);
+            Controls.Add(lblMargin);
+            Controls.Add(lblStock);
             Controls.Add(txtName);
-            Controls.Add(LbeltxtName);
-            Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(txtCode);
+            Controls.Add(numBaseCost);
+            Controls.Add(numSalePrice);
+            Controls.Add(numMargin);
+            Controls.Add(numStock);
+            Controls.Add(btnAdd);
+            Controls.Add(dgvProducts);
             Name = "ProductView";
-            Text = "ProductView";
+            Text = "Gestión de Productos";
+            Load += ProductView_Load;
+            ((System.ComponentModel.ISupportInitialize)numBaseCost).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numSalePrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMargin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numStock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label label1;
-        private Label LbeltxtName;
-        private TextBox txtName;
-        private TextBox txtCode;
-        private Label LbeltxtCode;
-        private Label label6;
-        private Label label7;
-        private OpenFileDialog openFileDialog1;
-        private Button btnCancelar;
-        private Button btnGuardar;
 
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblCode;
+        private System.Windows.Forms.Label lblBaseCost;
+        private System.Windows.Forms.Label lblSalePrice;
+        private System.Windows.Forms.Label lblMargin;
+        private System.Windows.Forms.Label lblStock;
+
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtCode;
+
+        private System.Windows.Forms.NumericUpDown numBaseCost;
+        private System.Windows.Forms.NumericUpDown numSalePrice;
+        private System.Windows.Forms.NumericUpDown numMargin;
+        private System.Windows.Forms.NumericUpDown numStock;
+
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridView dgvProducts;
     }
 }
+
+
