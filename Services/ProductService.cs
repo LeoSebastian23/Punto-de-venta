@@ -48,7 +48,7 @@ namespace Punto_de_venta.Services
         {
             try
             {
-                var product = _repository.GetById(id, includeRelations: false);
+                var product = _repository.GetById(id);
                 if (product == null)
                     throw new Exception("El producto no existe.");
 

@@ -31,6 +31,14 @@ namespace Punto_de_venta.Views
             var view = _services.GetRequiredService<BuyView>();
             view.ShowDialog();
         }
+
+        // -------------------------------------
+        // NUEVO: Abrir formulario de test ventas
+        // -------------------------------------
+        private void btnTestVentas_Click(object sender, EventArgs e)
+        {
+            var view = _services.GetRequiredService<FormVentaTest>();
+            view.ShowDialog();
+        }
     }
 }
-

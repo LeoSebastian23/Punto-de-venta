@@ -5,9 +5,6 @@ namespace Punto_de_venta.Data
 {
     public class AppDbContext : DbContext
     {
-        // ==========================
-        // TABLAS PRINCIPALES
-        // ==========================
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Buy> Buys { get; set; }
@@ -15,17 +12,9 @@ namespace Punto_de_venta.Data
         public DbSet<SaleItem> SaleItems { get; set; }
         public DbSet<User> Users { get; set; }
 
-        // ==========================
-        // CONSTRUCTORES
-        // ==========================
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-        // Constructor adicional para migraciones
         public AppDbContext() { }
 
-        // ==========================
-        // CONFIGURACIÓN
-        // ==========================
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -34,44 +23,34 @@ namespace Punto_de_venta.Data
             }
         }
 
-        // ==========================
-        // RELACIONES Y REGLAS
-        // ==========================
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // ==========================
-            // BUY → BUYITEM → PRODUCT
-            // ==========================
             modelBuilder.Entity<Buy>()
                 .HasMany(b => b.Items)
                 .WithOne()
                 .HasForeignKey("BuyId")
-                .OnDelete(DeleteBehavior.Cascade); // al borrar una compra, se borran sus items
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<BuyItem>()
                 .HasOne(i => i.Product)
-                .WithMany() // Product no conoce sus BuyItems
+                .WithMany()
                 .HasForeignKey("ProductId")
-                .OnDelete(DeleteBehavior.Restrict); // no se puede borrar un producto con compras asociadas
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Buy>()
                 .HasOne(b => b.Supplier)
                 .WithMany(s => s.Buys)
                 .HasForeignKey("SupplierId")
-                .OnDelete(DeleteBehavior.Restrict); // no se puede borrar un supplier con compras
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Configurar campo InvoiceNumber (texto obligatorio)
             modelBuilder.Entity<Buy>()
                 .Property(b => b.InvoiceNumber)
                 .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnType("nvarchar(50)");
 
-            // ==========================
-            // SALE → SALEITEM → PRODUCT
-            // ==========================
             modelBuilder.Entity<Sale>()
                 .HasMany(s => s.Items)
                 .WithOne(i => i.Sale)
@@ -80,26 +59,14 @@ namespace Punto_de_venta.Data
 
             modelBuilder.Entity<SaleItem>()
                 .HasOne(i => i.Product)
-                .WithMany() // Product no conoce sus SaleItems
+                .WithMany()
                 .HasForeignKey("ProductId")
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Sale>()
-                .HasOne(s => s.User)
-                .WithMany()
-                .HasForeignKey("UserId")
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // ==========================
-            // USER
-            // ==========================
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Name)
                 .IsUnique();
 
-            // ==========================
-            // PRODUCT
-            // ==========================
             modelBuilder.Entity<Product>()
                 .Property(p => p.Name)
                 .IsRequired()
@@ -107,6 +74,3 @@ namespace Punto_de_venta.Data
         }
     }
 }
-
-
-

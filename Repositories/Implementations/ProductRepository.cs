@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Punto_de_venta.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Punto_de_venta.Data;
 using Punto_de_venta.Models;
-using Punto_de_venta.Repositories.Interfaces;
 
 namespace Punto_de_venta.Repositories.Implementations
 {
@@ -14,20 +14,24 @@ namespace Punto_de_venta.Repositories.Implementations
             _context = context;
         }
 
-        public void Add(Product product)
+        public Product? GetById(int id)
         {
-            _context.Products.Add(product);
+            return _context.Products.FirstOrDefault(p => p.Id == id);
         }
 
-        public Product? GetById(int id, bool includeRelations = false)
+        public Product? GetByCode(string code)
         {
-            IQueryable<Product> query = _context.Products.AsQueryable();
-            return query.FirstOrDefault(p => p.Id == id);
+            return _context.Products.FirstOrDefault(p => p.Code == code);
         }
 
         public IEnumerable<Product> GetAll()
         {
-            return _context.Products.ToList();
+            return _context.Products.AsNoTracking().ToList();
+        }
+
+        public void Add(Product product)
+        {
+            _context.Products.Add(product);
         }
 
         public void Update(Product product)
@@ -35,7 +39,7 @@ namespace Punto_de_venta.Repositories.Implementations
             _context.Products.Update(product);
         }
 
-        public void Delete(Product product)
+        public void Remove(Product product)
         {
             _context.Products.Remove(product);
         }
@@ -44,6 +48,10 @@ namespace Punto_de_venta.Repositories.Implementations
         {
             _context.SaveChanges();
         }
+
+        public void Delete(Product product)
+        {
+            _context.Products.Remove(product);
+        }
     }
 }
-

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
 using Punto_de_venta.Models;
 using Punto_de_venta.Services;
 
@@ -20,28 +15,17 @@ namespace Punto_de_venta.Controllers
 
         public void CreateSale(Sale sale)
         {
-            try
-            {
-                _saleService.RegisterSale(sale);
-                Console.WriteLine("✅ Venta registrada exitosamente.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"❌ Error al registrar la venta: {ex.Message}");
-            }
+            _saleService.RegisterSale(sale);
         }
 
-        public void ShowAllSales()
+        public IEnumerable<Sale> GetAllSales()
         {
-            var sales = _saleService.GetAllSales();
-            foreach (var s in sales)
-            {
-                Console.WriteLine($"\n🧾 Venta #{s.Id} - Fecha: {s.Date} - Total: {s.TotalAmount}");
-                foreach (var item in s.Items)
-                {
-                    Console.WriteLine($"  {item.Quantity} x {item.Product.Name} - ${item.Subtotal}");
-                }
-            }
+            return _saleService.GetAllSales();
+        }
+
+        public Sale? GetSaleById(int id)
+        {
+            return _saleService.GetSaleById(id);
         }
     }
 }

@@ -1,16 +1,19 @@
-﻿using Punto_de_venta.Models;
+﻿using System.Collections.Generic;
+using Punto_de_venta.Models;
 
 namespace Punto_de_venta.Repositories.Interfaces
 {
     public interface IProductRepository
     {
-        void Add(Product product);
-        Product? GetById(int id, bool includeRelations = false);
+        Product? GetById(int id);
+        Product? GetByCode(string code);
         IEnumerable<Product> GetAll();
+
+        void Add(Product product);
         void Update(Product product);
-        void Delete(Product product);
+        void Remove(Product product);
         void Save();
+        void Delete(Product product);
+
     }
 }
-
-
