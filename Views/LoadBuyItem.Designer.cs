@@ -40,7 +40,7 @@
             lblProduct.AutoSize = true;
             lblProduct.Location = new Point(20, 20);
             lblProduct.Name = "lblProduct";
-            lblProduct.Size = new Size(72, 20);
+            lblProduct.Size = new Size(59, 15);
             lblProduct.TabIndex = 0;
             lblProduct.Text = "Producto:";
             // 
@@ -49,7 +49,7 @@
             txtProduct.Location = new Point(150, 20);
             txtProduct.Name = "txtProduct";
             txtProduct.ReadOnly = true;
-            txtProduct.Size = new Size(200, 27);
+            txtProduct.Size = new Size(200, 23);
             txtProduct.TabIndex = 1;
             // 
             // lblQuantity
@@ -57,7 +57,7 @@
             lblQuantity.AutoSize = true;
             lblQuantity.Location = new Point(20, 60);
             lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new Size(72, 20);
+            lblQuantity.Size = new Size(58, 15);
             lblQuantity.TabIndex = 2;
             lblQuantity.Text = "Cantidad:";
             // 
@@ -67,7 +67,7 @@
             numQuantity.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numQuantity.Name = "numQuantity";
-            numQuantity.Size = new Size(120, 27);
+            numQuantity.Size = new Size(120, 23);
             numQuantity.TabIndex = 3;
             numQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -76,7 +76,7 @@
             lblCost.AutoSize = true;
             lblCost.Location = new Point(20, 100);
             lblCost.Name = "lblCost";
-            lblCost.Size = new Size(50, 20);
+            lblCost.Size = new Size(41, 15);
             lblCost.TabIndex = 4;
             lblCost.Text = "Costo:";
             // 
@@ -86,7 +86,7 @@
             numCost.Location = new Point(150, 93);
             numCost.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             numCost.Name = "numCost";
-            numCost.Size = new Size(120, 27);
+            numCost.Size = new Size(120, 23);
             numCost.TabIndex = 5;
             // 
             // lblSalePrice
@@ -94,7 +94,7 @@
             lblSalePrice.AutoSize = true;
             lblSalePrice.Location = new Point(20, 140);
             lblSalePrice.Name = "lblSalePrice";
-            lblSalePrice.Size = new Size(114, 20);
+            lblSalePrice.Size = new Size(91, 15);
             lblSalePrice.TabIndex = 6;
             lblSalePrice.Text = "Precio de venta:";
             // 
@@ -104,7 +104,7 @@
             numSalePrice.Location = new Point(150, 138);
             numSalePrice.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             numSalePrice.Name = "numSalePrice";
-            numSalePrice.Size = new Size(120, 27);
+            numSalePrice.Size = new Size(120, 23);
             numSalePrice.TabIndex = 7;
             // 
             // lblMargin
@@ -112,7 +112,7 @@
             lblMargin.AutoSize = true;
             lblMargin.Location = new Point(20, 180);
             lblMargin.Name = "lblMargin";
-            lblMargin.Size = new Size(86, 20);
+            lblMargin.Size = new Size(69, 15);
             lblMargin.TabIndex = 8;
             lblMargin.Text = "Margen (%)";
             // 
@@ -122,26 +122,32 @@
             numMargin.Location = new Point(150, 178);
             numMargin.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             numMargin.Name = "numMargin";
-            numMargin.Size = new Size(120, 27);
+            numMargin.Size = new Size(120, 23);
             numMargin.TabIndex = 9;
             // 
             // btnConfirmar
             // 
+            btnConfirmar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnConfirmar.BackColor = Color.Lime;
             btnConfirmar.Location = new Point(60, 230);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(100, 30);
             btnConfirmar.TabIndex = 10;
             btnConfirmar.Text = "Confirmar";
+            btnConfirmar.UseVisualStyleBackColor = false;
             btnConfirmar.Click += btnConfirmar_Click;
             // 
             // btnCancelar
             // 
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.Red;
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Location = new Point(180, 230);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(100, 30);
             btnCancelar.TabIndex = 11;
             btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // LoadBuyItem
             // 

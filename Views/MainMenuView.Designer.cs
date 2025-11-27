@@ -17,52 +17,64 @@
             btnProducts = new Button();
             btnBuys = new Button();
             btnTestVentas = new Button();
-
-            // -----------------------------
-            // Proveedores
-            // -----------------------------
+            SuspendLayout();
+            // 
+            // btnSuppliers
+            // 
+            btnSuppliers.BackColor = SystemColors.ActiveCaption;
+            btnSuppliers.Location = new Point(50, 40);
+            btnSuppliers.Name = "btnSuppliers";
+            btnSuppliers.Size = new Size(150, 40);
+            btnSuppliers.TabIndex = 0;
             btnSuppliers.Text = "Proveedores";
-            btnSuppliers.Location = new System.Drawing.Point(50, 40);
-            btnSuppliers.Size = new System.Drawing.Size(150, 40);
+            btnSuppliers.UseVisualStyleBackColor = false;
             btnSuppliers.Click += btnSuppliers_Click;
-
-            // -----------------------------
-            // Productos
-            // -----------------------------
+            // 
+            // btnProducts
+            // 
+            btnProducts.BackColor = SystemColors.ActiveCaption;
+            btnProducts.Location = new Point(50, 100);
+            btnProducts.Name = "btnProducts";
+            btnProducts.Size = new Size(150, 40);
+            btnProducts.TabIndex = 1;
             btnProducts.Text = "Productos";
-            btnProducts.Location = new System.Drawing.Point(50, 100);
-            btnProducts.Size = new System.Drawing.Size(150, 40);
+            btnProducts.UseVisualStyleBackColor = false;
             btnProducts.Click += btnProducts_Click;
-
-            // -----------------------------
-            // Registrar Compra
-            // -----------------------------
+            // 
+            // btnBuys
+            // 
+            btnBuys.BackColor = SystemColors.ActiveCaption;
+            btnBuys.Location = new Point(50, 160);
+            btnBuys.Name = "btnBuys";
+            btnBuys.Size = new Size(150, 40);
+            btnBuys.TabIndex = 2;
             btnBuys.Text = "Registrar Compra";
-            btnBuys.Location = new System.Drawing.Point(50, 160);
-            btnBuys.Size = new System.Drawing.Size(150, 40);
+            btnBuys.UseVisualStyleBackColor = false;
             btnBuys.Click += btnBuys_Click;
-
-            // -----------------------------
-            // Test Ventas
-            // -----------------------------
+            // 
+            // btnTestVentas
+            // 
+            btnTestVentas.BackColor = SystemColors.ActiveCaption;
+            btnTestVentas.Location = new Point(50, 220);
+            btnTestVentas.Name = "btnTestVentas";
+            btnTestVentas.Size = new Size(150, 40);
+            btnTestVentas.TabIndex = 3;
             btnTestVentas.Text = "Test Ventas";
-            btnTestVentas.Location = new System.Drawing.Point(50, 220);
-            btnTestVentas.Size = new System.Drawing.Size(150, 40);
+            btnTestVentas.UseVisualStyleBackColor = false;
             btnTestVentas.Click += btnTestVentas_Click;
-
-            // -----------------------------
-            // FORM
-            // -----------------------------
-            ClientSize = new System.Drawing.Size(250, 300);
-            Controls.AddRange(new Control[]
-            {
-                btnSuppliers,
-                btnProducts,
-                btnBuys,
-                btnTestVentas
-            });
-
+            // 
+            // MainMenuView
+            // 
+            ClientSize = new Size(250, 300);
+            Controls.Add(btnSuppliers);
+            Controls.Add(btnProducts);
+            Controls.Add(btnBuys);
+            Controls.Add(btnTestVentas);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "MainMenuView";
             Text = "Menú Principal";
+            ResumeLayout(false);
         }
     }
 }

@@ -43,7 +43,7 @@
             lblName.AutoSize = true;
             lblName.Location = new Point(20, 20);
             lblName.Name = "lblName";
-            lblName.Size = new Size(67, 20);
+            lblName.Size = new Size(54, 15);
             lblName.TabIndex = 0;
             lblName.Text = "Nombre:";
             // 
@@ -52,7 +52,7 @@
             lblCode.AutoSize = true;
             lblCode.Location = new Point(20, 60);
             lblCode.Name = "lblCode";
-            lblCode.Size = new Size(61, 20);
+            lblCode.Size = new Size(49, 15);
             lblCode.TabIndex = 1;
             lblCode.Text = "Código:";
             // 
@@ -61,7 +61,7 @@
             lblBaseCost.AutoSize = true;
             lblBaseCost.Location = new Point(20, 100);
             lblBaseCost.Name = "lblBaseCost";
-            lblBaseCost.Size = new Size(85, 20);
+            lblBaseCost.Size = new Size(68, 15);
             lblBaseCost.TabIndex = 2;
             lblBaseCost.Text = "Costo base:";
             // 
@@ -70,7 +70,7 @@
             lblSalePrice.AutoSize = true;
             lblSalePrice.Location = new Point(20, 140);
             lblSalePrice.Name = "lblSalePrice";
-            lblSalePrice.Size = new Size(114, 20);
+            lblSalePrice.Size = new Size(91, 15);
             lblSalePrice.TabIndex = 3;
             lblSalePrice.Text = "Precio de venta:";
             // 
@@ -79,7 +79,7 @@
             lblMargin.AutoSize = true;
             lblMargin.Location = new Point(20, 182);
             lblMargin.Name = "lblMargin";
-            lblMargin.Size = new Size(89, 20);
+            lblMargin.Size = new Size(72, 15);
             lblMargin.TabIndex = 4;
             lblMargin.Text = "Margen (%):";
             // 
@@ -88,7 +88,7 @@
             lblStock.AutoSize = true;
             lblStock.Location = new Point(20, 222);
             lblStock.Name = "lblStock";
-            lblStock.Size = new Size(48, 20);
+            lblStock.Size = new Size(39, 15);
             lblStock.TabIndex = 5;
             lblStock.Text = "Stock:";
             // 
@@ -96,14 +96,14 @@
             // 
             txtName.Location = new Point(140, 20);
             txtName.Name = "txtName";
-            txtName.Size = new Size(262, 27);
+            txtName.Size = new Size(262, 23);
             txtName.TabIndex = 6;
             // 
             // txtCode
             // 
             txtCode.Location = new Point(140, 60);
             txtCode.Name = "txtCode";
-            txtCode.Size = new Size(262, 27);
+            txtCode.Size = new Size(262, 23);
             txtCode.TabIndex = 7;
             // 
             // numBaseCost
@@ -112,7 +112,7 @@
             numBaseCost.Location = new Point(140, 100);
             numBaseCost.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             numBaseCost.Name = "numBaseCost";
-            numBaseCost.Size = new Size(120, 27);
+            numBaseCost.Size = new Size(120, 23);
             numBaseCost.TabIndex = 8;
             // 
             // numSalePrice
@@ -121,7 +121,7 @@
             numSalePrice.Location = new Point(140, 140);
             numSalePrice.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             numSalePrice.Name = "numSalePrice";
-            numSalePrice.Size = new Size(120, 27);
+            numSalePrice.Size = new Size(120, 23);
             numSalePrice.TabIndex = 9;
             // 
             // numMargin
@@ -130,7 +130,7 @@
             numMargin.Location = new Point(140, 182);
             numMargin.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             numMargin.Name = "numMargin";
-            numMargin.Size = new Size(120, 27);
+            numMargin.Size = new Size(120, 23);
             numMargin.TabIndex = 10;
             // 
             // numStock
@@ -138,22 +138,25 @@
             numStock.Location = new Point(140, 222);
             numStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numStock.Name = "numStock";
-            numStock.Size = new Size(120, 27);
+            numStock.Size = new Size(120, 23);
             numStock.TabIndex = 11;
             // 
             // btnAdd
             // 
+            btnAdd.BackColor = Color.SkyBlue;
             btnAdd.Location = new Point(140, 263);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(96, 31);
             btnAdd.TabIndex = 12;
             btnAdd.Text = "Agregar producto";
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // dgvProducts
             // 
             dgvProducts.AllowUserToAddRows = false;
             dgvProducts.AllowUserToDeleteRows = false;
+            dgvProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgvProducts.ColumnHeadersHeight = 29;
             dgvProducts.Location = new Point(20, 310);
             dgvProducts.Name = "dgvProducts";
@@ -164,6 +167,7 @@
             // 
             // ProductView
             // 
+            BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(565, 580);
             Controls.Add(lblName);
             Controls.Add(lblCode);

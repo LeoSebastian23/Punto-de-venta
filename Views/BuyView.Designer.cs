@@ -56,7 +56,7 @@
             // 
             cmbSupplier.Location = new Point(120, 20);
             cmbSupplier.Name = "cmbSupplier";
-            cmbSupplier.Size = new Size(250, 28);
+            cmbSupplier.Size = new Size(250, 23);
             cmbSupplier.TabIndex = 1;
             // 
             // lblInvoice
@@ -71,7 +71,7 @@
             // 
             txtInvoice.Location = new Point(120, 60);
             txtInvoice.Name = "txtInvoice";
-            txtInvoice.Size = new Size(150, 27);
+            txtInvoice.Size = new Size(150, 23);
             txtInvoice.TabIndex = 3;
             // 
             // lblInvoiceType
@@ -87,11 +87,12 @@
             cmbInvoiceType.Items.AddRange(new object[] { "A", "B", "E" });
             cmbInvoiceType.Location = new Point(350, 60);
             cmbInvoiceType.Name = "cmbInvoiceType";
-            cmbInvoiceType.Size = new Size(70, 28);
+            cmbInvoiceType.Size = new Size(70, 23);
             cmbInvoiceType.TabIndex = 5;
             // 
             // dgvProducts
             // 
+            dgvProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgvProducts.ColumnHeadersHeight = 29;
             dgvProducts.Location = new Point(20, 110);
             dgvProducts.Name = "dgvProducts";
@@ -104,6 +105,7 @@
             // 
             // dgvItems
             // 
+            dgvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             dgvItems.ColumnHeadersHeight = 29;
             dgvItems.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
             dgvItems.Location = new Point(540, 110);
@@ -149,20 +151,26 @@
             // 
             // btnAddItem
             // 
-            btnAddItem.Location = new Point(20, 380);
+            btnAddItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnAddItem.BackColor = SystemColors.ActiveCaption;
+            btnAddItem.Location = new Point(12, 430);
             btnAddItem.Name = "btnAddItem";
             btnAddItem.Size = new Size(150, 35);
             btnAddItem.TabIndex = 7;
             btnAddItem.Text = "➕ Agregar Ítem";
+            btnAddItem.UseVisualStyleBackColor = false;
             btnAddItem.Click += btnAddItem_Click;
             // 
             // btnRegistrar
             // 
-            btnRegistrar.Location = new Point(1069, 380);
+            btnRegistrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnRegistrar.BackColor = SystemColors.ActiveCaption;
+            btnRegistrar.Location = new Point(1069, 425);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(150, 40);
             btnRegistrar.TabIndex = 9;
             btnRegistrar.Text = "Registrar Compra";
+            btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnRegistrar_Click;
             // 
             // BuyView

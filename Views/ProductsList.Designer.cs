@@ -59,6 +59,7 @@
             // 
             // dgvListaProductos
             // 
+            dgvListaProductos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgvListaProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListaProductos.Location = new Point(12, 117);
             dgvListaProductos.Name = "dgvListaProductos";
@@ -68,6 +69,7 @@
             // 
             // txtBuscar
             // 
+            txtBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBuscar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscar.ForeColor = SystemColors.MenuText;
             txtBuscar.Location = new Point(483, 67);

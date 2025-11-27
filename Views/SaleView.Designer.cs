@@ -57,16 +57,17 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.DarkGray;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Código1, Nombre2, Cantidad3, Stock, Subtotal5 });
-            dataGridView1.Location = new Point(16, 120);
-            dataGridView1.Margin = new Padding(5, 4, 5, 4);
+            dataGridView1.Location = new Point(14, 90);
+            dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1014, 409);
+            dataGridView1.Size = new Size(887, 307);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -110,22 +111,24 @@
             lblTotal.AutoSize = true;
             lblTotal.FlatStyle = FlatStyle.Flat;
             lblTotal.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTotal.Location = new Point(864, 573);
-            lblTotal.Margin = new Padding(5, 0, 5, 0);
+            lblTotal.Location = new Point(756, 430);
+            lblTotal.Margin = new Padding(4, 0, 4, 0);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(44, 17);
+            lblTotal.Size = new Size(34, 13);
             lblTotal.TabIndex = 5;
             lblTotal.Text = ".........";
             lblTotal.Click += label1_Click;
             // 
             // textBox1
             // 
+            textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBox1.BackColor = SystemColors.ControlLight;
             textBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(742, 556);
-            textBox1.Margin = new Padding(5, 4, 5, 4);
+            textBox1.Location = new Point(649, 417);
+            textBox1.Margin = new Padding(4, 3, 4, 3);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(81, 39);
+            textBox1.Size = new Size(71, 33);
             textBox1.TabIndex = 6;
             textBox1.Text = "TOTAL:";
             // 
@@ -136,8 +139,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { productoToolStripMenuItem, proovedoresToolStripMenuItem, usuariosToolStripMenuItem, usuariosToolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 3, 0, 3);
-            menuStrip1.Size = new Size(366, 30);
+            menuStrip1.Padding = new Padding(7, 2, 0, 2);
+            menuStrip1.Size = new Size(298, 24);
             menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             menuStrip1.ItemClicked += menuStrip1_ItemClicked;
@@ -147,21 +150,21 @@
             productoToolStripMenuItem.BackColor = Color.LightSlateGray;
             productoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { crearToolStripMenuItem, modificarToolStripMenuItem });
             productoToolStripMenuItem.Name = "productoToolStripMenuItem";
-            productoToolStripMenuItem.Size = new Size(89, 24);
+            productoToolStripMenuItem.Size = new Size(73, 20);
             productoToolStripMenuItem.Text = "Productos";
             // 
             // crearToolStripMenuItem
             // 
             crearToolStripMenuItem.BackColor = SystemColors.ActiveCaption;
             crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            crearToolStripMenuItem.Size = new Size(156, 26);
+            crearToolStripMenuItem.Size = new Size(125, 22);
             crearToolStripMenuItem.Text = "Crear";
             crearToolStripMenuItem.Click += crearToolStripMenuItem_Click;
             // 
             // modificarToolStripMenuItem
             // 
             modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            modificarToolStripMenuItem.Size = new Size(156, 26);
+            modificarToolStripMenuItem.Size = new Size(125, 22);
             modificarToolStripMenuItem.Text = "Modificar";
             // 
             // proovedoresToolStripMenuItem
@@ -169,19 +172,19 @@
             proovedoresToolStripMenuItem.BackColor = Color.SlateGray;
             proovedoresToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarToolStripMenuItem, modificarToolStripMenuItem1 });
             proovedoresToolStripMenuItem.Name = "proovedoresToolStripMenuItem";
-            proovedoresToolStripMenuItem.Size = new Size(106, 24);
+            proovedoresToolStripMenuItem.Size = new Size(85, 20);
             proovedoresToolStripMenuItem.Text = "Proovedores";
             // 
             // agregarToolStripMenuItem
             // 
             agregarToolStripMenuItem.Name = "agregarToolStripMenuItem";
-            agregarToolStripMenuItem.Size = new Size(156, 26);
+            agregarToolStripMenuItem.Size = new Size(125, 22);
             agregarToolStripMenuItem.Text = "Agregar";
             // 
             // modificarToolStripMenuItem1
             // 
             modificarToolStripMenuItem1.Name = "modificarToolStripMenuItem1";
-            modificarToolStripMenuItem1.Size = new Size(156, 26);
+            modificarToolStripMenuItem1.Size = new Size(125, 22);
             modificarToolStripMenuItem1.Text = "Modificar";
             // 
             // usuariosToolStripMenuItem
@@ -189,19 +192,19 @@
             usuariosToolStripMenuItem.BackColor = Color.SlateGray;
             usuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { crearToolStripMenuItem1, verComprasToolStripMenuItem });
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(82, 24);
+            usuariosToolStripMenuItem.Size = new Size(67, 20);
             usuariosToolStripMenuItem.Text = "Compras";
             // 
             // crearToolStripMenuItem1
             // 
             crearToolStripMenuItem1.Name = "crearToolStripMenuItem1";
-            crearToolStripMenuItem1.Size = new Size(176, 26);
+            crearToolStripMenuItem1.Size = new Size(141, 22);
             crearToolStripMenuItem1.Text = "Crear";
             // 
             // verComprasToolStripMenuItem
             // 
             verComprasToolStripMenuItem.Name = "verComprasToolStripMenuItem";
-            verComprasToolStripMenuItem.Size = new Size(176, 26);
+            verComprasToolStripMenuItem.Size = new Size(141, 22);
             verComprasToolStripMenuItem.Text = "Ver Compras";
             // 
             // usuariosToolStripMenuItem1
@@ -209,53 +212,54 @@
             usuariosToolStripMenuItem1.BackColor = Color.SlateGray;
             usuariosToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { crearToolStripMenuItem2 });
             usuariosToolStripMenuItem1.Name = "usuariosToolStripMenuItem1";
-            usuariosToolStripMenuItem1.Size = new Size(79, 24);
+            usuariosToolStripMenuItem1.Size = new Size(64, 20);
             usuariosToolStripMenuItem1.Text = "Usuarios";
             // 
             // crearToolStripMenuItem2
             // 
             crearToolStripMenuItem2.Name = "crearToolStripMenuItem2";
-            crearToolStripMenuItem2.Size = new Size(127, 26);
+            crearToolStripMenuItem2.Size = new Size(102, 22);
             crearToolStripMenuItem2.Text = "Crear";
             // 
             // txtBuscador
             // 
-            txtBuscador.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBuscador.BackColor = SystemColors.MenuBar;
             txtBuscador.ForeColor = SystemColors.MenuText;
-            txtBuscador.Location = new Point(67, 60);
-            txtBuscador.Margin = new Padding(5, 4, 5, 4);
+            txtBuscador.Location = new Point(59, 45);
+            txtBuscador.Margin = new Padding(4, 3, 4, 3);
             txtBuscador.Name = "txtBuscador";
-            txtBuscador.Size = new Size(782, 27);
+            txtBuscador.Size = new Size(685, 23);
             txtBuscador.TabIndex = 10;
             txtBuscador.Text = "Buscar producto";
             txtBuscador.TextChanged += textBox2_TextChanged;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
-            label1.Location = new Point(29, 571);
+            label1.Location = new Point(25, 428);
             label1.Name = "label1";
-            label1.Size = new Size(62, 20);
+            label1.Size = new Size(50, 15);
             label1.TabIndex = 11;
             label1.Text = "Usuario:";
             label1.Click += label1_Click_1;
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
-            label2.Location = new Point(93, 571);
+            label2.Location = new Point(81, 428);
             label2.Name = "label2";
-            label2.Size = new Size(69, 20);
+            label2.Size = new Size(57, 15);
             label2.TabIndex = 12;
             label2.Text = "__________";
             // 
             // SaleView
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1042, 608);
+            ClientSize = new Size(912, 456);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtBuscador);
@@ -265,7 +269,7 @@
             Controls.Add(menuStrip1);
             ForeColor = SystemColors.ControlText;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(5, 4, 5, 4);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "SaleView";
             Text = "Venta";
             Load += Form1_Load;

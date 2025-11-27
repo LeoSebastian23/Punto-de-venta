@@ -34,6 +34,7 @@
             // 
             // dgvSuppliers
             // 
+            dgvSuppliers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgvSuppliers.ColumnHeadersHeight = 29;
             dgvSuppliers.Location = new Point(20, 150);
             dgvSuppliers.Name = "dgvSuppliers";
@@ -47,39 +48,43 @@
             // 
             txtName.Location = new Point(126, 17);
             txtName.Name = "txtName";
-            txtName.Size = new Size(154, 27);
+            txtName.Size = new Size(154, 23);
             txtName.TabIndex = 1;
             // 
             // txtCUIT
             // 
             txtCUIT.Location = new Point(126, 60);
             txtCUIT.Name = "txtCUIT";
-            txtCUIT.Size = new Size(154, 27);
+            txtCUIT.Size = new Size(154, 23);
             txtCUIT.TabIndex = 3;
             // 
             // txtPhone
             // 
             txtPhone.Location = new Point(126, 100);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(154, 27);
+            txtPhone.Size = new Size(154, 23);
             txtPhone.TabIndex = 5;
             // 
             // btnAdd
             // 
+            btnAdd.BackColor = Color.Gray;
             btnAdd.Location = new Point(327, 110);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(93, 34);
             btnAdd.TabIndex = 6;
             btnAdd.Text = "Agregar";
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.Red;
             btnDelete.Location = new Point(327, 72);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(93, 32);
             btnDelete.TabIndex = 7;
             btnDelete.Text = "Eliminar";
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // lblName

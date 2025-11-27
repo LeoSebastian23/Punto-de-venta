@@ -23,6 +23,8 @@ namespace Punto_de_venta.Views
 
             InitializeComponent();
             _currentSale = new Sale();
+
+
         }
 
         private void FormVentaTest_Load(object sender, EventArgs e)
@@ -122,6 +124,16 @@ namespace Punto_de_venta.Views
                     MessageBoxIcon.Error
                 );
             }
+
+        }
+
+        private void lvItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTotal_Click(object sender, EventArgs e)
+        {
 
         }
     }

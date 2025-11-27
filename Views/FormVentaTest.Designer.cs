@@ -24,109 +24,117 @@
 
         private void InitializeComponent()
         {
-            this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.lvItems = new System.Windows.Forms.ListView();
-            this.btnConfirmar = new System.Windows.Forms.Button();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.lblCodigo = new System.Windows.Forms.Label();
-            this.lblCantidad = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
-            this.SuspendLayout();
+            txtCodigo = new TextBox();
+            nudCantidad = new NumericUpDown();
+            btnAgregar = new Button();
+            lvItems = new ListView();
+            btnConfirmar = new Button();
+            lblTotal = new Label();
+            lblCodigo = new Label();
+            lblCantidad = new Label();
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
+            SuspendLayout();
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(90, 15);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(150, 23);
-            this.txtCodigo.TabIndex = 0;
+            txtCodigo.Location = new Point(90, 15);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(150, 23);
+            txtCodigo.TabIndex = 0;
             // 
             // nudCantidad
             // 
-            this.nudCantidad.Location = new System.Drawing.Point(90, 50);
-            this.nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(80, 23);
-            this.nudCantidad.TabIndex = 1;
-            this.nudCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCantidad.Location = new Point(90, 50);
+            nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCantidad.Name = "nudCantidad";
+            nudCantidad.Size = new Size(80, 23);
+            nudCantidad.TabIndex = 1;
+            nudCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(260, 15);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(100, 58);
-            this.btnAgregar.TabIndex = 2;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            btnAgregar.BackColor = Color.Lime;
+            btnAgregar.Location = new Point(260, 37);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(100, 36);
+            btnAgregar.TabIndex = 2;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // lvItems
             // 
-            this.lvItems.Location = new System.Drawing.Point(15, 90);
-            this.lvItems.Name = "lvItems";
-            this.lvItems.Size = new System.Drawing.Size(460, 200);
-            this.lvItems.TabIndex = 3;
-            this.lvItems.UseCompatibleStateImageBehavior = false;
+            lvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            lvItems.Location = new Point(15, 90);
+            lvItems.Name = "lvItems";
+            lvItems.Size = new Size(460, 200);
+            lvItems.TabIndex = 3;
+            lvItems.UseCompatibleStateImageBehavior = false;
+            lvItems.SelectedIndexChanged += lvItems_SelectedIndexChanged;
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(15, 310);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(120, 35);
-            this.btnConfirmar.TabIndex = 4;
-            this.btnConfirmar.Text = "Confirmar venta";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
-            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            btnConfirmar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnConfirmar.BackColor = Color.Lime;
+            btnConfirmar.Location = new Point(15, 310);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Size = new Size(120, 35);
+            btnConfirmar.TabIndex = 4;
+            btnConfirmar.Text = "Confirmar venta";
+            btnConfirmar.UseVisualStyleBackColor = false;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // lblTotal
             // 
-            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblTotal.Location = new System.Drawing.Point(260, 310);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(215, 35);
-            this.lblTotal.TabIndex = 5;
-            this.lblTotal.Text = "Total: 0.00";
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblTotal.Anchor = AnchorStyles.Bottom;
+            lblTotal.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblTotal.Location = new Point(383, 310);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(92, 35);
+            lblTotal.TabIndex = 5;
+            lblTotal.Text = "Total: 0.00";
+            lblTotal.TextAlign = ContentAlignment.MiddleRight;
+            lblTotal.Click += lblTotal_Click;
             // 
             // lblCodigo
             // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(15, 18);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(49, 15);
-            this.lblCodigo.TabIndex = 6;
-            this.lblCodigo.Text = "Código:";
+            lblCodigo.AutoSize = true;
+            lblCodigo.Location = new Point(15, 18);
+            lblCodigo.Name = "lblCodigo";
+            lblCodigo.Size = new Size(49, 15);
+            lblCodigo.TabIndex = 6;
+            lblCodigo.Text = "Código:";
             // 
             // lblCantidad
             // 
-            this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(15, 52);
-            this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(58, 15);
-            this.lblCantidad.TabIndex = 7;
-            this.lblCantidad.Text = "Cantidad:";
+            lblCantidad.AutoSize = true;
+            lblCantidad.Location = new Point(15, 52);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new Size(58, 15);
+            lblCantidad.TabIndex = 7;
+            lblCantidad.Text = "Cantidad:";
             // 
             // FormVentaTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 361);
-            this.Controls.Add(this.lblCantidad);
-            this.Controls.Add(this.lblCodigo);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.lvItems);
-            this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.nudCantidad);
-            this.Controls.Add(this.txtCodigo);
-            this.Name = "FormVentaTest";
-            this.Text = "Test de Ventas";
-            this.Load += new System.EventHandler(this.FormVentaTest_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(494, 361);
+            Controls.Add(lblCantidad);
+            Controls.Add(lblCodigo);
+            Controls.Add(lblTotal);
+            Controls.Add(btnConfirmar);
+            Controls.Add(lvItems);
+            Controls.Add(btnAgregar);
+            Controls.Add(nudCantidad);
+            Controls.Add(txtCodigo);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "FormVentaTest";
+            Text = "Test de Ventas";
+            Load += FormVentaTest_Load;
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }
