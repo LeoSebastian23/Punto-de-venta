@@ -31,6 +31,11 @@
             numStock = new NumericUpDown();
             btnAdd = new Button();
             dgvProducts = new DataGridView();
+            lblCostobse = new Label();
+            lblPrecioventa = new Label();
+            lblPorcentaje = new Label();
+            button1 = new Button();
+            btnEliminarproducto = new Button();
             ((System.ComponentModel.ISupportInitialize)numBaseCost).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSalePrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numMargin).BeginInit();
@@ -109,11 +114,13 @@
             // numBaseCost
             // 
             numBaseCost.DecimalPlaces = 2;
+            numBaseCost.Font = new Font("Microsoft Sans Serif", 9F);
             numBaseCost.Location = new Point(140, 100);
             numBaseCost.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             numBaseCost.Name = "numBaseCost";
-            numBaseCost.Size = new Size(120, 23);
+            numBaseCost.Size = new Size(120, 21);
             numBaseCost.TabIndex = 8;
+            numBaseCost.ValueChanged += numBaseCost_ValueChanged;
             // 
             // numSalePrice
             // 
@@ -144,9 +151,9 @@
             // btnAdd
             // 
             btnAdd.BackColor = Color.SkyBlue;
-            btnAdd.Location = new Point(140, 263);
+            btnAdd.Location = new Point(121, 257);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(96, 31);
+            btnAdd.Size = new Size(96, 43);
             btnAdd.TabIndex = 12;
             btnAdd.Text = "Agregar producto";
             btnAdd.UseVisualStyleBackColor = false;
@@ -164,11 +171,64 @@
             dgvProducts.RowHeadersWidth = 51;
             dgvProducts.Size = new Size(500, 250);
             dgvProducts.TabIndex = 13;
+            dgvProducts.CellContentClick += dgvProducts_CellContentClick;
+            // 
+            // lblCostobse
+            // 
+            lblCostobse.AutoSize = true;
+            lblCostobse.Location = new Point(121, 103);
+            lblCostobse.Name = "lblCostobse";
+            lblCostobse.Size = new Size(13, 15);
+            lblCostobse.TabIndex = 14;
+            lblCostobse.Text = "$";
+            // 
+            // lblPrecioventa
+            // 
+            lblPrecioventa.AutoSize = true;
+            lblPrecioventa.Location = new Point(121, 142);
+            lblPrecioventa.Name = "lblPrecioventa";
+            lblPrecioventa.Size = new Size(13, 15);
+            lblPrecioventa.TabIndex = 15;
+            lblPrecioventa.Text = "$";
+            // 
+            // lblPorcentaje
+            // 
+            lblPorcentaje.AutoSize = true;
+            lblPorcentaje.Location = new Point(266, 184);
+            lblPorcentaje.Name = "lblPorcentaje";
+            lblPorcentaje.Size = new Size(17, 15);
+            lblPorcentaje.TabIndex = 16;
+            lblPorcentaje.Text = "%";
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ActiveCaption;
+            button1.Location = new Point(266, 257);
+            button1.Name = "button1";
+            button1.Size = new Size(99, 43);
+            button1.TabIndex = 17;
+            button1.Text = "Modificar producto";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // btnEliminarproducto
+            // 
+            btnEliminarproducto.BackColor = Color.FromArgb(255, 128, 128);
+            btnEliminarproducto.Location = new Point(421, 257);
+            btnEliminarproducto.Name = "btnEliminarproducto";
+            btnEliminarproducto.Size = new Size(99, 43);
+            btnEliminarproducto.TabIndex = 18;
+            btnEliminarproducto.Text = "Eliminar producto";
+            btnEliminarproducto.UseVisualStyleBackColor = false;
             // 
             // ProductView
             // 
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(565, 580);
+            Controls.Add(btnEliminarproducto);
+            Controls.Add(button1);
+            Controls.Add(lblPorcentaje);
+            Controls.Add(lblPrecioventa);
+            Controls.Add(lblCostobse);
             Controls.Add(lblName);
             Controls.Add(lblCode);
             Controls.Add(lblBaseCost);
@@ -183,6 +243,8 @@
             Controls.Add(numStock);
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "ProductView";
             Text = "Gestión de Productos";
             Load += ProductView_Load;
@@ -214,6 +276,11 @@
 
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView dgvProducts;
+        private Label lblCostobse;
+        private Label lblPrecioventa;
+        private Label lblPorcentaje;
+        private Button button1;
+        private Button btnEliminarproducto;
     }
 }
 

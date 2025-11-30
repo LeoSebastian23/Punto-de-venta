@@ -91,6 +91,28 @@ namespace Punto_de_venta.Views
             decimal margin = ((salePrice - baseCost) / baseCost) * 100;
             numMargin.Value = margin;
         }
+
+        private void numBaseCost_ValueChanged(object sender, EventArgs e)
+        {
+            decimal valor = numBaseCost.Value;
+            lblCostobse.Text = "$" + valor.ToString("N2");
+        }
+
+
+
+
+
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            
+        }
+
+
+
+
+
+
     }
 }
 

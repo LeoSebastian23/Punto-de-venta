@@ -53,7 +53,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.BackColor = Color.Lime;
+            btnAgregar.BackColor = Color.Gray;
             btnAgregar.Location = new Point(260, 37);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(100, 36);
