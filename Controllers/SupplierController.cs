@@ -41,8 +41,20 @@ namespace Punto_de_venta.Controllers
         // Eliminar proveedor (firma compatible con la vista)
         public void DeleteSupplier(int id)
         {
-            _service.DeleteSupplier(id);
+            try
+            {
+                _service.DeleteSupplier(id);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw; // deja que la vista lo maneje
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado al eliminar el proveedor.");
+            }
         }
+
     }
 }
 

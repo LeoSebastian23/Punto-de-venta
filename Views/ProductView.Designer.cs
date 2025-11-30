@@ -35,7 +35,6 @@
             lblPrecioventa = new Label();
             lblPorcentaje = new Label();
             button1 = new Button();
-            btnEliminarproducto = new Button();
             ((System.ComponentModel.ISupportInitialize)numBaseCost).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSalePrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numMargin).BeginInit();
@@ -48,7 +47,7 @@
             lblName.AutoSize = true;
             lblName.Location = new Point(20, 20);
             lblName.Name = "lblName";
-            lblName.Size = new Size(54, 15);
+            lblName.Size = new Size(67, 20);
             lblName.TabIndex = 0;
             lblName.Text = "Nombre:";
             // 
@@ -57,7 +56,7 @@
             lblCode.AutoSize = true;
             lblCode.Location = new Point(20, 60);
             lblCode.Name = "lblCode";
-            lblCode.Size = new Size(49, 15);
+            lblCode.Size = new Size(61, 20);
             lblCode.TabIndex = 1;
             lblCode.Text = "Código:";
             // 
@@ -66,7 +65,7 @@
             lblBaseCost.AutoSize = true;
             lblBaseCost.Location = new Point(20, 100);
             lblBaseCost.Name = "lblBaseCost";
-            lblBaseCost.Size = new Size(68, 15);
+            lblBaseCost.Size = new Size(85, 20);
             lblBaseCost.TabIndex = 2;
             lblBaseCost.Text = "Costo base:";
             // 
@@ -75,7 +74,7 @@
             lblSalePrice.AutoSize = true;
             lblSalePrice.Location = new Point(20, 140);
             lblSalePrice.Name = "lblSalePrice";
-            lblSalePrice.Size = new Size(91, 15);
+            lblSalePrice.Size = new Size(114, 20);
             lblSalePrice.TabIndex = 3;
             lblSalePrice.Text = "Precio de venta:";
             // 
@@ -84,7 +83,7 @@
             lblMargin.AutoSize = true;
             lblMargin.Location = new Point(20, 182);
             lblMargin.Name = "lblMargin";
-            lblMargin.Size = new Size(72, 15);
+            lblMargin.Size = new Size(89, 20);
             lblMargin.TabIndex = 4;
             lblMargin.Text = "Margen (%):";
             // 
@@ -93,65 +92,65 @@
             lblStock.AutoSize = true;
             lblStock.Location = new Point(20, 222);
             lblStock.Name = "lblStock";
-            lblStock.Size = new Size(39, 15);
+            lblStock.Size = new Size(48, 20);
             lblStock.TabIndex = 5;
             lblStock.Text = "Stock:";
             // 
             // txtName
             // 
-            txtName.Location = new Point(140, 20);
+            txtName.Location = new Point(156, 20);
             txtName.Name = "txtName";
-            txtName.Size = new Size(262, 23);
+            txtName.Size = new Size(262, 27);
             txtName.TabIndex = 6;
             // 
             // txtCode
             // 
-            txtCode.Location = new Point(140, 60);
+            txtCode.Location = new Point(156, 60);
             txtCode.Name = "txtCode";
-            txtCode.Size = new Size(262, 23);
+            txtCode.Size = new Size(262, 27);
             txtCode.TabIndex = 7;
             // 
             // numBaseCost
             // 
             numBaseCost.DecimalPlaces = 2;
             numBaseCost.Font = new Font("Microsoft Sans Serif", 9F);
-            numBaseCost.Location = new Point(140, 100);
+            numBaseCost.Location = new Point(156, 100);
             numBaseCost.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             numBaseCost.Name = "numBaseCost";
-            numBaseCost.Size = new Size(120, 21);
+            numBaseCost.Size = new Size(120, 24);
             numBaseCost.TabIndex = 8;
             numBaseCost.ValueChanged += numBaseCost_ValueChanged;
             // 
             // numSalePrice
             // 
             numSalePrice.DecimalPlaces = 2;
-            numSalePrice.Location = new Point(140, 140);
+            numSalePrice.Location = new Point(156, 140);
             numSalePrice.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             numSalePrice.Name = "numSalePrice";
-            numSalePrice.Size = new Size(120, 23);
+            numSalePrice.Size = new Size(120, 27);
             numSalePrice.TabIndex = 9;
             // 
             // numMargin
             // 
             numMargin.DecimalPlaces = 2;
-            numMargin.Location = new Point(140, 182);
+            numMargin.Location = new Point(156, 182);
             numMargin.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             numMargin.Name = "numMargin";
-            numMargin.Size = new Size(120, 23);
+            numMargin.Size = new Size(120, 27);
             numMargin.TabIndex = 10;
             // 
             // numStock
             // 
-            numStock.Location = new Point(140, 222);
+            numStock.Location = new Point(156, 222);
             numStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numStock.Name = "numStock";
-            numStock.Size = new Size(120, 23);
+            numStock.Size = new Size(120, 27);
             numStock.TabIndex = 11;
             // 
             // btnAdd
             // 
             btnAdd.BackColor = Color.SkyBlue;
-            btnAdd.Location = new Point(121, 257);
+            btnAdd.Location = new Point(322, 261);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(96, 43);
             btnAdd.TabIndex = 12;
@@ -176,55 +175,45 @@
             // lblCostobse
             // 
             lblCostobse.AutoSize = true;
-            lblCostobse.Location = new Point(121, 103);
+            lblCostobse.Location = new Point(137, 103);
             lblCostobse.Name = "lblCostobse";
-            lblCostobse.Size = new Size(13, 15);
+            lblCostobse.Size = new Size(17, 20);
             lblCostobse.TabIndex = 14;
             lblCostobse.Text = "$";
             // 
             // lblPrecioventa
             // 
             lblPrecioventa.AutoSize = true;
-            lblPrecioventa.Location = new Point(121, 142);
+            lblPrecioventa.Location = new Point(137, 142);
             lblPrecioventa.Name = "lblPrecioventa";
-            lblPrecioventa.Size = new Size(13, 15);
+            lblPrecioventa.Size = new Size(17, 20);
             lblPrecioventa.TabIndex = 15;
             lblPrecioventa.Text = "$";
             // 
             // lblPorcentaje
             // 
             lblPorcentaje.AutoSize = true;
-            lblPorcentaje.Location = new Point(266, 184);
+            lblPorcentaje.Location = new Point(282, 184);
             lblPorcentaje.Name = "lblPorcentaje";
-            lblPorcentaje.Size = new Size(17, 15);
+            lblPorcentaje.Size = new Size(21, 20);
             lblPorcentaje.TabIndex = 16;
             lblPorcentaje.Text = "%";
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.ActiveCaption;
-            button1.Location = new Point(266, 257);
+            button1.BackColor = Color.MediumPurple;
+            button1.Location = new Point(424, 261);
             button1.Name = "button1";
-            button1.Size = new Size(99, 43);
+            button1.Size = new Size(96, 43);
             button1.TabIndex = 17;
-            button1.Text = "Modificar producto";
+            button1.Text = "Actualizar producto";
             button1.UseVisualStyleBackColor = false;
-            // 
-            // btnEliminarproducto
-            // 
-            btnEliminarproducto.BackColor = Color.FromArgb(255, 128, 128);
-            btnEliminarproducto.Location = new Point(421, 257);
-            btnEliminarproducto.Name = "btnEliminarproducto";
-            btnEliminarproducto.Size = new Size(99, 43);
-            btnEliminarproducto.TabIndex = 18;
-            btnEliminarproducto.Text = "Eliminar producto";
-            btnEliminarproducto.UseVisualStyleBackColor = false;
+            button1.Click += btnUpdate_Click;
             // 
             // ProductView
             // 
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(565, 580);
-            Controls.Add(btnEliminarproducto);
             Controls.Add(button1);
             Controls.Add(lblPorcentaje);
             Controls.Add(lblPrecioventa);
@@ -280,7 +269,6 @@
         private Label lblPrecioventa;
         private Label lblPorcentaje;
         private Button button1;
-        private Button btnEliminarproducto;
     }
 }
 

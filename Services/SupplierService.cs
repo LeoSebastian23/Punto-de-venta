@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Punto_de_venta.Models;
+using Punto_de_venta.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using Punto_de_venta.Models;
-using Punto_de_venta.Repositories.Interfaces;
-using System.Collections.Generic;
 
 namespace Punto_de_venta.Services
 {
@@ -54,11 +54,18 @@ namespace Punto_de_venta.Services
                 // Lógica para manejar errores de negocio
                 throw new InvalidOperationException(ex.Message);
             }
-            catch (Exception)
+            catch (DbUpdateException ex)
             {
-                // Cualquier otro error inesperado
-                throw new Exception("Error al eliminar el proveedor.");
+                if (ex.InnerException?.Message.Contains("FK_Buys_Suppliers") == true)
+                    throw new InvalidOperationException("No se puede eliminar el proveedor porque tiene compras asociadas.");
+
+                throw;
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Error inesperado al eliminar el proveedor: " + ex.Message);
+            }
+
         }
         // Buscar proveedor
         public Supplier? GetSupplierById(int? id)

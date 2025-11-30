@@ -53,5 +53,6 @@ namespace Punto_de_venta.Repositories.Implementations
         {
             _context.Products.Remove(product);
         }
+
     }
 }
