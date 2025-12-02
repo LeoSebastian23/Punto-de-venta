@@ -49,9 +49,41 @@ namespace Punto_de_venta.Views
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvSuppliers.SelectedRows.Count == 0) return;
+
             var supplier = (Supplier)dgvSuppliers.SelectedRows[0].DataBoundItem;
-            _controller.DeleteSupplier(supplier.Id);
-            LoadSuppliers();
+
+            try
+            {
+                _controller.DeleteSupplier(supplier.Id);
+                LoadSuppliers();
+
+                MessageBox.Show(
+                    "Proveedor eliminado correctamente.",
+                    "Éxito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Error controlado (proveedor con compras/productos asociadas)
+                MessageBox.Show(
+                    ex.Message,
+                    "No se puede eliminar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+            catch (Exception ex)
+            {
+                // Cualquier otro error inesperado
+                MessageBox.Show(
+                    "Ocurrió un error al eliminar el proveedor: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
         private void ClearFields()

@@ -1,4 +1,5 @@
-﻿using Punto_de_venta.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Punto_de_venta.Models;
 using Punto_de_venta.Repositories.Interfaces;
 
 namespace Punto_de_venta.Services
@@ -55,11 +56,14 @@ namespace Punto_de_venta.Services
                 _repository.Delete(product);
                 _repository.Save();
             }
-            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            catch (DbUpdateException ex)
             {
-                if (ex.InnerException != null && ex.InnerException.Message.Contains("FOREIGN KEY"))
+                var msg = ex.InnerException?.Message ?? "";
+
+                if (msg.Contains("REFERENCE constraint") || msg.Contains("FOREIGN KEY"))
                 {
-                    throw new Exception("El producto no se puede eliminar porque está asociado a una compra o venta.");
+                    throw new InvalidOperationException(
+                        "El producto no se puede eliminar porque está asociado a una compra o venta.");
                 }
 
                 throw;

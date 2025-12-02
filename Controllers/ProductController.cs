@@ -33,10 +33,11 @@ namespace Punto_de_venta.Controllers
             _service.DeleteProduct(id);
         }
 
-        public void UpdateProduct(int id, string name, string code, decimal purchasePrice, decimal salePrice, int stock, int? supplierId)
+        public void UpdateProduct(int id, string name, string code, decimal salePrice, int stock)
         {
             _service.UpdateProduct(id, name, code, salePrice, stock);
         }
+
     }
 }
 

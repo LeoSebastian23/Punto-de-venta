@@ -15,5 +15,6 @@ namespace Punto_de_venta.Repositories.Interfaces
         void Save();
         void Delete(Product product);
 
+
     }
 }
