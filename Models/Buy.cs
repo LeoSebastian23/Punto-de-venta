@@ -1,44 +1,61 @@
-﻿using System;
+﻿
+using Punto_de_venta.Repositories.Interfaces;
 
 namespace Punto_de_venta.Models
 {
     public class Buy
     {
+        // Clave primaria
         public int Id { get; private set; }
-        public int Quantity { get; private set; }
-        public decimal UnitCost { get; private set; }
-        public DateTime DateBuy { get; private set; }
-        public int InvoiceNumber { get; private set; }
 
         // Relaciones
-        public int ProductId { get; private set; }
-        public Product Product { get; private set; }
+        public Supplier? Supplier { get; private set; }
 
-        public int SupplierId { get; private set; }
-        public Supplier Supplier { get; private set; }
 
-        // Constructor vacío (para EF)
-        private Buy() { }
+        // Atributos
+        public string InvoiceNumber { get; private set; } = string.Empty;
+        public DateTime Date { get; private set; } = DateTime.Now;
+        public decimal TotalAmount { get; private set; }
 
-        // Constructor controlado
-        public Buy(int quantity, decimal unitCost, DateTime dateBuy, int invoiceNumber, int productId, int supplierId)
+        // Relación con BuyItem
+        public ICollection<BuyItem> Items { get; private set; } = new List<BuyItem>();
+
+        // Constructor protegido para EF
+        protected Buy() { }
+
+        // Fábrica de dominio
+        public static Buy Create(Supplier? supplier, string invoiceNumber)
         {
-            if (quantity <= 0)
-                throw new ArgumentException("La cantidad debe ser mayor a 0");
+            if (string.IsNullOrWhiteSpace(invoiceNumber))
+                throw new ArgumentException("El número de factura es obligatorio.");
 
-            if (unitCost <= 0)
-                throw new ArgumentException("El costo unitario debe ser mayor a 0");
+            return new Buy
+            {
+                Supplier = supplier,
+                InvoiceNumber = invoiceNumber,
+                Date = DateTime.Now
+            };
+        }
 
-            if (invoiceNumber <= 0)
-                throw new ArgumentException("El número de factura debe ser válido");
+        // Agregar ítem de compra
+        public void AddItem(BuyItem item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
 
-            Quantity = quantity;
-            UnitCost = unitCost;
-            DateBuy = dateBuy;
-            InvoiceNumber = invoiceNumber;
-            ProductId = productId;
-            SupplierId = supplierId;
+            Items.Add(item);
+            TotalAmount += item.Subtotal;
+        }
+
+        public void CalculateTotal(ITaxStrategy taxStrategy)
+        {
+            if (taxStrategy == null)
+                throw new ArgumentNullException(nameof(taxStrategy));
+
+            TotalAmount = taxStrategy.CalculateTotal(Items.Sum(i => i.Subtotal));
         }
     }
 }
+
+
 

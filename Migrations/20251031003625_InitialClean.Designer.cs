@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Punto_de_venta.Data;
 
@@ -11,9 +12,11 @@ using Punto_de_venta.Data;
 namespace Punto_de_venta.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251031003625_InitialClean")]
+    partial class InitialClean
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,7 +127,12 @@ namespace Punto_de_venta.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Sales");
                 });
@@ -237,6 +245,17 @@ namespace Punto_de_venta.Migrations
                     b.HasOne("Punto_de_venta.Models.Supplier", null)
                         .WithMany("Products")
                         .HasForeignKey("SupplierId");
+                });
+
+            modelBuilder.Entity("Punto_de_venta.Models.Sale", b =>
+                {
+                    b.HasOne("Punto_de_venta.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Punto_de_venta.Models.SaleItem", b =>
