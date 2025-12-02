@@ -32,6 +32,10 @@
             lblTotal = new Label();
             lblCodigo = new Label();
             lblCantidad = new Label();
+            txtEdit = new TextBox();
+            btnCancelar = new Button();
+            button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
             SuspendLayout();
             // 
@@ -41,6 +45,8 @@
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(150, 23);
             txtCodigo.TabIndex = 0;
+            txtCodigo.TextChanged += txtCodigo_TextChanged;
+            txtCodigo.KeyDown += txtCodigo_KeyDown;
             // 
             // nudCantidad
             // 
@@ -53,6 +59,7 @@
             // 
             // btnAgregar
             // 
+
             btnAgregar.BackColor = Color.Gray;
             btnAgregar.Location = new Point(260, 37);
             btnAgregar.Name = "btnAgregar";
@@ -65,9 +72,9 @@
             // lvItems
             // 
             lvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            lvItems.Location = new Point(15, 90);
+            lvItems.Location = new Point(69, 88);
             lvItems.Name = "lvItems";
-            lvItems.Size = new Size(460, 200);
+            lvItems.Size = new Size(491, 335);
             lvItems.TabIndex = 3;
             lvItems.UseCompatibleStateImageBehavior = false;
             lvItems.SelectedIndexChanged += lvItems_SelectedIndexChanged;
@@ -75,8 +82,8 @@
             // btnConfirmar
             // 
             btnConfirmar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnConfirmar.BackColor = Color.Lime;
-            btnConfirmar.Location = new Point(15, 310);
+            btnConfirmar.BackColor = Color.Green;
+            btnConfirmar.Location = new Point(69, 444);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(120, 35);
             btnConfirmar.TabIndex = 4;
@@ -88,7 +95,7 @@
             // 
             lblTotal.Anchor = AnchorStyles.Bottom;
             lblTotal.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblTotal.Location = new Point(383, 310);
+            lblTotal.Location = new Point(465, 444);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(92, 35);
             lblTotal.TabIndex = 5;
@@ -114,11 +121,51 @@
             lblCantidad.TabIndex = 7;
             lblCantidad.Text = "Cantidad:";
             // 
+            // txtEdit
+            // 
+            txtEdit.Location = new Point(278, 4);
+            txtEdit.Name = "txtEdit";
+            txtEdit.Size = new Size(90, 23);
+            txtEdit.TabIndex = 8;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.FromArgb(192, 0, 0);
+            btnCancelar.Location = new Point(246, 444);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(122, 35);
+            btnCancelar.TabIndex = 9;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += button1_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(415, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(117, 32);
+            button1.TabIndex = 10;
+            button1.Text = "Ventas del día";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(415, 50);
+            button2.Name = "button2";
+            button2.Size = new Size(136, 32);
+            button2.TabIndex = 11;
+            button2.Text = "Ventas de la semana";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // FormVentaTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(494, 361);
+            ClientSize = new Size(630, 496);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(btnCancelar);
+            Controls.Add(txtEdit);
             Controls.Add(lblCantidad);
             Controls.Add(lblCodigo);
             Controls.Add(lblTotal);
@@ -136,5 +183,10 @@
             ResumeLayout(false);
             PerformLayout();
         }
+        private TextBox txtEditor;
+        private TextBox txtEdit;
+        private Button btnCancelar;
+        private Button button1;
+        private Button button2;
     }
 }
