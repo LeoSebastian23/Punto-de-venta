@@ -40,6 +40,8 @@
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             btnAddItem = new Button();
             btnRegistrar = new Button();
+            btnCrearProducto = new Button();
+            btnVerCompras = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
             SuspendLayout();
@@ -111,8 +113,9 @@
             dgvItems.Location = new Point(540, 110);
             dgvItems.Name = "dgvItems";
             dgvItems.RowHeadersWidth = 51;
-            dgvItems.Size = new Size(679, 264);
+            dgvItems.Size = new Size(756, 264);
             dgvItems.TabIndex = 8;
+            dgvItems.CellContentClick += dgvItems_CellContentClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -173,9 +176,33 @@
             btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnRegistrar_Click;
             // 
+            // btnCrearProducto
+            // 
+            btnCrearProducto.BackColor = Color.DarkCyan;
+            btnCrearProducto.Location = new Point(209, 430);
+            btnCrearProducto.Name = "btnCrearProducto";
+            btnCrearProducto.Size = new Size(150, 35);
+            btnCrearProducto.TabIndex = 10;
+            btnCrearProducto.Text = "Crear Producto";
+            btnCrearProducto.UseVisualStyleBackColor = false;
+            btnCrearProducto.Click += btnCrearProducto_Click;
+            // 
+            // btnVerCompras
+            // 
+            btnVerCompras.BackColor = Color.MediumSlateBlue;
+            btnVerCompras.Location = new Point(417, 430);
+            btnVerCompras.Name = "btnVerCompras";
+            btnVerCompras.Size = new Size(150, 35);
+            btnVerCompras.TabIndex = 11;
+            btnVerCompras.Text = "Ver compras";
+            btnVerCompras.UseVisualStyleBackColor = false;
+            btnVerCompras.Click += btnVerCompras_Click;
+            // 
             // BuyView
             // 
             ClientSize = new Size(1339, 536);
+            Controls.Add(btnVerCompras);
+            Controls.Add(btnCrearProducto);
             Controls.Add(lblSupplier);
             Controls.Add(cmbSupplier);
             Controls.Add(lblInvoice);
@@ -199,6 +226,8 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private Button btnCrearProducto;
+        private Button btnVerCompras;
     }
 }
 
