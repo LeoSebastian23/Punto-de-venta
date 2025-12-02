@@ -29,6 +29,7 @@
             lblName = new Label();
             lblCUIT = new Label();
             lblPhone = new Label();
+            btnModificar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSuppliers).BeginInit();
             SuspendLayout();
             // 
@@ -36,12 +37,12 @@
             // 
             dgvSuppliers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgvSuppliers.ColumnHeadersHeight = 29;
-            dgvSuppliers.Location = new Point(20, 150);
+            dgvSuppliers.Location = new Point(20, 189);
             dgvSuppliers.Name = "dgvSuppliers";
             dgvSuppliers.ReadOnly = true;
             dgvSuppliers.RowHeadersWidth = 51;
             dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSuppliers.Size = new Size(400, 250);
+            dgvSuppliers.Size = new Size(400, 262);
             dgvSuppliers.TabIndex = 8;
             // 
             // txtName
@@ -68,7 +69,7 @@
             // btnAdd
             // 
             btnAdd.BackColor = Color.Gray;
-            btnAdd.Location = new Point(327, 110);
+            btnAdd.Location = new Point(158, 139);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(93, 34);
             btnAdd.TabIndex = 6;
@@ -79,7 +80,7 @@
             // btnDelete
             // 
             btnDelete.BackColor = Color.Red;
-            btnDelete.Location = new Point(327, 72);
+            btnDelete.Location = new Point(458, 344);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(93, 32);
             btnDelete.TabIndex = 7;
@@ -111,9 +112,20 @@
             lblPhone.TabIndex = 4;
             lblPhone.Text = "Teléfono:";
             // 
+            // btnModificar
+            // 
+            btnModificar.BackColor = Color.FromArgb(128, 128, 255);
+            btnModificar.Location = new Point(458, 272);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(93, 28);
+            btnModificar.TabIndex = 9;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = false;
+            // 
             // SupplierView
             // 
-            ClientSize = new Size(450, 430);
+            ClientSize = new Size(594, 481);
+            Controls.Add(btnModificar);
             Controls.Add(lblName);
             Controls.Add(txtName);
             Controls.Add(lblCUIT);
@@ -130,5 +142,6 @@
             ResumeLayout(false);
             PerformLayout();
         }
+        private Button btnModificar;
     }
 }
