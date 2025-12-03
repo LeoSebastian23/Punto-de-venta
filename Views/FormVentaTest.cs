@@ -11,30 +11,28 @@ namespace Punto_de_venta.Views
     {
         private readonly IProductRepository _productRepository;
         private readonly SaleController _saleController;
+        private readonly ImprimirTicketController _ticketController;
 
         private Sale _currentSale;
 
 
         public FormVentaTest(
             IProductRepository productRepository,
-            SaleController saleController)
+            SaleController saleController,
+            ImprimirTicketController ticketController)
         {
             _productRepository = productRepository;
             _saleController = saleController;
+            _ticketController = ticketController;
 
             InitializeComponent();
             _currentSale = new Sale();
-
-            this.AcceptButton = btnAgregar;
-
-
         }
 
         private void FormVentaTest_Load(object sender, EventArgs e)
         {
             ConfigureListView();
             UpdateTotal();
-            CreateEditTextBox();
         }
 
         private void ConfigureListView()
@@ -118,12 +116,16 @@ namespace Punto_de_venta.Views
 
             try
             {
-                // Esto ahora dispara la cadena completa:
-                // UI → Controller → Service → Repository → EF → DB
+                // 1) Registrar venta
                 _saleController.CreateSale(_currentSale);
 
-                MessageBox.Show("Venta registrada correctamente.");
+                MessageBox.Show("Venta registrada correctamente.", "Éxito");
 
+                // 2) Mostrar la ventana para imprimir ticket
+                var imprimirView = new ImprimirTicketView(_ticketController, _currentSale);
+                imprimirView.ShowDialog();
+
+                // 3) Reiniciar la venta luego de imprimir
                 _currentSale = new Sale();
                 RefreshItemsList();
                 UpdateTotal();
@@ -137,87 +139,16 @@ namespace Punto_de_venta.Views
                     MessageBoxIcon.Error
                 );
             }
-
-            var view = new ImprimirTicketView();
-            view.ShowDialog();
-
         }
 
-        private void lvItems_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvItems.SelectedItems.Count == 0)
-                return;
-
-            ListViewItem item = lvItems.SelectedItems[0];
-
-            int subIndex = 1;
-
-            Rectangle rect = item.SubItems[subIndex].Bounds;
-
-            txtEdit.SetBounds(
-                rect.X,
-                rect.Y,
-                rect.Width,
-                rect.Height
-            );
-
-            txtEdit.Text = item.SubItems[subIndex].Text;
-            txtEdit.Tag = item;
-            txtEdit.Visible = true;
-            txtEdit.Focus();
-            txtEdit.SelectAll();
-
-        }
-
-        private void TxtEdit_Leave(object sender, EventArgs e)
-        {
-            SaveEdit();
-        }
-
-        private void TxtEdit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                SaveEdit();
-            }
-        }
+   
 
         private void lblTotal_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void CreateEditTextBox()
-        {
-            txtEdit = new TextBox();
-            txtEdit.Visible = false;
-            txtEdit.Leave += TxtEdit_Leave;
-            txtEdit.KeyDown += TxtEdit_KeyDown;
-
-            lvItems.Controls.Add(txtEdit);
-        }
-
-        private void SaveEdit()
-        {
-            if (txtEdit.Tag is ListViewItem item)
-            {
-                int index = item.Index;
-
-                if (int.TryParse(txtEdit.Text, out int newQty) && newQty > 0)
-                {
-                    var oldItem = _currentSale.Items[index];
-
-
-
-                }
-            }
-
-
-            txtEdit.Visible = false;
-            txtEdit.Tag = null;
-
-            UpdateTotal();
-        }
+      
 
         private void button1_Click(object sender, EventArgs e)
         {

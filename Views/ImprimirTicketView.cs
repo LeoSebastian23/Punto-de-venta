@@ -1,36 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Punto_de_venta.Controllers;
+using Punto_de_venta.Models;
 
 namespace Punto_de_venta.Views
 {
     public partial class ImprimirTicketView : Form
     {
-        public ImprimirTicketView()
+        private readonly ImprimirTicketController _controller;
+        private readonly Sale _sale;
+
+        public ImprimirTicketView(ImprimirTicketController controller, Sale sale)
         {
+            _controller = controller;
+            _sale = sale;
+
             InitializeComponent();
-        }
-
-        private void ImprimirTicketView_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void ImprimirTicketView_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
+                Close();
+
             if (e.KeyCode == Keys.Enter)
             {
-                //añadir logica aca
+                _controller.MostrarVistaPrevia(_sale);
+                Close();
             }
         }
     }

@@ -45,6 +45,10 @@ namespace Punto_de_venta
                 .AddScoped<LoadBuyItem>()
                 .AddScoped<MainMenuView>()
 
+                .AddScoped<TicketGenerator>()
+                .AddScoped<ImprimirTicketController>()
+
+
                 .BuildServiceProvider();
 
             Application.EnableVisualStyles();

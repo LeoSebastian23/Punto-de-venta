@@ -35,7 +35,11 @@ namespace Punto_de_venta.Controllers
             _service.RegisterBuy(buy, taxStrategy, porcentajeGanancia);
         }
 
-        //public IEnumerable<Buy> GetAllBuys() => _service.GetAllBuys();
+        public IEnumerable<Buy> GetAllBuys()
+        {
+            return _service.GetAllBuys();
+        }
+
     }
 }
 

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
 using Punto_de_venta.Controllers;
 
 namespace Punto_de_venta.Views
@@ -22,12 +14,24 @@ namespace Punto_de_venta.Views
 
         private void BuysListView_Load(object sender, EventArgs e)
         {
-
+            LoadBuys();
         }
+
 
         private void LoadBuys()
         {
-            
+            var buys = _controller.GetAllBuys().ToList();
+
+            dgvBuysList.Rows.Clear();
+
+            foreach (var b in buys)
+            {
+                dgvBuysList.Rows.Add(b.Id, b.Supplier?.Name, b.InvoiceNumber, b.Date, b.TotalAmount); 
+                
+            }
         }
+
+
+
     }
 }

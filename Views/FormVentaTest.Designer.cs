@@ -32,7 +32,6 @@
             lblTotal = new Label();
             lblCodigo = new Label();
             lblCantidad = new Label();
-            txtEdit = new TextBox();
             btnCancelar = new Button();
             button1 = new Button();
             button2 = new Button();
@@ -41,29 +40,31 @@
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(90, 15);
+            txtCodigo.Location = new Point(103, 20);
+            txtCodigo.Margin = new Padding(3, 4, 3, 4);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(150, 23);
+            txtCodigo.Size = new Size(171, 27);
             txtCodigo.TabIndex = 0;
             txtCodigo.TextChanged += txtCodigo_TextChanged;
             txtCodigo.KeyDown += txtCodigo_KeyDown;
             // 
             // nudCantidad
             // 
-            nudCantidad.Location = new Point(90, 50);
+            nudCantidad.Location = new Point(103, 67);
+            nudCantidad.Margin = new Padding(3, 4, 3, 4);
             nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudCantidad.Name = "nudCantidad";
-            nudCantidad.Size = new Size(80, 23);
+            nudCantidad.Size = new Size(91, 27);
             nudCantidad.TabIndex = 1;
             nudCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btnAgregar
             // 
-
             btnAgregar.BackColor = Color.Gray;
-            btnAgregar.Location = new Point(260, 37);
+            btnAgregar.Location = new Point(297, 49);
+            btnAgregar.Margin = new Padding(3, 4, 3, 4);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(100, 36);
+            btnAgregar.Size = new Size(114, 48);
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = false;
@@ -72,20 +73,21 @@
             // lvItems
             // 
             lvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            lvItems.Location = new Point(69, 88);
+            lvItems.Location = new Point(79, 117);
+            lvItems.Margin = new Padding(3, 4, 3, 4);
             lvItems.Name = "lvItems";
-            lvItems.Size = new Size(491, 335);
+            lvItems.Size = new Size(561, 445);
             lvItems.TabIndex = 3;
             lvItems.UseCompatibleStateImageBehavior = false;
-            lvItems.SelectedIndexChanged += lvItems_SelectedIndexChanged;
             // 
             // btnConfirmar
             // 
             btnConfirmar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnConfirmar.BackColor = Color.Green;
-            btnConfirmar.Location = new Point(69, 444);
+            btnConfirmar.Location = new Point(79, 592);
+            btnConfirmar.Margin = new Padding(3, 4, 3, 4);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(120, 35);
+            btnConfirmar.Size = new Size(137, 47);
             btnConfirmar.TabIndex = 4;
             btnConfirmar.Text = "Confirmar venta";
             btnConfirmar.UseVisualStyleBackColor = false;
@@ -95,9 +97,9 @@
             // 
             lblTotal.Anchor = AnchorStyles.Bottom;
             lblTotal.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblTotal.Location = new Point(465, 444);
+            lblTotal.Location = new Point(531, 592);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(92, 35);
+            lblTotal.Size = new Size(105, 47);
             lblTotal.TabIndex = 5;
             lblTotal.Text = "Total: 0.00";
             lblTotal.TextAlign = ContentAlignment.MiddleRight;
@@ -106,34 +108,28 @@
             // lblCodigo
             // 
             lblCodigo.AutoSize = true;
-            lblCodigo.Location = new Point(15, 18);
+            lblCodigo.Location = new Point(17, 24);
             lblCodigo.Name = "lblCodigo";
-            lblCodigo.Size = new Size(49, 15);
+            lblCodigo.Size = new Size(61, 20);
             lblCodigo.TabIndex = 6;
             lblCodigo.Text = "Código:";
             // 
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(15, 52);
+            lblCantidad.Location = new Point(17, 69);
             lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(58, 15);
+            lblCantidad.Size = new Size(72, 20);
             lblCantidad.TabIndex = 7;
             lblCantidad.Text = "Cantidad:";
-            // 
-            // txtEdit
-            // 
-            txtEdit.Location = new Point(278, 4);
-            txtEdit.Name = "txtEdit";
-            txtEdit.Size = new Size(90, 23);
-            txtEdit.TabIndex = 8;
             // 
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(192, 0, 0);
-            btnCancelar.Location = new Point(246, 444);
+            btnCancelar.Location = new Point(281, 592);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(122, 35);
+            btnCancelar.Size = new Size(139, 47);
             btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -141,31 +137,32 @@
             // 
             // button1
             // 
-            button1.Location = new Point(415, 12);
+            button1.Location = new Point(474, 16);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(117, 32);
+            button1.Size = new Size(134, 43);
             button1.TabIndex = 10;
             button1.Text = "Ventas del día";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(415, 50);
+            button2.Location = new Point(474, 67);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(136, 32);
+            button2.Size = new Size(155, 43);
             button2.TabIndex = 11;
             button2.Text = "Ventas de la semana";
             button2.UseVisualStyleBackColor = true;
             // 
             // FormVentaTest
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(630, 496);
+            ClientSize = new Size(720, 661);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnCancelar);
-            Controls.Add(txtEdit);
             Controls.Add(lblCantidad);
             Controls.Add(lblCodigo);
             Controls.Add(lblTotal);
@@ -175,6 +172,7 @@
             Controls.Add(nudCantidad);
             Controls.Add(txtCodigo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "FormVentaTest";
             Text = "Test de Ventas";
@@ -184,7 +182,6 @@
             PerformLayout();
         }
         private TextBox txtEditor;
-        private TextBox txtEdit;
         private Button btnCancelar;
         private Button button1;
         private Button button2;

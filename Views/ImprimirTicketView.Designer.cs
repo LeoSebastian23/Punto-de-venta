@@ -94,7 +94,6 @@
             Name = "ImprimirTicketView";
             Text = "ImprimirTicketView";
             KeyDown += ImprimirTicketView_KeyDown;
-            KeyPress += ImprimirTicketView_KeyPress;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -44,6 +44,12 @@ namespace Punto_de_venta.Services
             _buyRepository.Add(buy);
             _buyRepository.Save();
         }
+
+        public IEnumerable<Buy> GetAllBuys()
+        {
+            return _buyRepository.GetAll();
+        }
+
     }
 }
 
