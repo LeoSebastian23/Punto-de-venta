@@ -40,6 +40,8 @@ namespace Punto_de_venta.Views
 
             // Cargar productos
             CargarProductos();
+
+            ConfigureDeleteColumn();
         }
 
         private void CargarProductos()
@@ -136,6 +138,56 @@ namespace Punto_de_venta.Views
 
             dgvItems.Rows.Clear();
             _items.Clear();
+        }
+
+        private void btnCrearProducto_Click(object sender, EventArgs e)
+        {
+            var view = new ProductView(_productController);
+            view.ShowDialog();
+        }
+
+        private void btnVerCompras_Click(object sender, EventArgs e)
+        {
+            var view = new BuysListView(_buyController);
+            view.ShowDialog();
+        }
+
+        private void ConfigureDeleteColumn()
+        {
+            if (!dgvItems.Columns.Contains("DeleteColumn"))
+            {
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+                btnDelete.Name = "DeleteColumn";
+                btnDelete.HeaderText = "Eliminar";
+                btnDelete.Text = "🗑️";
+                btnDelete.Width = 70;
+                btnDelete.UseColumnTextForButtonValue = true;
+                dgvItems.Columns.Add(btnDelete);
+            }
+        }
+
+        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            if (dgvItems.Columns[e.ColumnIndex].Name == "DeleteColumn")
+            {
+                var confirm = MessageBox.Show(
+                    $"¿Seguro desea eliminar el producto?",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                _items.RemoveAt(e.RowIndex);
+                dgvItems.Rows.RemoveAt(e.RowIndex);
+            }
         }
     }
 }
