@@ -66,5 +66,22 @@ namespace Punto_de_venta.Services
         {
             return _saleRepository.GetById(id);
         }
+
+        public IEnumerable<Sale> GetSalesOfToday()
+        {
+            var today = DateTime.Today;
+            var tomorrow = today.AddDays(1);
+
+            return _saleRepository.GetByDateRange(today, tomorrow);
+        }
+
+        public IEnumerable<Sale> GetSalesOfMonth()
+        {
+            var firstDay = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            var firstDayNextMonth = firstDay.AddMonths(1);
+
+            return _saleRepository.GetByDateRange(firstDay, firstDayNextMonth);
+        }
+
     }
 }

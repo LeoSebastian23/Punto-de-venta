@@ -185,5 +185,20 @@ namespace Punto_de_venta.Views
         {
             
         }
+
+        private void btnVentasDia_Click(object sender, EventArgs e)
+        {
+            var ventas = _saleController.GetSalesOfToday();
+            var view = new FormVentasListView("Ventas del Día", ventas);
+            view.ShowDialog();
+        }
+
+        private void btnVentasMes_Click(object sender, EventArgs e)
+        {
+            var ventas = _saleController.GetSalesOfMonth();
+            var view = new FormVentasListView("Ventas del Mes", ventas);
+            view.ShowDialog();
+        }
+
     }
 }

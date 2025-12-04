@@ -144,6 +144,7 @@
             button1.TabIndex = 10;
             button1.Text = "Ventas del día";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += btnVentasDia_Click;
             // 
             // button2
             // 
@@ -152,8 +153,9 @@
             button2.Name = "button2";
             button2.Size = new Size(155, 43);
             button2.TabIndex = 11;
-            button2.Text = "Ventas de la semana";
+            button2.Text = "Ventas del mes";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += btnVentasMes_Click;
             // 
             // FormVentaTest
             // 

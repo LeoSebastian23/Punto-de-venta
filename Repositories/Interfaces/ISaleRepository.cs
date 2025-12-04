@@ -9,5 +9,7 @@ namespace Punto_de_venta.Repositories.Interfaces
         IEnumerable<Sale> GetAll();
         void Add(Sale sale);
         void SaveChanges();
+        IEnumerable<Sale> GetByDateRange(DateTime start, DateTime end);
+
     }
 }

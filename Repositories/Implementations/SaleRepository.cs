@@ -42,5 +42,14 @@ namespace Punto_de_venta.Repositories.Implementations
         {
             _context.SaveChanges();
         }
+        public IEnumerable<Sale> GetByDateRange(DateTime start, DateTime end)
+        {
+            return _context.Sales
+                .Include(s => s.Items)
+                .ThenInclude(i => i.Product)
+                .Where(s => s.Date >= start && s.Date <= end)
+                .AsNoTracking()
+                .ToList();
+        }
     }
 }

@@ -27,5 +27,16 @@ namespace Punto_de_venta.Controllers
         {
             return _saleService.GetSaleById(id);
         }
+
+        public IEnumerable<Sale> GetSalesOfToday()
+        {
+            return _saleService.GetSalesOfToday();
+        }
+
+        public IEnumerable<Sale> GetSalesOfMonth()
+        {
+            return _saleService.GetSalesOfMonth();
+        }
+
     }
 }
