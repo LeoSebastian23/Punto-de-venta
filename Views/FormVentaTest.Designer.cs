@@ -95,15 +95,15 @@
             // 
             // lblTotal
             // 
-            lblTotal.Anchor = AnchorStyles.Bottom;
+            // lblTotal
+            lblTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblTotal.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblTotal.Location = new Point(531, 592);
+            lblTotal.Location = new Point(500, 592);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(105, 47);
-            lblTotal.TabIndex = 5;
+            lblTotal.Size = new Size(200, 47);
             lblTotal.Text = "Total: 0.00";
             lblTotal.TextAlign = ContentAlignment.MiddleRight;
-            lblTotal.Click += lblTotal_Click;
+
             // 
             // lblCodigo
             // 

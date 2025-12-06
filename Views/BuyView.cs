@@ -126,8 +126,22 @@ namespace Punto_de_venta.Views
                 return;
             }
 
-            var supplier = (Supplier)cmbSupplier.SelectedItem;
             string invoiceNumber = txtInvoice.Text.Trim();
+
+            // VALIDACIÓN OBLIGATORIA
+            if (string.IsNullOrWhiteSpace(invoiceNumber))
+            {
+                MessageBox.Show(
+                    "Debe completar el número de ticket para continuar.",
+                    "Número de ticket obligatorio",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                txtInvoice.Focus();
+                return;
+            }
+
+            var supplier = (Supplier)cmbSupplier.SelectedItem;
             string invoiceType = cmbInvoiceType.SelectedItem?.ToString() ?? "B";
 
             var itemsSend = _items.Select(x => (x.product, x.quantity, x.unitCost)).ToList();
@@ -140,11 +154,13 @@ namespace Punto_de_venta.Views
             _items.Clear();
         }
 
+
         private void btnCrearProducto_Click(object sender, EventArgs e)
         {
-            var view = new ProductView(_productController);
-            view.ShowDialog();
+            _productView.ShowDialog();  // usa la instancia inyectada correctamente
+            CargarProductos();          // refresca la grilla
         }
+
 
         private void btnVerCompras_Click(object sender, EventArgs e)
         {

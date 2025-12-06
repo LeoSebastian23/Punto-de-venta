@@ -26,7 +26,7 @@
             btnSuppliers.Name = "btnSuppliers";
             btnSuppliers.Size = new Size(150, 40);
             btnSuppliers.TabIndex = 0;
-            btnSuppliers.Text = "Proveedores";
+            btnSuppliers.Text = "Menu Proveedores";
             btnSuppliers.UseVisualStyleBackColor = false;
             btnSuppliers.Click += btnSuppliers_Click;
             // 
@@ -37,7 +37,7 @@
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(150, 40);
             btnProducts.TabIndex = 1;
-            btnProducts.Text = "Productos";
+            btnProducts.Text = "Gestión Productos";
             btnProducts.UseVisualStyleBackColor = false;
             btnProducts.Click += btnProducts_Click;
             // 
@@ -48,7 +48,7 @@
             btnBuys.Name = "btnBuys";
             btnBuys.Size = new Size(150, 40);
             btnBuys.TabIndex = 2;
-            btnBuys.Text = "Registrar Compra";
+            btnBuys.Text = "Registrar Compras";
             btnBuys.UseVisualStyleBackColor = false;
             btnBuys.Click += btnBuys_Click;
             // 
@@ -59,7 +59,7 @@
             btnTestVentas.Name = "btnTestVentas";
             btnTestVentas.Size = new Size(150, 40);
             btnTestVentas.TabIndex = 3;
-            btnTestVentas.Text = "Test Ventas";
+            btnTestVentas.Text = "Panel de Ventas";
             btnTestVentas.UseVisualStyleBackColor = false;
             btnTestVentas.Click += btnTestVentas_Click;
             // 

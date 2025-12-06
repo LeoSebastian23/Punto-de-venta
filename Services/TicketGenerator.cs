@@ -33,7 +33,7 @@ namespace Punto_de_venta.Services
             }
 
             Draw("----------------------------------------".Substring(0, 30));
-            Draw("        MI NEGOCIO - TICKET");
+            Draw("        OLIVIA - TICKET");
             Draw("----------------------------------------".Substring(0, 30));
 
             Draw($"Fecha: {DateTime.Now:dd/MM/yyyy HH:mm}");

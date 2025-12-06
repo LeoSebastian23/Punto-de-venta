@@ -24,6 +24,7 @@ namespace Punto_de_venta.Views
             numSalePrice.ValueChanged += (s, ev) => RecalculateMargin();
 
             dgvProducts.SelectionChanged += dgvProducts_SelectionChanged;
+            FixSymbolPositions();
         }
 
         private void LoadProducts()
@@ -114,8 +115,17 @@ namespace Punto_de_venta.Views
             }
 
             decimal margin = ((salePrice - baseCost) / baseCost) * 100;
+
+      
+            if (margin > numMargin.Maximum)
+                margin = numMargin.Maximum;
+
+            if (margin < numMargin.Minimum)
+                margin = numMargin.Minimum;
+
             numMargin.Value = margin;
         }
+
 
         private void numBaseCost_ValueChanged(object sender, EventArgs e)
         {
@@ -227,5 +237,17 @@ namespace Punto_de_venta.Views
                 MessageBox.Show("Error al actualizar: " + ex.Message);
             }
         }
+        private void FixSymbolPositions()
+        {
+            // Mover $ de Costo Base
+            lblCostobse.Location = new Point(numBaseCost.Right + 5, numBaseCost.Top + 3);
+
+            // Mover $ de Precio Venta
+            lblPrecioventa.Location = new Point(numSalePrice.Right + 5, numSalePrice.Top + 3);
+
+            // Mover % de Margen
+            lblPorcentaje.Location = new Point(numMargin.Right + 5, numMargin.Top + 3);
+        }
+
     }
 }
