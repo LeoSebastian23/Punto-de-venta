@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Punto_de_venta.Controllers;
+﻿using Punto_de_venta.Controllers;
 using Punto_de_venta.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
+
 
 namespace Punto_de_venta.Views
 {
@@ -184,27 +180,46 @@ namespace Punto_de_venta.Views
 
         private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Ignorar clics en encabezado o fuera de rango
             if (e.RowIndex < 0)
+                return;
+
+            // Verificar que la columna sea la correcta
+            if (dgvItems.Columns[e.ColumnIndex].Name != "DeleteColumn")
+                return;
+
+            // Validar que el índice exista en la lista
+            if (e.RowIndex >= _items.Count)
             {
+                MessageBox.Show("El ítem no existe en la lista interna. Refrescando tabla.");
+                dgvItems.Rows.Clear();
+
+                // Recargar items visibles nuevamente (RECOMENDADO)
+                foreach (var x in _items)
+                {
+                    dgvItems.Rows.Add(x.product.Name, x.quantity, x.unitCost, x.margin, x.quantity * x.unitCost);
+                }
+
                 return;
             }
 
-            if (dgvItems.Columns[e.ColumnIndex].Name == "DeleteColumn")
-            {
-                var confirm = MessageBox.Show(
-                    $"¿Seguro desea eliminar el producto?",
-                    "Confirmar eliminación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning
-                );
+            var confirm = MessageBox.Show(
+                $"¿Seguro desea eliminar el producto?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
 
-                if (confirm != DialogResult.Yes)
-                    return;
+            if (confirm != DialogResult.Yes)
+                return;
 
-                _items.RemoveAt(e.RowIndex);
-                dgvItems.Rows.RemoveAt(e.RowIndex);
-            }
+            // Eliminar de la lista interna
+            _items.RemoveAt(e.RowIndex);
+
+            // Eliminar de la grilla
+            dgvItems.Rows.RemoveAt(e.RowIndex);
         }
+
     }
 }
 
