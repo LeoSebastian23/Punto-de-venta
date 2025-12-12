@@ -17,7 +17,13 @@ namespace Punto_de_venta
         {
             var services = new ServiceCollection()
                 .AddDbContext<AppDbContext>(options =>
-                    options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
+                //.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;"))
+                {
+                    var cs = System.Configuration.ConfigurationManager
+                                  .ConnectionStrings["DefaultConnection"]
+                                  .ConnectionString;
+                    options.UseSqlServer(cs);
+                })
 
                 .AddScoped<IProductRepository, ProductRepository>()
                 .AddScoped<ProductService>()
@@ -50,6 +56,12 @@ namespace Punto_de_venta
 
 
                 .BuildServiceProvider();
+
+            using (var scope = services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                DbInitializer.Initialize(db);
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

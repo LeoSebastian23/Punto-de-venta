@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Punto_de_venta.Models;
 
 namespace Punto_de_venta.Data
@@ -19,7 +20,16 @@ namespace Punto_de_venta.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;");
+                //optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;");
+
+                var cs = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ConnectionString;
+
+                if (string.IsNullOrWhiteSpace(cs))
+                {
+                    cs = "Server=localhost\\SQLEXPRESS;Database=PuntoDeVentaDB;Trusted_Connection=True;TrustServerCertificate=True;";
+                }
+
+                optionsBuilder.UseSqlServer(cs);
             }
         }
 
